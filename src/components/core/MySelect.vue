@@ -19,6 +19,7 @@ import clonableProps from '@/clonable-props';
   v-flex
       v-layout(row)
         v-select( solo
+          :class="readonly?'read-only':''"
           v-bind="props"
           v-model="model" outline
           )

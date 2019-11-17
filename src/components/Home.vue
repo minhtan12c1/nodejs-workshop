@@ -20,7 +20,7 @@
             ...mapActions([
                 'buildMenu',
             ]),
-    
+
         },
         components: {
             appFooter: Footer,

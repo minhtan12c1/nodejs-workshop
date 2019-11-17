@@ -1,3 +1,5 @@
+import dataTypeUtils from '@/data-adapter/map/utils';
+
 export default {
     convertApiData(fields, data) {
         if (!fields || (Array.isArray(fields) && !fields.length)) {
@@ -9,7 +11,7 @@ export default {
             result[field.name] = field.adapter.toUiData(result[field.name], result);
           }
           if (field.adapterMap) {
-            result[field.name] = this.convertApiDataToUiData(field.adapterMap, result[field.name]);
+            result[field.name] = dataTypeUtils.convertApiDataToUiData(field.adapterMap, result[field.name]);
           }
         })
         return result;
@@ -23,28 +25,25 @@ export default {
     
         return result;
       },
-      convertApiDataToUiData(adapterMap, data) {
-        let result;
-        const valuePairs = Object.values(adapterMap);
-        const convertSingleData = function convertSingleData(singleData) {
-          for (let i = 0; i < valuePairs.length; i++) {
-            if (`${singleData}` === `${valuePairs[i].value}`) {
-              return valuePairs[i].text;
+    transformUiObjectToApi(object, objectDefinition) {
+        let tmpObject = Object.assign({}, object);
+        objectDefinition.fields.forEach((field) => {
+            if (tmpObject[field.name] == null || tmpObject[field.name] == undefined) {
+                return;
             }
-          }
-          return singleData;
-        };
-        if (data !== null && data !== undefined) {
-          if (data instanceof Array) {
-            result = [];
-            data.forEach((singleData) => {
-              result.push(convertSingleData(singleData));
-            });
-          } else {
-            result = convertSingleData(data);
-          }
+            if (field.adapterMap) {
+                tmpObject[field.name] = dataTypeUtils.convertUiDataToApiData(field.adapterMap, object[field.name]);
+            }
+            if (field.adapter && field.adapter.toApiData) {
+                tmpObject[field.name] = field.adapter.toApiData(tmpObject[field.name], object);
+            }
+            if (!field.adapterMap && !field.adapter) {
+                tmpObject[field.name] = object[field.name];
+            }
+        });
+        if (objectDefinition.postDataTransform) {
+            tmpObject = objectDefinition.postDataTransform(tmpObject);
         }
-    
-        return result;
-      },
+        return tmpObject;
+    },
 }

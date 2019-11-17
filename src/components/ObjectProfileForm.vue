@@ -1,94 +1,212 @@
+
+
 <script>
-   import componentName from '@/components/component-name';
+
+ import componentName from '@/components/component-name';
+ import dataTypeUtils from '@/data-adapter/map/utils';
+
 
 export default {
-    name: 'objectProfileForm', 
-      data() {
-        return {
-          defaultComponent: componentName.AOS_TEXT_FIELD,
-          objectProps: {},
-          objectRules: {},
-          defaultProps: {},
-        };
+    name: 'ObjectProfileForm',
+    data() {
+      return {
+        formData: {},
+        defaultComponent: componentName.MY_TEXT_FIELD,
+        conditionalFields: [],
+        objectProps: {},
+        objectRules: {},
+        defaultProps: {},
+        dependedFields: [],
+        default: {},
+
+      };
     },
     props: {
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      multipleColumn: {
-        type: Boolean,
-        default: false,
-      },
-    }, 
-    methods: {
-    
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+        objectDefinition: {
+            type: Object,
+        },
+        checkReadOnly: {
+            type: Boolean,
+            default: false,
+        },
+        isModify: {
+            type: Boolean,
+            default: false,
+        },
+        value: {
+            type: Object,
+            default: () => {},
+        },
+        action: {
+            type: String,
+            default: 'add',
+            validator: data => data === 'add' || data === 'modify',
+        },
+        selectView: {
+            type: Boolean,
+            default: false,
+        },
     },
-    // watch: {
-    //   selectView(val) {
-    //     if (val) {
-    //       this.initializeObject();
-    //       if (!this.isModify) {
-    //         this.baseInitializeObject();
-    //         this.model = Object.assign({}, this.default);
-    //       }
-    //     }
-    //   },
-    //   model() {
-        
-    //   },
-    // },
+    computed: {
+        model: {
+            get() {
+                return this.value;
+            },
+            set(value) {
+                this.$emit('input', value);
+            },
+        },
+    },
+    methods: {
+        initializeObject() {
+            const objectProps = {};
+            const defaultProps = {};
+            // this.objectRules = {};
+            // this.defaultRules = {};
+            this.objectDefinition.fields.forEach((field) => {
+                // if (field.validationRules) {
+                //     this.objectRules[field.name] = field.validationRules;
+                // }
+                // if (field.validationRules && field.validationRules.includes(commonRule.REQUIRED) && field.component !== componentName.AOS_STATUS_SWITCH) {
+                //     field.required = true;
+                // }
+                if (field.hint) {
+                    this.objectDefinition.information = true;
+                }
+                objectProps[field.name] = Object.assign({}, field.componentProps || {});
+                defaultProps[field.name] = Object.assign({}, field.componentProps || {});
+                if ((field.component === componentName.MY_SELECT) &&
+                    !objectProps[field.name].items && field.adapterMap) {
+                    const fieldItems = dataTypeUtils.getUiDataList(field.adapterMap);
+                    objectProps[field.name].items = fieldItems;
+                    defaultProps[field.name].items = Object.assign([], fieldItems);
+                }
+                if (field.dependOn) {
+                    const dependedField = {};
+                    dependedField.name = field.name;
+                    dependedField.dependOn = field.dependOn;
+                    this.conditionalFields.push(field.dependOn.sourceFieldName);
+                    this.dependedFields.push(dependedField);
+                }
+            });
+            this.objectProps = objectProps;
+            this.defaultProps = defaultProps;
+            // this.defaultRules = Object.assign({}, this.objectRules);
+            if (this.objectDefinition.fields[0]) this.objectProps[this.objectDefinition.fields[0].name].hide = false;
+      },
+      onFieldDataUpdated(fieldName) {
+        if (this.conditionalFields.includes(fieldName)) {
+          this.dependedFields.forEach((dependedField) => {
+            const dependedFieldName = dependedField.name;
+            if (fieldName === dependedField.dependOn.sourceFieldName) {
+              const conditionalFieldValue = this.model[fieldName];
+              let matched = false;
+              const fieldProp = Object.assign({}, this.defaultProps[dependedFieldName]);
+              for (let index = 0; index < dependedField.dependOn.sourceFieldConditions.length; index++) {
+                const fieldCondition = dependedField.dependOn.sourceFieldConditions[index];
+                if (fieldCondition.statement(conditionalFieldValue)) {
+                  if (fieldCondition.actions.hide) {
+                    fieldProp.hide = true;
+                  }
+                  if (fieldCondition.actions.disabled) {
+                    fieldProp.disabled = true;
+                  }
+                  if (fieldCondition.actions.setValue !== undefined) {
+                    this.model[dependedFieldName] = fieldCondition.actions.setValue;
+                  }
+                  if (fieldCondition.actions.setItems) {
+                    fieldProp.items = fieldCondition.actions.setItems;
+                  }
+                  // if (fieldCondition.actions.setRules) {
+                  //   this.objectRules[dependedFieldName] = fieldCondition.actions.setRules;
+                  // }
+                  matched = true;
+                  break;
+                }
+              }
+              this.objectProps[dependedFieldName] = fieldProp;
+              if (!matched) {
+                // revert to default prop for depended field
+                this.objectProps[dependedFieldName] = Object.assign({}, this.defaultProps[dependedFieldName]);
+                this.objectRules[dependedFieldName] = Object.assign([], this.defaultRules[dependedFieldName]);
+                if (this.objectDefinition && this.objectDefinition[dependedFieldName]) {
+                  this.model[dependedFieldName] = this.objectDefinition[dependedFieldName].default;
+                }
+              }
+            }
+          });
+        }
+      },
+      baseInitializeObject() {
+        if (this.objectDefinition) {
+            const model = {};
+            this.objectDefinition.fields.forEach((field) => {
+            model[field.name] = field.default;
+            });
+            this.default = Object.assign({}, model);
+        }
+      },
+    },
+    watch: {
+        selectView(val) {
+            if (val) {
+                this.initializeObject();
+                if (!this.isModify) {
+                    this.baseInitializeObject();
+                    this.model = Object.assign({}, this.default);
+                }
+            }
+        },
+        model() {
+            if (this.objectDefinition && this.objectDefinition.fields) {
+                this.objectDefinition.fields.forEach((field) => {
+                    this.onFieldDataUpdated(field.name);
+                });
+            }
+        },
+    },
     mounted() {
-      this.objectProps = this.objectDefinition;
-    }
+      if (this.objectDefinition && this.objectDefinition.fields) {
+        this.objectDefinition.fields.forEach((field) => {
+          this.onFieldDataUpdated(field.name);
+        });
+      }
+    },
+    created() {
+        this.baseInitializeObject();
+        this.initializeObject();
+        if (!this.value || Object.keys(this.value).length === 0) {
+            this.model = Object.assign({}, this.default);
+        }
+    },
 }
 </script>
 
 <style lang="stylus" scoped>
-  .object-profile-form
-      .form-layout
-        margin1: 0 -40px !important
-        .field-container
-          padding: 0 !important
-          .layout
-            .flex:first-child.xs12
-              width: auto
 </style>
 
 <template lang="pug">
-  div
-    v-layout.ma-0(row="" wrap="")
-        v-flex(style="padding-left: 2px;!important"
-        v-for="(field, index) in this.objectDefinition.fields"
-        :key="index")
-          v-layout.ma-0(row center)
-            v-flex.pa-0(xs12)
-              | {{field.label}}
-    //- v-container.pt-0.pb-0(fluid="" grid-list-sm="")
-    //-   .required-note.mb-1(align="right" v-if="showRequiredNote")
-    //-     span.error--text
-    //-       | (*)&nbsp
-    //-     span
-    //-       | required_field
-    //-   v-layout.ma-0(row="" wrap="" :class="['form-layout', multipleColumn ? 'multiple-column' : '']")
-    //-     v-flex(style="padding-left: 2px;!important"
-    //-     :class="['xs12 field-container', multipleColumn ? 'md4' : '']"
-    //-     v-for="(field, index) in objectDefinition.fields"
-    //-     :key="index")
-    //-       v-layout.ma-0(row center)
-    //-         v-flex.pa-0(xs12)
-    //-           component(:key="field.name"
-    //-           :class="[field.required ? 'required-field': '']"
-    //-           v-if="(!field.hidden && !objectProps[field.name].hide)\
-    //-           && !(field.hideOnAdd && action === 'add')\
-    //-           && !(field.hideOnModify && action === 'modify')"
-    //-           :is="field.component || defaultComponent"
-    //-           :label="field.label"
-    //-           :data-vv-name="field.name"
-    //-           :data-vv-as="field.label"
-    //-           :readonly="(checkReadOnly && field.readOnly) || disabled" v-bind="objectProps[field.name] || {}"
+    div
+        v-container
+            v-layout.ma-0(row="" wrap="")
+                v-flex(v-for="(field, index) in objectDefinition.fields" :key="index")
+                    v-layout
+                      v-layout.ma-0(row center)
+                        v-flex.pa-0(xs12)
+                          component(
+                            :label="field.label"
+                            v-model="model[field.name]"
+                            :is="field.component || defaultComponent"
+                            :required="field.required"
+                            :data-hint="field.hint"
+                             :ref="field.name"
+                            :readonly="checkReadOnly"
+                          )
+                          
               
-    //-           suffix
-    //-           :required="field.required"
-    //-           )
+        
 </template>

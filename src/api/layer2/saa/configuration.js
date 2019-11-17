@@ -49,6 +49,6 @@ export default {
     return "modify";
   },
   getAll(callback) {
-    return baseApi.getAll("http://localhost:8080/data/layer2/saa/configuration.json",callback);
+    return baseApi.getAll("khachhang.php",callback);
   },
 };

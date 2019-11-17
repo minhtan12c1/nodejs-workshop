@@ -28,5 +28,14 @@ export default {
         dataModelModuleName: 'layer2/saa/configuration',
       },
     },
+    {
+      path: 'khachhang',
+      name: 'Layer2_Saa_khachhang',
+      component: TableView,
+      meta: {
+        title: 'Khach Hang',
+        dataModelModuleName: 'layer2/saa/khachhang',
+      },
+    },
   ],
 };

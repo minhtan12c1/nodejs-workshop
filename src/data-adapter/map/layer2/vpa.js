@@ -29,4 +29,9 @@ export default {
     INVALID: { value: 3, text: 'Invalid' },
     DHL_BLOCKING: { value: 4, text: 'DHL-Blocking' },
   },
+  
+  GIOITINH: {
+    NAM: { value: 1, text: 'Nam' },
+    NU: { value: 2, text: 'nu' },
+  },
 };

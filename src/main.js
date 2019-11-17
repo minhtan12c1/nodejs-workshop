@@ -26,6 +26,24 @@ const router =new VueRouter({
 
 // store.dispatch('buildMenu');
 
+let apiUrl = null;
+  try {
+    // In order to change the API URL without re-run the yarn
+    // Please create file "env.js" under /src directory with following content:
+    // export const apiUrl = 'http://192.168.120.122'
+    const myEnv = require('@/env');
+    if (myEnv !== null) {
+      apiUrl = myEnv.apiUrl;
+    }
+  } catch (error) {
+    // ignore err
+  }
+
+  if (apiUrl) {
+    axios.defaults.baseURL = apiUrl;
+  } 
+
+
 new Vue({
   render: h => h(App),
   store,
