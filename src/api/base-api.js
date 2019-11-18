@@ -39,31 +39,78 @@ export default {
                 indexs.push(value.name);
             }
         });
-        const AC_TION = {  request: '1' };
-        const MIB_OBJECT = Object.assign(AC_TION, object);
-        return this.sendPost(this.generatePostQueryObject(mibInfo, 'create'), MIB_OBJECT, callback);
+        let mibObject = {};
+        mibObject = this.convertObjectToMibParamForAdding(object, mibInfo);
+        return this.sendPost(this.generatePostQueryObject(mibInfo, 'create'), mibObject, callback);
     },
     modify(object, mibInfo, callback) {
-        const AC_TION = {  request: '2' };
-        const MIB_OBJECT = Object.assign(AC_TION, object);
-        return this.sendPost(this.generatePostQueryObject(mibInfo, 'modify'), MIB_OBJECT, callback);
+        let mibObject = {};
+        mibObject = this.convertObjectToMibParamForModifying(object, mibInfo);
+        return this.sendPost(this.generatePostQueryObject(mibInfo, 'modify'), mibObject, callback);
     },
     delete(object, mibInfo, callback) {
-
         const mibObject = this.convertObjectToMibParamForDeleting(object, mibInfo);
-        return this.sendPost(mibObject, mibObject, callback);
+        return this.sendPost(this.generatePostQueryObject(mibInfo, 'delete'), mibObject, callback);
     },
+    convertObjectToMibParamForAdding(object, mibInfo) {
+        const mibObject = {};
+        let count = 0;
+        mibInfo.indexs.forEach((val) => {
+          if (Array.isArray(object[val]) && object[val].length > count) {
+            count = object[val].length;
+          }
+        });
+        mibInfo.indexs.forEach((index) => {
+          if ((!Array.isArray(object[index]) && count) || (Array.isArray(object[index]) && object[index].length < count)) {
+            object[index] = this.formatIndexValue(object[index], count);
+          } else if (Array.isArray(object[index]) && object[index].length === count) {
+            let temp = '';
+            for (let i = 0; i < count; i++) {
+              if (i !== 0) {
+                temp += `|${object[index][i]}`;
+              } else {
+                temp += object[index][i];
+              }
+            }
+            object[index] = temp;
+          }
+        });
+        const objectKeys = Object.keys(object);
+        objectKeys.forEach((objectKey) => {
+          const objectValue = (object[objectKey] !== null && object[objectKey] !== undefined) ? `${object[objectKey]}` : '';
+          if (mibInfo.indexs.includes(objectKey)) { 
+             mibObject[`${objectKey}`] = `${objectValue}`; 
+          } else if (objectValue.length && objectValue.length > 0) {
+            mibObject[`${objectKey}`] = `${objectValue}`;
+          }
+        });
+        const AC_TION = {  request: '1' };
+        const MIB_OBJECT = Object.assign(AC_TION, mibObject);
+        return MIB_OBJECT;
+    },
+    convertObjectToMibParamForModifying(object, mibInfo) {
+        const mibObject = {};
+        mibInfo.indexs.forEach((index) => {
+          if (object[index]) {
+            mibObject[`${index}`] = `${object[index]}`;  
+          }
+        });
+        mibInfo.modifyFields.forEach((field) => {
+          if (object[field] !== null && object[field] !== undefined && object[field] !== '') {
+            mibObject[`${field}`] = `${object[field]}`;
+          }
+        });
+        const AC_TION = {  request: '2' };
+        return Object.assign(AC_TION, mibObject);
+      },
     convertObjectToMibParamForDeleting(objects, mibInfo) {
         const objectValue = {};
-        let count = 0;
         for (let i = 0; i < mibInfo.indexs.length; i++) {
             const index = mibInfo.indexs[i];
-            let indexParam = `${mibInfo.indexs[i]}:`;
             for (let j = 0; j < objects.length; j++) {
-                indexParam = `${indexParam}${objects[j][index]}`;
+                objectValue[`${mibInfo.indexs[i]}`] = `${objects[j][index]}`;  
             }
-            objectValue[`${count}`] = indexParam;
-            count++;
+ 
         }
         const AC_TION = {  request: '3' };
         return Object.assign(AC_TION, objectValue);

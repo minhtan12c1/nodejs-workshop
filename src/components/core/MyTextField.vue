@@ -26,7 +26,7 @@ import clonableProps from '@/clonable-props';
           outline
           messages
           )
-        div(style="margin-top: 12px;")
+        div(style="margin-top: 12px; margin-right: 22px;")
           v-tooltip(top="")
             template(v-slot:activator="{ on }")
               v-btn(icon

@@ -15,25 +15,28 @@ const FIELD_NAMES = {
   HO: {
     name: 'HO',
     label: 'HO',
-    index: true,
     hint: 'port.',
+    sendOnModify: true,
   },
   TEN: {
     name: 'TEN',
     label: 'TEN',
-    hint: 'The VPA port status'
+    hint: 'The VPA port status',
+    sendOnModify: true,
   },
   DIACHI: {
     name: 'DIACHI',
     label: 'DIACHI',
     default: 'city',
-    hint: ' The type of VPA'
+    hint: ' The type of VPA',
+    sendOnModify: true,
   },
   EMAIL: {
     name: 'EMAIL',
     label: 'EMAIL',
     default: 'abc@gmail',
-    hint: ' The type of VPA'
+    hint: ' The type of VPA',
+    sendOnModify: true,
   } ,
   GIOITINH: {
     name: 'GIOITINH',

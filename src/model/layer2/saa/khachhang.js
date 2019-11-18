@@ -1,4 +1,5 @@
 import vpaApi from '@/api/layer2/saa/khachhang';
+import taikhoanApi from '@/api/layer2/saa/taikhoan';
 import componentName from '@/components/component-name';
 
 
@@ -10,11 +11,21 @@ const dataModel = {
       name: 'khach hang',
       fields: [
         {
-          ...FIELD_NAMES.ID,
-          readOnly: true,
-        },
-        {
           ...FIELD_NAMES.TAIKHOAN_ID,
+          component: componentName.MY_DYNAMIC_SELECT,
+          componentProps: {
+            dataSource: {
+              api: taikhoanApi.getAll,
+              index: 'TENTAIKHOAN',
+              displayFormat: data => data.TENTAIKHOAN,
+            },
+            staticItems: [{
+              text: 'NONE',
+              value: 'NONE',
+            }],
+            dataModelModuleName: 'layer2/saa/taikhoan',
+          },
+          readOnly: true,
         },
         {
           ...FIELD_NAMES.HO,
@@ -31,6 +42,7 @@ const dataModel = {
         {
           ...FIELD_NAMES.GIOITINH,
           component: componentName.MY_SELECT,
+          readOnly: true,
         },
       ],
     };

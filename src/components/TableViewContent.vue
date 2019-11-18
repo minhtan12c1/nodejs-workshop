@@ -34,7 +34,11 @@ export default {
         checkReadOnly: false,
         object: {},
         objectDialogSubmitCallback: null,
-       orgObject: {},
+        orgObject: {},
+        enableSearch: false,
+        searchItem: '',
+        totalItems: 0,
+        search: '',
 
       };
     },
@@ -139,7 +143,7 @@ export default {
         this.orgObject = Object.assign({}, obj);
         this.objectDialogTitle = this.tableProfile.name;
         this.objectDialogOpenned = true;
-        this.checkReadOnly = false;
+        this.checkReadOnly = true;
         this.objectDialogSubmitCallback = this.modifyObject;
       },
       deleteSelected() {
@@ -149,7 +153,7 @@ export default {
           this.object = {};
           this.isModifyAction = false;
           this.objectDialogTitle = this.tableProfile.name;
-          this.objectDialogOpenned = true;
+          this.objectDialogOpenned = false;
           this.checkReadOnly = false;
           this.objectDialogSubmitCallback = this.removeObject(rows);
       },
@@ -238,6 +242,16 @@ export default {
             //     }
             }, 300);
         },
+        toggleSearchBox() {
+          this.enableSearch = !this.enableSearch;
+          if (!this.enableSearch) {
+            this.searchItem = '';
+            this.totalItems = 0;
+            this.search = '';
+          } else {
+            setTimeout(() => { this.$refs.searchBox.focus(); }, 100);
+          }
+        },
     },
     watch: {
       objectDialogOpenned(value) {
@@ -245,6 +259,10 @@ export default {
             this.object = {};
             this.refresh();
           }
+        },
+        searchItem(value) {
+          this.totalItems = 0;
+          this.search = value;
         },
     },
     created() {
@@ -261,18 +279,20 @@ export default {
 
 <template lang="pug">
     v-card(class="data-content" style="border: #ffffff solid 4px;")
-      <!--app-my-dialog(:title="objectDialogTitle" :model="objectDialogOpenned" v-if="tableProfile.tableToolbar")-->
         v-dialog(v-model='objectDialogOpenned', persistent='', max-width='600px')
             template( v-slot:activator='{ on }' )
-                v-layout( row class="flex" justify-end xs12 wrap style="min-height: 40px !important;")
+                v-layout( row class="flex" justify-end xs12 wrap style="min-height: 40px !important; margin-top: 22px;")
                     v-spacer
-                    v-btn( v-if="tableProfile.tableToolbar.add.enable" v-on="on" small  slot="activator" color="primary" @click="openAddObjectDialog")
+                    v-btn( v-if="tableProfile.tableToolbar.add.enable" v-on="on" :disabled="loading" small  slot="activator" color="primary" @click="openAddObjectDialog")
                         v-icon mdi-plus
-                    v-btn( v-if="allowModify" v-on="on" small slot="activator" color="primary" @click="openModifyObjectDialog")
+                    div(style="min-width: 8px;")
+                    v-btn( v-if="allowModify" v-on="on" :disabled="loading" small slot="activator" color="primary" @click="openModifyObjectDialog")
                         v-icon mdi-pencil
-                    v-btn( v-if="allowDelete" v-on="on" small slot="activator" color="primary" @click="deleteSelected")
+                    div(style="min-width: 8px;")
+                    v-btn( v-if="allowDelete" :disabled="loading" small slot="activator" color="primary" @click="deleteSelected")
                         v-icon mdi-delete
-                    v-btn(  small slot="activator" color="primary" @click="refresh")
+                    div(style="min-width: 8px;")
+                    v-btn(  small slot="activator" :disabled="loading" color="primary" @click="refresh")
                         v-icon mdi-refresh
             v-card
                 v-card-title
@@ -298,12 +318,28 @@ export default {
                     v-spacer
                     v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit") Save
                     v-btn(color='blue darken-1', text='', @click.native.prevent="objectDialogOpenned=false") Close
-
+        v-layout( row wrap)
+          v-flex(style=" padding-left: 14px; padding-right: 14px;" )
+            v-text-field(
+              prepend-icon="mdi-magnify"
+                    placeholder="search"
+                    ref="searchBox"
+                    small
+                    class="small search-box"
+                    outline
+                    @keydown.native.escape="toggleSearchBox"
+                    v-model="searchItem"
+                    clearable
+                    single-line
+                    hide-details        
+              )    
         app-el-data-table(
+            :loading="loading"
             :headers="tableHeader"
             class="elevation-0 limited-height-table"
             @select="selectRows"
             :check-column="checkColumn"
             :data="items"
+            :search="search"
         )
 </template>

@@ -20,12 +20,12 @@ export default {
       },
     },
     {
-      path: 'configuration',
-      name: 'Layer2_Saa_Configuration',
+      path: 'taikhoan',
+      name: 'Layer2_Saa_Tai_Khoan',
       component: TableView,
       meta: {
-        title: 'Configuration',
-        dataModelModuleName: 'layer2/saa/configuration',
+        title: 'Tai khoan',
+        dataModelModuleName: 'layer2/saa/taikhoan',
       },
     },
     {

@@ -3,6 +3,7 @@ import componentName from '@/components/component-name';
 import MyTextField from '@/components/core/MyTextField';
 import MyStatusSwitch from '@/components/core/MyStatusSwitch';
 import MySelect from '@/components/core/MySelect';
+import MyDynamicSelect from '@/components/core/MyDynamicSelect';
 
 // This module register common components that are used in many views.
 // Global component registration will help to eliminate the effor to import that component
@@ -12,3 +13,4 @@ import MySelect from '@/components/core/MySelect';
 Vue.component(componentName.MY_TEXT_FIELD, MyTextField);
 Vue.component(componentName.MY_STATUS_SWITCH, MyStatusSwitch);
 Vue.component(componentName.MY_SELECT, MySelect);
+Vue.component(componentName.MY_DYNAMIC_SELECT, MyDynamicSelect);

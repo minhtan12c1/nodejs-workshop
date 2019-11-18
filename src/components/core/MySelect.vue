@@ -7,7 +7,15 @@ import clonableProps from '@/clonable-props';
     name: 'MySelect',
     extends: MyInput,
     mixins: [clonableProps],
+    data() {
+      return {
+      };
+    },
     props: {
+    },
+    watch: {
+    },
+    computed: {
     },
   };
 </script>
@@ -23,7 +31,7 @@ import clonableProps from '@/clonable-props';
           v-bind="props"
           v-model="model" outline
           )
-        div(style="margin-top: 12px;")
+        div(style="margin-top: 12px; margin-right: 22px;")
           v-tooltip(top="")
             template(v-slot:activator="{ on }")
               v-btn(icon

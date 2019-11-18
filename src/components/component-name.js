@@ -6,6 +6,7 @@ const ComponentName = {
     AOS_CHECKBOX: 'v-checkbox',
     AOS_SWITCH: 'v-switch',
     MY_STATUS_SWITCH: 'v-status-switch',
+    MY_DYNAMIC_SELECT: 'my-dynamic-select',
   };
   
   const AosComponent = {};

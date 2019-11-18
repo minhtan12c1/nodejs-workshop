@@ -1,12 +1,13 @@
 
 <script>
 import Vue from 'vue'
-import {Table, TableColumn, Pagination} from 'element-ui'
+import {Table, TableColumn, Pagination, Loading } from 'element-ui'
 
 
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Pagination)
+Vue.use(Loading)
 
 export default {
   name: 'ElDataTable',
@@ -24,16 +25,20 @@ export default {
         small: false,
         layout: 'total, sizes, prev, pager, next, jumper',
       },
+      currentSearch: '',
     };
   },
   watch: {
     data(val) {
       this.items = val;
     },
+    search(search) {
+      this.currentSearch = search && search.trim();
+    },
   },
   computed: {
     currentPage() {
-      let items = this.data;
+      let items = this.applySearch(this.data);
       const ridx = this.pagination.pageIndex - 1;
       const l = this.pagination.pageSize;
 
@@ -46,7 +51,8 @@ export default {
   components: {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
-    [Pagination.name]: Pagination
+    [Pagination.name]: Pagination,
+    [Loading .name]: Loading 
   },
   props: {
     data: {
@@ -81,10 +87,10 @@ export default {
     //   type: Boolean,
     //   default: false,
     // },
-    // loading: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
     // expand: {
     //   type: Boolean,
     //   default: false,
@@ -93,10 +99,10 @@ export default {
     //   type: Array,
     //   default: () => [],
     // },
-    // search: {
-    //   type: String,
-    //   default: null,
-    // },
+    search: {
+      type: String,
+      default: null,
+    },
     // height: {
     //   type: [Number, String],
     //   default: 'auto',
@@ -124,12 +130,38 @@ export default {
       this.selectedItems = rows;
       this.$emit('select', rows);
     },
+    applySearch(items) {
+      const val = this.currentSearch;
+      const clone = items.slice(0);
+      if (val && val.length > 0) {
+        const searched = clone && clone.filter((i) => {
+          const temp = Object.assign({}, i);
+          Object.keys(temp).forEach((key) => {
+            if (!this.filterField.includes((key))) {
+              delete temp[key];
+            }
+          });
+          const vals = Object.values(temp);
+          const r = vals.find((v) => {
+            return v && v.toString().toLocaleLowerCase().indexOf(val.toLocaleLowerCase()) >= 0;
+          });
+          return r;
+        });
+        if (searched && searched.length > 0) {
+          this.$emit('totalItem', searched.length);
+          return searched;
+        }
+        return [];
+      }
+      return items;
+    },
    },
    
   mounted() {
     this.headers.forEach((v) => {
       this.filterField.push(v.name);
     });
+    
     // this.expandHeader.forEach((v) => {
     //   this.filterField.push(v.name);
     // });
@@ -146,8 +178,13 @@ export default {
       el-table(
         size="small"
         ref="aosTable"
+        v-loading="loading"
+        element-loading-text="Loading..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
         :data="currentPage"
         stripe
+        
         :row-class-name="tableRowClassName"
         @selection-change="handleSelectionChange"
         highlight-current-row

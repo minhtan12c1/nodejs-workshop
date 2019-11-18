@@ -30,7 +30,7 @@ import clonableProps from '@/clonable-props';
           :readonly="readonly"
           v-bind="$attrs"
           )
-        div(style="margin-top: 15px;")
+        div(style="margin-top: 15px; margin-right: 22px;")
           v-tooltip(top="")
             template(v-slot:activator="{ on }")
               v-btn(icon

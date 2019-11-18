@@ -202,9 +202,10 @@ export default {
                             v-model="model[field.name]"
                             :is="field.component || defaultComponent"
                             :required="field.required"
+                            v-bind="objectProps[field.name] || {}"
                             :data-hint="field.hint"
                              :ref="field.name"
-                            :readonly="checkReadOnly"
+                            :readonly="checkReadOnly && field.readOnly"
                           )
                           
               
