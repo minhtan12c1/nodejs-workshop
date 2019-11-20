@@ -51,7 +51,7 @@ export default {
       title: { default: null },
     },
     methods: {
-      initStaticView() {
+      initTableView() {
         if (this.initialized) {
           return;
         }
@@ -132,9 +132,9 @@ export default {
         this.objectDialogOpenned = true;
         this.checkReadOnly = false;
         this.objectDialogSubmitCallback = this.addObject;
-        // if (this.$refs.objectForm) {
-        //   this.$refs.objectForm.clear();
-        // }
+        if (this.$refs.objectForm) {
+          this.$refs.objectForm.clear();
+        }
       },
       openModifyObjectDialog() {
         const obj = this.selected[0];
@@ -201,8 +201,8 @@ export default {
          }
       },
       addObject() {
-            // this.$refs.objectForm.validate().then((result) => {
-            //     if (result) {
+            this.$refs.objectForm.validate().then((result) => {
+                if (result) {
             //         this.enableGlobalLoading();
                     setTimeout(() => {
                         this.tableProfile.api.create(
@@ -222,9 +222,9 @@ export default {
 
                         });
                     }, 300);
-                },
-            // });
-        // },
+                }
+            });
+        },
         modifyObject() {
             // this.$refs.objectForm.validate().then((result) => {
             //     if (result) {
@@ -266,7 +266,10 @@ export default {
         },
     },
     created() {
-      this.initStaticView();
+      this.initTableView();
+    },
+    mounted() {
+      this.initTableView();
     },
 }
 </script>

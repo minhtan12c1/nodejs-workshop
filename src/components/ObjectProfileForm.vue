@@ -4,12 +4,14 @@
 
  import componentName from '@/components/component-name';
  import dataTypeUtils from '@/data-adapter/map/utils';
+ import validationUtils from '@/validation/utils';
 
 
 export default {
     name: 'ObjectProfileForm',
     data() {
       return {
+        validationUtils,
         formData: {},
         defaultComponent: componentName.MY_TEXT_FIELD,
         conditionalFields: [],
@@ -68,9 +70,9 @@ export default {
             // this.objectRules = {};
             // this.defaultRules = {};
             this.objectDefinition.fields.forEach((field) => {
-                // if (field.validationRules) {
-                //     this.objectRules[field.name] = field.validationRules;
-                // }
+                if (field.validationRules) {
+                    this.objectRules[field.name] = field.validationRules;
+                }
                 // if (field.validationRules && field.validationRules.includes(commonRule.REQUIRED) && field.component !== componentName.AOS_STATUS_SWITCH) {
                 //     field.required = true;
                 // }
@@ -121,9 +123,9 @@ export default {
                   if (fieldCondition.actions.setItems) {
                     fieldProp.items = fieldCondition.actions.setItems;
                   }
-                  // if (fieldCondition.actions.setRules) {
-                  //   this.objectRules[dependedFieldName] = fieldCondition.actions.setRules;
-                  // }
+                  if (fieldCondition.actions.setRules) {
+                    this.objectRules[dependedFieldName] = fieldCondition.actions.setRules;
+                  }
                   matched = true;
                   break;
                 }
@@ -141,6 +143,9 @@ export default {
           });
         }
       },
+      validate() {
+        return this.$validator.validate();
+      },
       baseInitializeObject() {
         if (this.objectDefinition) {
             const model = {};
@@ -154,6 +159,9 @@ export default {
     watch: {
         selectView(val) {
             if (val) {
+                setTimeout(() => {
+                  this.$validator.reset();
+                }, 1000);
                 this.initializeObject();
                 if (!this.isModify) {
                     this.baseInitializeObject();
@@ -170,6 +178,9 @@ export default {
         },
     },
     mounted() {
+      setTimeout(() => {
+        this.$validator.reset();
+      }, 1000);
       if (this.objectDefinition && this.objectDefinition.fields) {
         this.objectDefinition.fields.forEach((field) => {
           this.onFieldDataUpdated(field.name);
@@ -204,7 +215,11 @@ export default {
                             :required="field.required"
                             v-bind="objectProps[field.name] || {}"
                             :data-hint="field.hint"
-                             :ref="field.name"
+                            :ref="field.name"
+                            v-validate="validationUtils.mergeRules(objectRules[field.name])"
+                            :error-messages="veeErrors.collect(field.name)"
+                            :data-vv-name="field.name"
+                            :data-vv-as="field.label"
                             :readonly="checkReadOnly && field.readOnly"
                           )
                           

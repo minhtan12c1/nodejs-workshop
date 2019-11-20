@@ -7,14 +7,12 @@
 </template>
 
 <script>
-
-import { store } from '@/store';
+    
 
 export default {
   name: 'app',
-        mounted(){
-          store.dispatch('buildMenu');   
-        }
+     mounted() {
+  }, 
 }
 </script>
 

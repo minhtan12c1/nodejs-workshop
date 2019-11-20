@@ -1,9 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+
 import layer2Route from '@/router/layer2/index.js';
 import networkingRoute from '@/router/networking/index.js';
-
-Vue.use(Vuex)
 
 const menuData = {
   built: false,

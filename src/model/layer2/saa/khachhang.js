@@ -1,6 +1,7 @@
 import vpaApi from '@/api/layer2/saa/khachhang';
 import taikhoanApi from '@/api/layer2/saa/taikhoan';
 import componentName from '@/components/component-name';
+import commonRule from '@/validation/rule-name/common';
 
 
 const FIELD_NAMES = vpaApi.FIELD_NAMES;
@@ -32,6 +33,7 @@ const dataModel = {
         },
         {
           ...FIELD_NAMES.TEN,
+          validationRules: [commonRule.REQUIRED, commonRule.MIN_STRING_LENGTH],
         },
         {
           ...FIELD_NAMES.DIACHI,
