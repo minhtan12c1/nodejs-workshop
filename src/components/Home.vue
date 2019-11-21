@@ -19,6 +19,7 @@
         methods: {
             ...mapActions([
                 'buildMenu',
+                'checkSession',
             ]),
 
         },

@@ -8,9 +8,8 @@ import axios from 'axios'
 import '@/validation/rule';
 import routerUtils from '@/router/utils';
 import '@/components/global-components';
-import '@/validation/rule';
 
-Vue.use(axios)
+
 
 // store.dispatch('buildMenu');
 
@@ -32,7 +31,8 @@ Vue.use(axios)
   }
   Vue.config.productionTip = false;
   const isNotAuthen = () => {
-    return store.state.authen.authenStatus === AuthenStatus.NOT_AUTHENTICATED;
+    const x = store.state.authen.authenStatus
+    return x !== AuthenStatus.NOT_AUTHENTICATED;
   }
   
   router.beforeEach((to, from, next) => {

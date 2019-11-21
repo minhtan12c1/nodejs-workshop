@@ -15,7 +15,6 @@ export default {
         return promise;
     },
     sendGet(queryObject, config, callback) {
-        axios.defaults.baseURL;
         const promise = axios.get(queryObject, config);
         if (callback) {
           promise.then((response) => {

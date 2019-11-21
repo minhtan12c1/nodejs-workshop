@@ -18,7 +18,7 @@ const actions = {
   login(_, { creds }) {
     state.loginError = false;
     return authApi.login(creds).then((response) => {
-      if (response.statusText === "OK" && response.data) {
+      if (response.statusText === "OK" && response.data.LOAI_TAIKHOAN === 'admin' || response.data.LOAI_TAIKHOAN === 'user') {
         this.user = creds.username;
         state.authenStatus = AuthenStatus.AUTHENTICATED;
         state.username = creds.username;
@@ -43,7 +43,25 @@ const actions = {
     }).catch(() => {
       /* eslint no-param-reassign: ["error", { "props": false }] */});
   },
+  checkSession() {
+    return authApi.login().then((response) => {
+      if (!response.data) {
+        state.authenStatus = AuthenStatus.NOT_AUTHENTICATED;
+        return Promise.reject(new Error('Not Authenticated'));
+      } else {
+        state.authenStatus = AuthenStatus.AUTHENTICATED;
+        state.username = response.data;
+        return Promise.resolve(state.authenStatus);
+      }
+    }).catch((error) => {
+      state.authenStatus = AuthenStatus.NOT_AUTHENTICATED;
+      state.username = null;
+      return Promise.reject(error);
+    });
+  },
 };
+
+
 
 const mutations = {
   CLEAR_AUTHEN_STATUS(states) {

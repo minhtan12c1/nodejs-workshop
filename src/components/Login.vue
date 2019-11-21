@@ -15,6 +15,7 @@
                     password: '',
                 },
                 valid: false,
+                loginErrorMsg: "Invalid username or password",
                 postLoginProgress: false,
                 invalidPermission: false,
                 loginInProgress: false,
@@ -55,7 +56,11 @@
                 return value === this.credentials.newPassword;
             },
             onLoginSuccess() {
-                this.getInformation()
+                this.getInformation();
+                this.navigateToContentPage();
+                
+            },
+            navigateToContentPage() {
                 if (this.$route.query.goBack) {
                 this.$router.push(this.$route.query.goBack);
                 } else {
@@ -65,6 +70,7 @@
             },
             getInformation()
             {
+                this.loginError = false;
                store.dispatch('buildMenu');
             },
             
@@ -150,6 +156,10 @@
                                 div(id="login_progress-bar")
                                     v-progress-linear(v-show="true" :indeterminate="true" color="info" style="bottom: 0px;")
                         v-form(v-model="valid" ref="loginForm")
+                            div(class="error-container")
+                                v-slide-y-transition
+                                    v-subheader(v-if="loginError" class="error--text justify-center login-error")
+                                        | {{ loginErrorMsg }}
                             v-text-field(
                                 id="login_username-txt"
                                 label="username"
