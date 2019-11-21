@@ -1,5 +1,7 @@
 import authApi from '@/api/authen-api';
 import { AuthenStatus } from './authen-status';
+import routerUtils from '@/router/utils';
+
 
 const state = {
   authenStatus: AuthenStatus.UNKNOWN,
@@ -19,6 +21,7 @@ const actions = {
     state.loginError = false;
     return authApi.login(creds).then((response) => {
       if (response.statusText === "OK" && response.data.LOAI_TAIKHOAN === 'admin' || response.data.LOAI_TAIKHOAN === 'user') {
+        localStorage.setItem('LOAI_TAIKHOAN', response.data.LOAI_TAIKHOAN);
         this.user = creds.username;
         state.authenStatus = AuthenStatus.AUTHENTICATED;
         state.username = creds.username;
@@ -30,18 +33,20 @@ const actions = {
     });
   },
 
-  logout({ commit }) {
-    if (state.loggingOut || state.authenStatus === AuthenStatus.NOT_AUTHENTICATED) {
-      return;
-    }
-    state.loggingOut = true;
-    authApi.logout().then((response) => {
-      if (response.success) {
-        state.loggingOut = false;
-        commit("CLEAR_AUTHEN_STATUS");
-      }
-    }).catch(() => {
-      /* eslint no-param-reassign: ["error", { "props": false }] */});
+  logout() {
+      localStorage.setItem('LOAI_TAIKHOAN', "");
+      routerUtils.routeToHome();
+    // if (state.loggingOut || state.authenStatus === AuthenStatus.NOT_AUTHENTICATED) {
+    //   return;
+    // }
+    // state.loggingOut = true;
+    // authApi.logout().then((response) => {
+    //   if (response.success) {
+    //     state.loggingOut = false;
+    //     commit("CLEAR_AUTHEN_STATUS");
+    //   }
+    // }).catch(() => {
+    //   /* eslint no-param-reassign: ["error", { "props": false }] */});
   },
   checkSession() {
     return authApi.login().then((response) => {

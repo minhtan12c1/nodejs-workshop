@@ -8,11 +8,13 @@
 
 <script>
     
+    import store from '@/store';
 
 export default {
   name: 'app',
-     mounted() {
-  }, 
+    mounted(){
+            store.dispatch('buildMenu');
+        }
 }
 </script>
 

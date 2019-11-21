@@ -7,6 +7,7 @@ import layer2Route from '@/router/layer2';
 import networkingRoute from '@/router/networking';
 import Home from '@/components/Home.vue';
 import NotFound from '@/components/NotFound';
+import Dashboard from '@/components/Dashboard';
 
 Vue.use(VueRouter);
 Vue.use(Router);
@@ -24,7 +25,7 @@ const rootRoute = {
     {
       path: '/',
       name: 'Home',
-      redirect: { name: 'Dashboard' },
+      redirect: { name: 'Login' },
       component: Home,
       meta: {
         title: 'Home',
@@ -33,7 +34,7 @@ const rootRoute = {
         {
           path: 'dashboard',
           name: 'Dashboard',
-          component: NotFound,
+          component: Dashboard,
           meta: {
             title: 'Dashboard',
           },

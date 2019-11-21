@@ -3,13 +3,11 @@ import App from './App.vue'
 import router from '@/router';
 import vuetify from './plugins/vuetify';
 import store from '@/store';
-import { AuthenStatus } from '@/store/modules/authen-status';
+// import { AuthenStatus } from '@/store/modules/authen-status';
 import axios from 'axios'
 import '@/validation/rule';
 import routerUtils from '@/router/utils';
 import '@/components/global-components';
-
-
 
 // store.dispatch('buildMenu');
 
@@ -30,27 +28,17 @@ import '@/components/global-components';
     axios.defaults.baseURL = apiUrl;
   }
   Vue.config.productionTip = false;
-  const isNotAuthen = () => {
-    const x = store.state.authen.authenStatus
-    return x !== AuthenStatus.NOT_AUTHENTICATED;
-  }
+  // const isNotAuthen = () => {
+  //   const x = store.state.authen.authenStatus
+  //   return x !== AuthenStatus.NOT_AUTHENTICATED;
+  // }
   
-  router.beforeEach((to, from, next) => {
-    if ((to.name !== "Login") && isNotAuthen()) {
-        routerUtils.routeToLogin({ from: to.fullPath });
-    } else if ((to.name ===  "Login") && !isNotAuthen()) {
-        routerUtils.routeToHome();
-    }
-    else {
-      // When application initialized, the router some how could not redirect to Dashboard if user access path '/' (Home)
-      // we need to redirect manually to Dashboard view, otherwise, the NotFound page will be shown.
-      if (to.path === '/') {
-        routerUtils.routeToDashboard();
-        return;
-      }
-      next();
-    }
-  });
+  if ((localStorage.getItem('LOAI_TAIKHOAN') === '')) {
+    routerUtils.routeToHome();
+  } 
+  else {
+    routerUtils.routeToDashboard();
+  }
   
 
 

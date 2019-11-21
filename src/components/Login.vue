@@ -2,8 +2,8 @@
 <script>
     import { mapActions, mapGetters } from 'vuex';
     import { Validator } from 'patched-vee-validate';
-    import store from '@/store';
     import routerUtils from '@/router/utils';
+    
 
     export default {
         name: 'Login',
@@ -49,6 +49,7 @@
                     this.loginInProgress = false;
                     if (message.includes('Invalid login name or password')) {
                     this.loginErrorMsg = "Invalid";
+                    routerUtils.routeToHome();
                     }
                 });
             },
@@ -56,22 +57,9 @@
                 return value === this.credentials.newPassword;
             },
             onLoginSuccess() {
-                this.getInformation();
-                this.navigateToContentPage();
-                
-            },
-            navigateToContentPage() {
-                if (this.$route.query.goBack) {
-                this.$router.push(this.$route.query.goBack);
-                } else {
-                routerUtils.routeToHome();
-                }
-                this.loginInProgress = false;
-            },
-            getInformation()
-            {
                 this.loginError = false;
-               store.dispatch('buildMenu');
+                routerUtils.routeToDashboard();
+                
             },
             
         },

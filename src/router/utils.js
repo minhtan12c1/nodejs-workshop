@@ -11,7 +11,7 @@ export default {
     this.changeRouteByName('Home');
   },
   routeToLogin() {
-    this.changeRouteByName("Login", { goBack: "/dashboard" });
+    this.changeRouteByName("Login");
   },
   // routeToPageNotFound(query) {
   //   this.changeRouteByName(PageNotFound, query);
