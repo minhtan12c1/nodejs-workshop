@@ -219,7 +219,7 @@ export default {
                             v-validate="validationUtils.mergeRules(objectRules[field.name])"
                             :error-messages="veeErrors.collect(field.name)"
                             :data-vv-name="field.name"
-                            :data-vv-as="field.label"
+                            :data-vv-as="field.i18n_label"
                             :readonly="checkReadOnly && field.readOnly"
                           )
                           

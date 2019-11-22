@@ -1,3 +1,5 @@
+import app from '@/main';
+import jsonUtils from '@/lib/json';
 
 const languagesG = [{
   locale: 'en',
@@ -38,9 +40,45 @@ const getters = {
 
 // actions
 const actions = {
-    setLang({ commit }, locale) {
-        commit('SET_LANG', locale);
-      },
+  getLangMap({ commit, dispatch }) {
+    jsonUtils.getJsonFromUrl(`lang/map.json`).then((json) => {
+      const langs = Object.assign([], languagesG);
+      const langMap = json.map;
+      if (langMap) {
+        const locales = Object.keys(langMap);
+        locales.forEach((locale) => {
+          if (!getLanguage(langs, locale)) {
+            langs.push({ locale, lang: langMap[locale] });
+          }
+        });
+      }
+      commit('SET_LANG_MAP', langs);
+      dispatch('setLang', state.locale);
+    }).catch(() => {});
+  },
+  setLang({ commit }, locale) {
+    if (!state.loadedLangs.includes(locale)) {
+      jsonUtils.getJsonFromUrl(`lang/${locale}.json`).then((l) => {
+        // if(locale === 'en') {
+        //   jsonUtils.getJsonFromUrl(`lang/gen/${locale}.json`).then((m) => {
+        //     const langs = merge({}, m, l);
+        //     app.$i18n.setLocaleMessage(locale, langs);
+        //     commit('SET_LANG', locale);
+        //   }).catch(() => {
+        //     const langs = l;
+        //     app.$i18n.setLocaleMessage(locale, langs);
+        //     commit('SET_LANG', locale);
+        //   });
+        // } else {
+          const langs = l;
+          app.$i18n.setLocaleMessage(locale, langs);
+          commit('SET_LANG', locale);
+        // }
+      }).catch(() => {});
+    } else {
+      commit('SET_LANG', locale);
+    }
+  },
 };
 
 const mutations = {
@@ -49,8 +87,11 @@ const mutations = {
         states.locale = locale;
         states.loadedLangs.push(locale);
         localStorage.setItem('locale', locale);
-        // app.$i18n.locale = locale;
+        app.$i18n.locale = locale;
         // document.title = app.$t(app.$route.meta.i18n_title);
+      },
+      SET_LANG_MAP(states, languages) {
+        states.languages = Object.assign([], languages);
       },
 };
 

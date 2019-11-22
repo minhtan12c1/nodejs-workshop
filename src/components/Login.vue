@@ -31,6 +31,7 @@
         methods: {
             ...mapActions([
                 'login',
+                'setLang'
             ]),
             onLoginClick() {
                 this.loginError = false;

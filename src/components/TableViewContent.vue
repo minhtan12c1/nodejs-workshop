@@ -319,13 +319,13 @@ export default {
                         :check-read-only="checkReadOnly")
                 v-card-actions
                     v-spacer
-                    v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit") Save
-                    v-btn(color='blue darken-1', text='', @click.native.prevent="objectDialogOpenned=false") Close
+                    v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit") {{ $t('common.save') }}
+                    v-btn(color='blue darken-1', text='', @click.native.prevent="objectDialogOpenned=false") {{ $t('common.close') }}
         v-layout( row wrap)
           v-flex(style=" padding-left: 14px; padding-right: 14px;" )
             v-text-field(
               prepend-icon="mdi-magnify"
-                    placeholder="search"
+                    :placeholder="$t('common.search')"
                     ref="searchBox"
                     small
                     class="small search-box"

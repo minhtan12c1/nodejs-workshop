@@ -1,15 +1,13 @@
 <template lang="pug">
-    v-flex
-      v-layout
-          v-menu(offset-y=""
+    v-flex(style="padding-top: 13px;")
+      v-menu(offset-y="" 
            :close-on-content-click="false"
-           right
-           
-           :nudge-width="100"
-           light
-           bottom 
-           transition="slide-y-transition"
-           v-for="(menuItem, index) in value" :key="index")
+            right
+            :nudge-width="100"
+            light
+            bottom 
+            transition="slide-y-transition"
+            v-for="(menuItem, index) in value" :key="index")
             template(v-slot:activator="{ on }")
               v-btn(color="#4f6faa" dark="" v-on="on")
                | {{menuItem.label}}

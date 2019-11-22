@@ -1,15 +1,12 @@
-
 import Vue from 'vue';
 import Login from '@/components/Login.vue';
 import Router from 'vue-router';
-import VueRouter from 'vue-router';
 import layer2Route from '@/router/layer2';
 import networkingRoute from '@/router/networking';
 import Home from '@/components/Home.vue';
 import NotFound from '@/components/NotFound';
 import Dashboard from '@/components/Dashboard';
 
-Vue.use(VueRouter);
 Vue.use(Router);
 
 const rootRoute = {

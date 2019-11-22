@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VeeValidate from 'patched-vee-validate';
+import i18n from '@/lang';
 import './common';
 
 const veeConfig = {
@@ -12,6 +13,7 @@ const veeConfig = {
     i18nRootKey: 'validations',
     events: 'input|blur',
     fieldsBagName: 'fields',
+    i18n,
     inject: true,
     locale: 'en',
     strict: true,

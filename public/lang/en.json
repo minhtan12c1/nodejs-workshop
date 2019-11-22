@@ -1,0 +1,45 @@
+{
+    "common": {
+        "log_out": "Log out",
+        "add": "Add",
+        "modify": "Modify",
+        "delete": "Delete",
+        "close": "Close",
+        "save": "Save",
+        "refresh": "Refresh",
+        "language": "Language",
+        "log_in": "Log in",
+        "username": "Username",
+        "password": "Password",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "previous": "Previous",
+        "next": "Next",
+        "back": "Back",
+        "yes": "Yes",
+        "no": "No",
+        "search": "Search",
+        "dashboard": "Dashboard"
+        
+    },
+    "validations": {
+        "messages": {
+          "_default": "The {0} field value is not valid.",
+          "min_string_length": "The {0} field must be more than {1} characters."
+        }
+    },
+    "manual_defined": {
+        "title_action": {
+            "layer2": {
+                "saa": {
+                  "pvst_state_auto": "PVST+ Compatibility - Auto"
+                }
+            }
+        },
+        "layer2": {
+            "saa": {  
+                "pvst_state_auto": "PVST+ Compatibility - Auto"
+            }
+        }   
+    }
+  }

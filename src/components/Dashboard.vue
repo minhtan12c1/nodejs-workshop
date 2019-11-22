@@ -20,11 +20,11 @@ export default {
     <v-content>
       <div class="red--text darken-4" style="padding-top: 100px;">
         <h1>
-          Dashboard
+          {{ $t('common.dashboard') }}
         </h1>
         <br>
         <h4>
-          Dashboard
+          {{ $t('common.dashboard') }}
         </h4>
       </div>
     </v-content>

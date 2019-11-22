@@ -1,0 +1,45 @@
+{
+    "common": {
+        "log_out": "đăng xuất",
+        "add": "Thên",
+        "modify": "Sửa",
+        "delete": "xóa",
+        "close": "Đống",
+        "save": "Lưu",
+        "refresh": "làm tươi",
+        "language": "Ngôn ngữ",
+        "log_in": "đăng nhập",
+        "username": "Tài khoản",
+        "password": "mật khẩu",
+        "cancel": "Thoát",
+        "submit": "Submit",
+        "previous": "Previous",
+        "next": "Next",
+        "back": "Trở về",
+        "yes": "đồng ý",
+        "no": "không đồng ý",
+        "search": "tìm kiếm",
+        "dashboard": "Trang chủ"
+    },
+    "validations": {
+        "messages": {
+          "_default": "The {0} field value is not valid.",
+          "min_string_length": "trường {0} phải lớn hơn {1} kí tự.",
+          "required": "trường {0} không được để trống."
+        }
+    },
+    "manual_defined": {
+        "title_action": {
+            "layer2": {
+                "saa": {
+                  "pvst_state_auto": "PVST+ Compatibility - Auto"
+                }
+            }
+        },
+        "layer2": {
+            "saa": {  
+                "pvst_state_auto": "PVST+ Compatibility - Auto"
+            }
+        }   
+    }
+  }

@@ -3,19 +3,17 @@ import App from './App.vue'
 import router from '@/router';
 import vuetify from './plugins/vuetify';
 import store from '@/store';
-// import { AuthenStatus } from '@/store/modules/authen-status';
 import axios from 'axios'
-import '@/validation/rule';
 import routerUtils from '@/router/utils';
+import i18n from '@/lang';
 import '@/components/global-components';
+import '@/validation/rule';
 
-// store.dispatch('buildMenu');
+  store.dispatch('getLangMap');
+  //store.dispatch('loadDefaultLocale');  
 
   let apiUrl = null;
   try {
-    // In order to change the API URL without re-run the yarn
-    // Please create file "env.js" under /src directory with following content:
-    // export const apiUrl = 'http://192.168.120.122'
     const myEnv = require('@/env');
     if (myEnv !== null) {
       apiUrl = myEnv.apiUrl;
@@ -28,11 +26,12 @@ import '@/components/global-components';
     axios.defaults.baseURL = apiUrl;
   }
   Vue.config.productionTip = false;
+
   // const isNotAuthen = () => {
   //   const x = store.state.authen.authenStatus
   //   return x !== AuthenStatus.NOT_AUTHENTICATED;
   // }
-  
+
   if ((localStorage.getItem('LOAI_TAIKHOAN') === '')) {
     routerUtils.routeToHome();
   } 
@@ -42,9 +41,13 @@ import '@/components/global-components';
   
 
 
-  new Vue({
+  const app = new Vue({
     render: h => h(App),
     store,
     vuetify,
-    router
+    router,
+    i18n
   }).$mount('#app')
+
+
+  export default app;

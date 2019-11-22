@@ -9,8 +9,8 @@
             v-card(flat left="")
             router-link(:to="{ name: 'Home' }")
                 img.logo-image(src="../assets/al-logo-white.png")
-            v-layout(column="" flat)
-                v-flex(xs12="")
+            v-layout(column="" flat )
+                v-flex(xs12="" row justify-end  wrap)
                     v-expand-transition
                         ul(key="ul")
                             v-menu(bottom  offset-y)
