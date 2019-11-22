@@ -25,7 +25,8 @@
     "validations": {
         "messages": {
           "_default": "The {0} field value is not valid.",
-          "min_string_length": "The {0} field must be more than {1} characters."
+          "min_string_length": "The {0} field must be more than {1} characters.",
+          "required": "The {0} field must be required."
         }
     },
     "manual_defined": {

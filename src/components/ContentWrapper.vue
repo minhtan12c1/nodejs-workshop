@@ -6,12 +6,18 @@
                 v-slide-y-transition(mode="out-in")
                     v-layout(column)
                         v-layout(row)
+                            v-breadcrumbs(:items="breadCums")
+                                v-icon(slot="divider") mdi-chevron-right
+                                template(slot="item" slot-scope="props")
+                                    v-breadcrumbs-item(ripple :to="props.item" exact)
+                                            v-icon(v-if="props.item.meta.icon") {{ props.item.meta.icon }}
+                                            | {{ props.item.meta.title }}
                 router-view(:key="$route.fullPath")
 </template>
 
 <script>
     import Siderbar from './Siderbar.vue';
-
+      import { mapGetters } from 'vuex';
 
     export default {
         methods: {
@@ -20,6 +26,11 @@
         components: {
             appSiderbar: Siderbar
         },
+        computed: {
+            ...mapGetters([
+                'breadCums'
+            ]),
+        }
     }
 </script>
 

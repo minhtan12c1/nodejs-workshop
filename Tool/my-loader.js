@@ -310,6 +310,5 @@ module.exports = function loader(source) {
       return lines.join('\n');
     }
   }
-  console.log(source);
   return source;
 }

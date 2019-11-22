@@ -38,8 +38,10 @@ import '@/validation/rule';
   else {
     routerUtils.routeToDashboard();
   }
-  
-
+  router.beforeEach((to, from, next) => {
+    store.dispatch('navigatePath', { path: to.path, breadCumsRaw: to.matched });
+    next();
+  });
 
   const app = new Vue({
     render: h => h(App),

@@ -1,5 +1,5 @@
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapActions } from 'vuex';
 export default {
     name: 'sidebar',
     data() {
@@ -17,9 +17,29 @@ export default {
         this.drawer = true;
       }
     },
+    methods: {
+      ...mapActions([
+        'addItem',
+        'navigatePath',
+        'goToUpperMenu',
+        'exploreMenu',
+      ]),
+      updateMenuWhenBack() {
+        // this.navigatePath({ path: this.currentMenu.path });
+        this.goToUpperMenu();
+      },
+      updateMenuOrGo(item) {
+        if (item.items) {
+          this.exploreMenu({ targetMenu: item });
+        } else {
+          this.$router.push(item.path);
+        }
+      },
+    },
     computed: {
       ...mapGetters([
         'menu',
+        'currentMenu',
       ]),
     }
 }
@@ -64,9 +84,25 @@ export default {
                     small
                     icon
                     :key="1"
+                    @click.prevent="updateMenuWhenBack"
                     style="margin-left: -20px"
                     )
                     v-icon  mdi-chevron-left
                 v-toolbar-title(:key="3" style="margin-left: 0 !important; text-transform: uppercase; width: 100%; font-size: 14px; font-weight: 500") home
+            v-list
+              template(v-for="menuItem in currentMenu.items")
+                v-scroll-x-transition(mode="out-in")
+                  v-list-item(
+                    :key="menuItem.id"
+                    v-model="menuItem.active"
+                    ripple
+                    replace
+                    @click="updateMenuOrGo(menuItem)"
+                  )
+                    v-list-item-content
+                      v-list-item-title()
+                        template  {{ menuItem.label }} 
+                    v-list-item-action(v-if="menuItem.items && menuItem.items.length>=0")
+                      v-icon mdi-menu-right
     
 </template>

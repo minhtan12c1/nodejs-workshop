@@ -25,6 +25,7 @@ const rootRoute = {
       redirect: { name: 'Login' },
       component: Home,
       meta: {
+        icon: 'mdi-home',
         title: 'Home',
       },
       children: [
