@@ -7,7 +7,7 @@
 $host = "localhost"; 
 $user = "root"; 
 $password = ""; 
-$dbname = "gpp_project"; 
+$dbname = "gp_project"; 
 $id = '';
 
 $con = mysqli_connect($host, $user, $password,$dbname);
@@ -60,8 +60,8 @@ $result = mysqli_query($con,$sql);
 
 // die if SQL statement failed
 if (!$result) {
-  http_response_code(404);
-  die(mysqli_error($con));
+  http_response_code(201);
+ // die(mysqli_error($con));
 }
 
 if ($method == 'GET') {

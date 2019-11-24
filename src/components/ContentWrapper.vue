@@ -6,11 +6,11 @@
                 v-slide-y-transition(mode="out-in")
                     v-layout(column)
                         v-layout(row)
-                            v-breadcrumbs(:items="breadCums")
+                            v-breadcrumbs(:items="breadCums" style=" margin-left:20px;")
                                 v-icon(slot="divider") mdi-chevron-right
-                                template(slot="item" slot-scope="props")
-                                    v-breadcrumbs-item(ripple :to="props.item" exact)
-                                            v-icon(v-if="props.item.meta.icon") {{ props.item.meta.icon }}
+                                template(slot="item" slot-scope="props" )
+                                    v-breadcrumbs-item(ripple :to="props.item" exact )
+                                            v-icon(v-if="props.item.meta.icon" ) {{ props.item.meta.icon }}  
                                             | {{ props.item.meta.title }}
                 router-view(:key="$route.fullPath")
 </template>

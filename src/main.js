@@ -42,6 +42,7 @@ import '@/validation/rule';
     store.dispatch('navigatePath', { path: to.path, breadCumsRaw: to.matched });
     next();
   });
+  
 
   const app = new Vue({
     render: h => h(App),

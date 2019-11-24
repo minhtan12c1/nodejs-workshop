@@ -19,7 +19,6 @@ export default {
     },
     methods: {
       ...mapActions([
-        'addItem',
         'navigatePath',
         'goToUpperMenu',
         'exploreMenu',
@@ -40,7 +39,11 @@ export default {
       ...mapGetters([
         'menu',
         'currentMenu',
+        'upperMenu',
       ]),
+      hasUpperMenu() {
+        return this.upperMenu;
+      },
     }
 }
 </script>
@@ -79,17 +82,18 @@ export default {
                 v-icon(v-if="drawer") mdi-chevron-left
                 v-icon(v-else) mdi-chevron-right
             v-toolbar(flat height="48" style="background-color: #415c8d;")
-                template
+                template(v-if="hasUpperMenu")
                     v-btn(
-                    small
-                    icon
-                    :key="1"
-                    @click.prevent="updateMenuWhenBack"
-                    style="margin-left: -20px"
+                      v-if="hasUpperMenu"
+                      small
+                      icon
+                      :key="1"
+                      @click.prevent="updateMenuWhenBack"
+                      style="margin-left: -20px"
                     )
-                    v-icon  mdi-chevron-left
-                v-toolbar-title(:key="3" style="margin-left: 0 !important; text-transform: uppercase; width: 100%; font-size: 14px; font-weight: 500") home
-            v-list
+                      v-icon  mdi-chevron-left
+                v-toolbar-title(:key="3" style="margin-left: 0 !important; text-transform: uppercase; width: 100%; font-size: 14px; font-weight: 500") {{ currentMenu.label || $t('common.home') }}
+            v-list(v-if="currentMenu")
               template(v-for="menuItem in currentMenu.items")
                 v-scroll-x-transition(mode="out-in")
                   v-list-item(

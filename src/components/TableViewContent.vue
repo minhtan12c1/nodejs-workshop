@@ -1,12 +1,10 @@
 
 
 <script>
-  // import dataTypeUtils from '@/data-adapter/map/utils';
   import ElDataTable from './ElDataTable.vue';
   import ObjectProfileForm from './ObjectProfileForm.vue';
-  // import MyDialog from './core/MyDialog.vue';
   import modelUtils from '@/model/model-utils';
-
+  import { mapActions } from 'vuex';
 
 export default {
     name: 'TableViewContent',
@@ -39,6 +37,7 @@ export default {
         searchItem: '',
         totalItems: 0,
         search: '',
+        dirty: false,
 
       };
     },
@@ -51,6 +50,11 @@ export default {
       title: { default: null },
     },
     methods: {
+      ...mapActions([
+        'parseResponseStatus',
+        'enableGlobalLoading',
+        'disableGlobalLoading',
+      ]),
       initTableView() {
         if (this.initialized) {
           return;
@@ -162,14 +166,15 @@ export default {
             data.forEach((value) => {
                 deletedObjects.push(value);
             });
+            this.enableGlobalLoading();
             setTimeout(() => {
                 this.tableProfile.api.delete(deletedObjects).then((response) => {
-                    // this.parseResponseStatus({ response, action: `Add ${this.tableProfile.name}` });
+                    this.parseResponseStatus({ response, action: `Remove ${this.tableProfile.name}` });
                     if (response.statusText === 'OK') {
                         this.objectDialogOpenned = false;
                         this.refresh();
                     }
-
+                  this.disableGlobalLoading();
                 });
             }, 300);
         },
@@ -203,44 +208,39 @@ export default {
       addObject() {
             this.$refs.objectForm.validate().then((result) => {
                 if (result) {
-            //         this.enableGlobalLoading();
+                    this.enableGlobalLoading();
                     setTimeout(() => {
                         this.tableProfile.api.create(
                             modelUtils.transformUiObjectToApi(this.object, this.objectDefinition),
                         ).then((response) => {
-                            // this.parseResponseStatus({ response, action: `Add ${this.tableProfile.name}` });
+                            this.parseResponseStatus({ response, action: `Add ${this.tableProfile.name}` });
                             if (response.statusText === 'OK') {
-                                // user may want to add another object
-                                // this.objectDialogOpenned = false;
-                                // this.refresh();
-
-                                // if (this.tableProfile.tableToolbar.add.postAddHandler) {
-                                //     this.tableProfile.tableToolbar.add.postAddHandler();
-                                // }
                                 this.objectDialogOpenned = false;
+                                this.refresh();
                             }
-
+                        this.disableGlobalLoading();
                         });
                     }, 300);
                 }
             });
         },
         modifyObject() {
-            // this.$refs.objectForm.validate().then((result) => {
-            //     if (result) {
-            //         this.enableGlobalLoading();
-            setTimeout(() => {
+            this.$refs.objectForm.validate().then((result) => {
+                if (result) {
+                  this.enableGlobalLoading();
+                  setTimeout(() => {
                     this.tableProfile.api.modify(
                         modelUtils.transformUiObjectToApi(this.object, this.objectDefinition),
                     ).then((response) => {
-                        // this.parseResponseStatus({ response, action: `Modify ${this.tableProfile.name}` });
+                        this.parseResponseStatus({ response, action: `Modify ${this.tableProfile.name}` });
                         if (response.statusText === 'OK') {
                             this.objectDialogOpenned = false;
                         }
-                        // this.disableGlobalLoading();
-                    });
-            //     }
-            }, 300);
+                        this.disableGlobalLoading();
+                      });
+                  }, 300);
+                 }
+            });
         },
         toggleSearchBox() {
           this.enableSearch = !this.enableSearch;
@@ -253,6 +253,11 @@ export default {
           }
         },
     },
+    computed: {
+      modifyBtnEnabled() {
+        return this.selected.length === 1;
+      },
+    },
     watch: {
       objectDialogOpenned(value) {
           if (!value) {
@@ -263,6 +268,19 @@ export default {
         searchItem(value) {
           this.totalItems = 0;
           this.search = value;
+        },
+        object: {
+          handler(val) {
+            this.dirty = false;
+            if (this.objectDefinition && this.objectDefinition.fields) {
+              this.objectDefinition.fields.forEach((field) => {
+                if (val[field.name] !== this.orgObject[field.name]) {
+                  this.dirty = true;
+                }
+              });
+            }
+          },
+          deep: true,
         },
     },
     created() {
@@ -286,17 +304,29 @@ export default {
             template( v-slot:activator='{ on }' )
                 v-layout( row class="flex" justify-end xs12 wrap style="min-height: 40px !important; margin-top: 22px;")
                     v-spacer
-                    v-btn( v-if="tableProfile.tableToolbar.add.enable" v-on="on" :disabled="loading" small  slot="activator" color="primary" @click="openAddObjectDialog")
-                        v-icon mdi-plus
+                    v-tooltip(bottom)
+                      template(template v-slot:activator="{ on }" )
+                        v-btn( v-if="tableProfile.tableToolbar.add.enable" v-on="on" :disabled="loading" small color="primary" @click="openAddObjectDialog")
+                            v-icon mdi-plus
+                      span {{ $t('common.add')}}
                     div(style="min-width: 8px;")
-                    v-btn( v-if="allowModify" v-on="on" :disabled="loading" small slot="activator" color="primary" @click="openModifyObjectDialog")
-                        v-icon mdi-pencil
+                    v-tooltip(bottom)
+                      template(template v-slot:activator="{ on }" )
+                        v-btn( v-if="allowModify" v-on="on" :disabled="loading || !modifyBtnEnabled" small slot="activator" color="primary" @click="openModifyObjectDialog")
+                            v-icon mdi-pencil
+                      span {{ $t('common.modify')}}
                     div(style="min-width: 8px;")
-                    v-btn( v-if="allowDelete" :disabled="loading" small slot="activator" color="primary" @click="deleteSelected")
-                        v-icon mdi-delete
+                    v-tooltip(bottom)
+                      template(template v-slot:activator="{ on }" )
+                        v-btn( v-if="allowDelete" :disabled="loading || !modifyBtnEnabled" v-on="on" small slot="activator" color="primary" @click="deleteSelected")
+                            v-icon mdi-delete
+                      span {{ $t('common.delete')}}
                     div(style="min-width: 8px;")
-                    v-btn(  small slot="activator" :disabled="loading" color="primary" @click="refresh")
-                        v-icon mdi-refresh
+                    v-tooltip(bottom)
+                      template(template v-slot:activator="{ on }" )
+                        v-btn(  small slot="activator" :disabled="loading" v-on="on"  color="primary" @click="refresh")
+                            v-icon mdi-refresh
+                      span {{ $t('common.refresh')}}
             v-card
                 v-card-title
                     span {{ objectDialogTitle}}
@@ -319,7 +349,7 @@ export default {
                         :check-read-only="checkReadOnly")
                 v-card-actions
                     v-spacer
-                    v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit") {{ $t('common.save') }}
+                    v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit" :disabled="!dirty") {{ $t('common.save') }}
                     v-btn(color='blue darken-1', text='', @click.native.prevent="objectDialogOpenned=false") {{ $t('common.close') }}
         v-layout( row wrap)
           v-flex(style=" padding-left: 14px; padding-right: 14px;" )
