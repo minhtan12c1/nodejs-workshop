@@ -1,6 +1,6 @@
-
-import layer2Route from '@/router/layer2/index.js';
-import networkingRoute from '@/router/networking/index.js';
+import physicalRoute from '@/router/physical';
+import systemRoute from '@/router/system';
+import networkingRoute from '@/router/networking';
 
 const menuData = {
   built: false,
@@ -9,8 +9,9 @@ const menuData = {
     title: 'Home',
   },
   children: [
-    layer2Route,
+    physicalRoute,
     networkingRoute,
+    systemRoute,
   ],
 };
 

@@ -1,46 +1,86 @@
 {
-    "common": {
-        "log_out": "Log out",
-        "add": "Add",
-        "modify": "Modify",
-        "delete": "Delete",
-        "close": "Close",
-        "save": "Save",
-        "refresh": "Refresh",
-        "language": "Language",
-        "log_in": "Log in",
-        "username": "Username",
-        "password": "Password",
-        "cancel": "Cancel",
-        "submit": "Submit",
-        "previous": "Previous",
-        "next": "Next",
-        "back": "Back",
-        "yes": "Yes",
-        "no": "No",
-        "search": "Search",
-        "dashboard": "Dashboard"
-        
-    },
-    "validations": {
-        "messages": {
-          "_default": "The {0} field value is not valid.",
-          "min_string_length": "The {0} field must be more than {1} characters.",
-          "required": "The {0} field must be required."
+  "common": {
+    "log_out": "Log out",
+    "add": "Add",
+    "modify": "Modify",
+    "delete": "Delete",
+    "close": "Close",
+    "save": "Save",
+    "refresh": "Refresh",
+    "language": "Language",
+    "log_in": "Log in",
+    "username": "Username",
+    "password": "Password",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "previous": "Previous",
+    "next": "Next",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "search": "Search",
+    "dashboard": "Dashboard"
+  },
+  "validations": {
+    "messages": {
+      "_default": "The {0} field value is not valid.",
+      "min_string_length": "The {0} field must be more than {1} characters.",
+      "required": "The {0} field must be required."
+    }
+  },
+  "manual_defined": {
+    "title_action": {
+      "layer2": {
+        "saa": {
+          "pvst_state_auto": "PVST+ Compatibility - Auto"
         }
+      }
     },
-    "manual_defined": {
-        "title_action": {
-            "layer2": {
-                "saa": {
-                  "pvst_state_auto": "PVST+ Compatibility - Auto"
-                }
-            }
-        },
-        "layer2": {
-            "saa": {  
-                "pvst_state_auto": "PVST+ Compatibility - Auto"
-            }
-        }   
+    "layer2": {
+      "saa": {
+        "pvst_state_auto": "PVST+ Compatibility - Auto"
+      }
+    }
+  },
+  "system": {
+    "saa": {
+      "configuration": {
+        "port": "Port",
+        "vlan": "VLAN",
+        "port_state": "Port State",
+        "type": "Type"
+      },
+      "global": {
+        "status": "Status",
+        "interval": "Interval",
+        "file_name": "File Name",
+        "auto_create": "Auto Create",
+        "auto_start": "Auto Start",
+        "interval__min_": "Interval (min)",
+        "number_of_packets": "Number of Packets",
+        "inter-packet_delay__ms_": "Inter-packet Delay (ms)",
+        "payload_size": "Payload Size",
+        "drop_eligible": "Drop Eligible",
+        "jitter_threshold__ms_": "Jitter Threshold (ms)",
+        "rtt_threshold__ms_": "RTT Threshold (ms)",
+        "keep_sessions": "Keep Sessions",
+        "reset_config": "Reset Config",
+        "flush_sessions": "Flush Sessions",
+        "packet_data": "Packet Data"
+      },
+      "taikhoan": {
+        "id": "ID",
+        "taikhoan_id": "TAIKHOAN ID"
+      },
+      "khachhang": {
+        "id": "ID",
+        "taikhoan_id": "account ID",
+        "ho": "last name",
+        "ten": "name",
+        "diachi": "address",
+        "email": "email",
+        "gioitinh": "gender"
+      }
     }
   }
+}

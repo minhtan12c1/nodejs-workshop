@@ -196,7 +196,7 @@ export default {
         )
         template(v-for="(header, idx) in headers")
           el-table-column(
-            :label="header.label"
+            :label="$t(header.i18n_label)"
             :key="header.label"
             show-overflow-tooltip
             :prop="nameOfProperties[idx]"

@@ -209,7 +209,7 @@ export default {
                       v-layout.ma-0(row center)
                         v-flex.pa-0(xs12)
                           component(
-                            :label="field.label"
+                            :label="$t(field.i18n_label)"
                             v-model="model[field.name]"
                             :is="field.component || defaultComponent"
                             :required="field.required"

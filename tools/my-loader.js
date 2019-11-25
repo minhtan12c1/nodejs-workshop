@@ -13,31 +13,31 @@ function getValue(labelLine) {
   return '';
 }
 
-// function getFullValue(lines) {
-//   if (lines && lines.length > 1) {
-//     const flmatch = lines[0].match(/'(.*?)'\s*\+$/);
-//     const fl = [flmatch[1]];
-//     lines.slice(1).forEach(l => {
-//       const lmatch = l.match(/'(.*?)'\s*[\+\,]$/);
-//       fl.push(lmatch[1])
-//     })
+function getFullValue(lines) {
+  if (lines && lines.length > 1) {
+    const flmatch = lines[0].match(/'(.*?)'\s*\+$/);
+    const fl = [flmatch[1]];
+    lines.slice(1).forEach(l => {
+      const lmatch = l.match(/'(.*?)'\s*[\+\,]$/);
+      fl.push(lmatch[1])
+    })
 
-//     return fl.join('');
-//   }
+    return fl.join('');
+  }
 
-//   return getValue(lines[0]);
-// }
+  return getValue(lines[0]);
+}
 
-// function getFirstValueForKey(lines) {
-//   if (lines && lines.length > 1) {
-//     const matches = lines[0].match(/'(.*?)' ?\+$/);
-//     if (matches && matches.length) {
-//       return matches[1];
-//     }
-//   }
+function getFirstValueForKey(lines) {
+  if (lines && lines.length > 1) {
+    const matches = lines[0].match(/'(.*?)' ?\+$/);
+    if (matches && matches.length) {
+      return matches[1];
+    }
+  }
 
-//   return getValue(lines[0]);
-// }
+  return getValue(lines[0]);
+}
 
 function numberOfSpacesAtFirst(line) {
   let i = 0;
@@ -97,24 +97,24 @@ function makeI18nLine(line, fpath, title, sp) {
   return l.replace(`'${lvalue}'`, `'${makeI18nKeyWithPrefix(lvalue, genTemplate(fpath, sp))}'`);
 }
 
-// function makeI18nHintLine(lines, fpath) {
-//   let l = lines[0].replace('hint', 'i18n_hint');
-//   l = l.substring(0, l.indexOf(':') + 1);
-//   let lvalue = getFirstValueForKey(lines);
-//   let vl = makeI18nKeyWithPrefix(lvalue, genTemplate(fpath, -2));
-//   if ((l.length + vl.length + 4) >= 150) {
-//     const hvl = vl.length / 2;
-//     const sp = numberOfSpacesAtFirst(l);
-//     const blanks = (new Array(sp+1)).join(' ')
-//     return [
-//       `${l} '${vl.substring(0, hvl)}' +`,
-//       `${blanks}'${vl.substring(hvl)}',`,
-//     ];
-//   }
-//   const fullLine = `${l} '${makeI18nKeyWithPrefix(lvalue, genTemplate(fpath, -2))}',`;
+function makeI18nHintLine(lines, fpath) {
+  let l = lines[0].replace('hint', 'i18n_hint');
+  l = l.substring(0, l.indexOf(':') + 1);
+  let lvalue = getFirstValueForKey(lines);
+  let vl = makeI18nKeyWithPrefix(lvalue, genTemplate(fpath, -2));
+  if ((l.length + vl.length + 4) >= 150) {
+    const hvl = vl.length / 2;
+    const sp = numberOfSpacesAtFirst(l);
+    const blanks = (new Array(sp+1)).join(' ')
+    return [
+      `${l} '${vl.substring(0, hvl)}' +`,
+      `${blanks}'${vl.substring(hvl)}',`,
+    ];
+  }
+  const fullLine = `${l} '${makeI18nKeyWithPrefix(lvalue, genTemplate(fpath, -2))}',`;
 
-//   return [fullLine];
-// }
+  return [fullLine];
+}
 
 function extractKeyVal(line, fpath, sp) {
   let v = getValue(line);
@@ -123,11 +123,11 @@ function extractKeyVal(line, fpath, sp) {
   return { key: k, value: v};
 }
 
-// function extractKeyValMulti(lines, fpath) {
-//   let v = getFullValue(lines).replace(/\\n/g, '<br/>').replace('\\\'', '\'');
-//   let k = makeI18nKeyWithPrefix(getFirstValueForKey(lines), genTemplate(fpath, -2));
-//   return { key: k, value: v};
-// }
+function extractKeyValMulti(lines, fpath) {
+  let v = getFullValue(lines).replace(/\\n/g, '<br/>').replace('\\\'', '\'');
+  let k = makeI18nKeyWithPrefix(getFirstValueForKey(lines), genTemplate(fpath, -2));
+  return { key: k, value: v};
+}
 
 function updateLocaleFiles(keyVal, langdir, outdir) {
   // let langs = Object.keys(JSON.parse(fs.readFileSync(path.resolve(langdir, 'map.json'))).map);
@@ -156,36 +156,36 @@ function byString(matchRegex, notmatchRegex) {
   };
 }
 
-// function reduceMultiLines(matchRegex) {
-//   return (acc, l) => {
-//     if (matchRegex.test(l.l)) {
-//       const i = acc.find(s => s.start === l.idx);
-//       if (!i) {
-//         acc.push({
-//           start: l.idx,
-//           val: [l.l],
-//           end: l.idx,
-//         });
-//       }
-//     }
+function reduceMultiLines(matchRegex) {
+  return (acc, l) => {
+    if (matchRegex.test(l.l)) {
+      const i = acc.find(s => s.start === l.idx);
+      if (!i) {
+        acc.push({
+          start: l.idx,
+          val: [l.l],
+          end: l.idx,
+        });
+      }
+    }
 
-//     const last = acc.pop();
-//     if (last) {
-//       if (!last.done && last.start <= l.idx) {
-//         last.end = l.idx;
-//         if (last.end > last.start) {
-//           last.val.push(l.l);
-//         }
-//         if (/',$/g.test(l.l)) {
-//           last.done = true;
-//         }
-//       }
-//       acc.push(last);
-//     }
+    const last = acc.pop();
+    if (last) {
+      if (!last.done && last.start <= l.idx) {
+        last.end = l.idx;
+        if (last.end > last.start) {
+          last.val.push(l.l);
+        }
+        if (/',$/g.test(l.l)) {
+          last.done = true;
+        }
+      }
+      acc.push(last);
+    }
 
-//     return acc;
-//   }
-// }
+    return acc;
+  }
+}
 
 function processLine(srcByLines, fpath, options, filterFunc, lineFunc, extractFunc, title, sp) {
   let lines = [...srcByLines];
@@ -208,28 +208,28 @@ function processLine(srcByLines, fpath, options, filterFunc, lineFunc, extractFu
   return lines
 }
 
-// function makeHintLine(srcByLines, fpath, options, reduceFunc, lineFunc, extractFunc) {
-//   let lines = [...srcByLines];
-//   let labelLines = lines
-//       .map(function (l,idx) { return { idx, l }; })
-//       .reduce(reduceFunc, []);
+function makeHintLine(srcByLines, fpath, options, reduceFunc, lineFunc, extractFunc) {
+  let lines = [...srcByLines];
+  let labelLines = lines
+      .map(function (l,idx) { return { idx, l }; })
+      .reduce(reduceFunc, []);
 
-//   if (labelLines) {
-//     let i = 0;
-//     labelLines.forEach(function (ll) {
-//       const l = lineFunc(ll.val, fpath);
-//       lines.splice(ll.start+i, 0, ...l)
-//       i = i + l.length;
-//     });
-//   }
+  if (labelLines) {
+    let i = 0;
+    labelLines.forEach(function (ll) {
+      const l = lineFunc(ll.val, fpath);
+      lines.splice(ll.start+i, 0, ...l)
+      i = i + l.length;
+    });
+  }
 
-//   if (options && options.outDir && options.langDir) {
-//     let keyVal = labelLines.map(function (ll) { return extractFunc(ll.val, fpath); });
-//     updateLocaleFiles(keyVal, options.langDir, options.outDir);
-//   }
+  if (options && options.outDir && options.langDir) {
+    let keyVal = labelLines.map(function (ll) { return extractFunc(ll.val, fpath); });
+    updateLocaleFiles(keyVal, options.langDir, options.outDir);
+  }
 
-//   return lines
-// }
+  return lines
+}
 
 function processTitleLine(srcByLines, fpath, options) {
   return processLine(srcByLines, fpath, options, byString(/title\:/g, /i18n_title\:/g), makeI18nLine, extractKeyVal, 'title', numberOfSpacesAtFirst(srcByLines));
@@ -252,16 +252,16 @@ function processModelNameLine(srcByLines, fpath, options) {
   return processLine(srcByLines, fpath, options, byString(/name\:/g, /i18n_name\:/g), makeI18nLine, extractKeyVal, 'name', -3);
 }
 
-// function processHintLine(srcByLines, fpath, options) {
-//   return makeHintLine(srcByLines, fpath, options, reduceMultiLines(/hint\:/g), makeI18nHintLine, extractKeyValMulti);
-// }
+function processHintLine(srcByLines, fpath, options) {
+  return makeHintLine(srcByLines, fpath, options, reduceMultiLines(/hint\:/g), makeI18nHintLine, extractKeyValMulti);
+}
 
-// function exportAosVersion(srcByLines) {
-//   if(process.env.AOS_VERSION) {
-//     srcByLines[0] = `export const version = '.${process.env.AOS_VERSION}';`;
-//   }
-//   return srcByLines;
-// }
+function exportAosVersion(srcByLines) {
+  if(process.env.AOS_VERSION) {
+    srcByLines[0] = `export const version = '.${process.env.AOS_VERSION}';`;
+  }
+  return srcByLines;
+}
 
 function generateLangFiles(langs, outdir) {
   langs.forEach((l) => {
@@ -290,10 +290,10 @@ module.exports = function loader(source) {
     }
 
     let lines = [...srcByLines];
-    // if (fpath.includes(`${path.sep}src${path.sep}model${path.sep}aos-version`)) {
-    //   lines = exportAosVersion(lines);
-    //   return lines.join('\n');
-    // }
+    if (fpath.includes(`${path.sep}src${path.sep}model${path.sep}aos-version`)) {
+      lines = exportAosVersion(lines);
+      return lines.join('\n');
+    }
     if (fpath.includes(`${path.sep}src${path.sep}api${path.sep}`)) {
       lines = processLabelLine(lines, fpath, options);
       lines = processHintLine(lines, fpath, options);

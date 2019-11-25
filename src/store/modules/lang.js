@@ -70,12 +70,14 @@ const actions = {
         //     commit('SET_LANG', locale);
         //   });
         // } else {
+          document.title = app.$t(app.$route.meta.i18n_title, locale);
           const langs = l;
           app.$i18n.setLocaleMessage(locale, langs);
           commit('SET_LANG', locale);
         // }
       }).catch(() => {});
     } else {
+      document.title = app.$t(app.$route.meta.i18n_title, locale);
       commit('SET_LANG', locale);
     }
   },

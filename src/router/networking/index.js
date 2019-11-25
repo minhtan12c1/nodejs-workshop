@@ -1,5 +1,6 @@
 import ContentWrapper from '@/components/ContentWrapper';
 import ipRoute from './ip';
+import ipv6Route from './ipv6';
 
 export default {
   path: 'networking',
@@ -10,5 +11,6 @@ export default {
   },
   children: [
     ipRoute,
+    ipv6Route
   ],
 };

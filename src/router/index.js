@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Login from '@/components/Login.vue';
 import Router from 'vue-router';
-import layer2Route from '@/router/layer2';
+import physicalRoute from '@/router/physical';
+import systemRoute from '@/router/system';
 import networkingRoute from '@/router/networking';
 import Home from '@/components/Home.vue';
 import NotFound from '@/components/NotFound';
@@ -37,7 +38,8 @@ const rootRoute = {
             title: 'Dashboard',
           },
         },
-          layer2Route,
+          physicalRoute,
+          systemRoute,
           networkingRoute, 
           {
             path: '/\\S+/',

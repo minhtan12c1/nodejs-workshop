@@ -41,7 +41,7 @@ export default {
               component: TableView,
               meta: {
                 title: 'Khach Hang',
-                dataModelModuleName: 'layer2/saa/khachhang',
+                dataModelModuleName: 'sytem/saa/khachhang',
               },
             },
           ],
