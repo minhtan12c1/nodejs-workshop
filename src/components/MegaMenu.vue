@@ -14,10 +14,10 @@
             v-list(style="padding-left: 25px;")
               v-layout(row shrink)
                 v-flex(v-for="(item, index) in menuItem.items" :key="index" )
-                  a(style="color: blue;" @click="onMenuItemClick(item.path)") {{ item.label }}
+                  a(style="color: blue;" @click="onMenuItemClick(item.path)") {{ $t(item.i18n_label) }}
                   v-flex(row)
                     v-list-item(v-for="subMenu in item.items" :key="subMenu.id" @click="onMenuItemClick(subMenu)")
-                      v-list-item-title {{(subMenu.label)}}
+                      v-list-item-title {{ $t( subMenu.i18n_label)}}
                    
           
 </template>

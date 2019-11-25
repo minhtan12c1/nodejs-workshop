@@ -1,7 +1,5 @@
 import MainContent from '@/components/MainContent';
 import StaticView from '@/components/StaticView';
-import TableView from '@/components/TableView';
-
 export default {
   path: 'ip',
   name: 'IP',
@@ -28,23 +26,13 @@ export default {
           },
         },
         {
-          path: 'Layer1',
-          name: 'Layer1_Sa',
-          component: MainContent,
+          path: 'global1',
+          name: 'IP_Configuration_Global1',
+          component: StaticView,
           meta: {
-            title: 'Layer1',
+            title: 'Global1',
+            dataModelModuleName: 'networking/ip/ip/global-config1',
           },
-          children: [
-            {
-              path: 'khachhang',
-              name: 'Layer2_Saa_khachhang1',
-              component: TableView,
-              meta: {
-                title: 'Khach Hang',
-                dataModelModuleName: 'sytem/saa/khachhang',
-              },
-            },
-          ],
         },
       ],
     },

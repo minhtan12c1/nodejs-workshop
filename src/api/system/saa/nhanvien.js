@@ -31,12 +31,11 @@ const FIELD_NAMES = {
     sendOnModify: true,
     hint: 'dia chi',
   },
-  EMAIL: {
-    name: 'EMAIL',
-    label: 'EMAIL',
-    default: 'abc@gmail',
+  SODT: {
+    name: 'SODT',
+    label: 'SODT',
     sendOnModify: true,
-    hint: 'hint email',
+    hint: 'so dien thoai',
   } ,
   GIOITINH: {
     name: 'GIOITINH',
@@ -44,6 +43,11 @@ const FIELD_NAMES = {
     adapterMap: vlanDataMap.GIOITINH,
     default: vlanDataMap.GIOITINH.NAM.text,
     hint: 'gioi tinh',
+  } ,
+  CHINHAN_ID: {
+    name: 'CHINHAN_ID',
+    label: 'CHINHAN ID',
+    hint: 'chinhanh',
   } ,
 };
 

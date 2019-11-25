@@ -4,13 +4,13 @@ import vlanDataMap from '@/data-adapter/map/layer2/vpa';
 const FIELD_NAMES = {
   TENTAIKHOAN: {
     name: 'TENTAIKHOAN',
-    label: 'ID',
+    label: 'ID d',
     index: true,
   },
   LOAI_TAIKHOAN: {
     name: 'LOAI_TAIKHOAN',
-    label: 'TAIKHOAN ID',
-    hint: '(Range = 1 - 4094)',
+    label: 'TAI KHOAN ID',
+    hint: 'loai tai khoan',
     sendOnModify: true,
     adapterMap: vlanDataMap.LOAITAIKHOAN,
     default: vlanDataMap.LOAITAIKHOAN.USER.text,

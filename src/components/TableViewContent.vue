@@ -132,7 +132,7 @@ export default {
       openAddObjectDialog() {
         this.object = {};
         this.isModifyAction = false;
-        this.objectDialogTitle = this.tableProfile.name;
+        this.objectDialogTitle = this.$t('common.add_thing') + this.$t(this.tableProfile.i18n_name);
         this.objectDialogOpenned = true;
         this.checkReadOnly = false;
         this.objectDialogSubmitCallback = this.addObject;
@@ -145,7 +145,7 @@ export default {
         this.isModifyAction = true;
         this.object = Object.assign({}, obj);
         this.orgObject = Object.assign({}, obj);
-        this.objectDialogTitle = this.tableProfile.name;
+        this.objectDialogTitle =this.$t('common.modify_thing') + this.$t(this.tableProfile.i18n_name);
         this.objectDialogOpenned = true;
         this.checkReadOnly = true;
         this.objectDialogSubmitCallback = this.modifyObject;
@@ -156,7 +156,7 @@ export default {
       deleteRows(rows) {
           this.object = {};
           this.isModifyAction = false;
-          this.objectDialogTitle = this.tableProfile.name;
+          this.objectDialogTitle = this.$t('common.delete_thing' + [this.$t(this.tableProfile.i18n_name)]);
           this.objectDialogOpenned = false;
           this.checkReadOnly = false;
           this.objectDialogSubmitCallback = this.removeObject(rows);

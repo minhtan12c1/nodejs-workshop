@@ -13,10 +13,10 @@ module.exports = {
         {
           test: /\.js$/,
           enforce: 'pre',
-          include: [resolve('src/api'), resolve('src/router')],
+          include: [resolve('src/api'), resolve('src/router'), resolve('src/model')],
           exclude: [resolve('src/api/base-api.js')],
           use: {
-            loader: resolve('tools/aos-loader.js'),
+            loader: resolve('tools/my-loader.js'),
             options: {
               outDir: resolve('public/lang/gen'),
               langDir: resolve('public/lang'),

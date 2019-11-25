@@ -19,7 +19,10 @@
     "yes": "Yes",
     "no": "No",
     "search": "Search",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "add_thing" : "Add ",
+    "modify_thing" : "Modify ",
+    "delete_thing" : "delete "
   },
   "validations": {
     "messages": {

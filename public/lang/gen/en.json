@@ -1,0 +1,78 @@
+{
+  "modelFields": {
+    "system": {
+      "saa": {
+        "taikhoan": {
+          "tai_khoan": "title Tai khoan"
+        },
+        "khachhang": {
+          "khach_hang": "title khach hang"
+        },
+        "khachhang copy": {
+          "khach_hang": "khach hang"
+        },
+        "nhanvien": {
+          "khach_hang": "khach hang",
+          "nhan_vien": "nhan vien"
+        }
+      }
+    }
+  },
+  "fields": {
+    "system": {
+      "saa": {
+        "taikhoan": {
+          "id": "ID",
+          "taikhoan_id": "TAIvn KHOAN ID",
+          "id_d": "ID d",
+          "tai_khoan_id": "TAI KHOAN ID"
+        },
+        "khachhang": {
+          "id": "ID",
+          "taikhoan_id": "TAI KHOAN ID",
+          "ho": "f name",
+          "ten": "name",
+          "diachi": "adress",
+          "email": "E-MAIL",
+          "gioitinh": "GIOI TINH"
+        },
+        "nhanvien": {
+          "id": "ID",
+          "taikhoan_id": "TAIKHOAN ID",
+          "ho": "HO",
+          "ten": "TEN",
+          "diachi": "DIACHI",
+          "sodt": "SODT",
+          "gioitinh": "GIOITINH",
+          "chinhan_id": "CHINHAN ID"
+        }
+      }
+    }
+  },
+  "hints": {
+    "system": {
+      "saa": {
+        "taikhoan": {
+          "loai_tai_khoan": "loai tai khoan"
+        },
+        "khachhang": {
+          "tai_khoan_id": "hint tai khoan id",
+          "ho_va_ten": "hint ho va ten",
+          "ho_ten": "hint ho ten",
+          "dia_chi": "hint dia chi",
+          "hint_email": "hint email",
+          "gioi_tinh": "hint gioi tinh"
+        },
+        "nhanvien": {
+          "tai_khoan_id": "tai khoan id",
+          "ho_va_ten": "ho va ten",
+          "ho_ten": "ho ten",
+          "dia_chi": "dia chi",
+          "so_dien_thoai": "so dien thoai",
+          "gioi_tinh": "gioi tinh",
+          "chinhanh": "chinhanh"
+        }
+      }
+    }
+  }
+}

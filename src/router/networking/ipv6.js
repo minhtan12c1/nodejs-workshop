@@ -34,6 +34,15 @@ export default {
                 dataModelModuleName: 'sytem/saa/product-content',
               },
             },
+            {
+              path: 'product-content1',
+              name: 'IPv6_Global_product_content1',
+              component: TableView,
+              meta: {
+                title: 'Content1',
+                dataModelModuleName: 'sytem/saa/product-content1',
+              },
+            },
           ],
         },
       ],

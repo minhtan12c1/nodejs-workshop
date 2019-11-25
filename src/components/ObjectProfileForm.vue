@@ -214,7 +214,7 @@ export default {
                             :is="field.component || defaultComponent"
                             :required="field.required"
                             v-bind="objectProps[field.name] || {}"
-                            :data-hint="field.hint"
+                            :data-hint="$t(field.i18n_hint)"
                             :ref="field.name"
                             v-validate="validationUtils.mergeRules(objectRules[field.name])"
                             :error-messages="veeErrors.collect(field.name)"

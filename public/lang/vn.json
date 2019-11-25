@@ -19,7 +19,10 @@
     "yes": "đồng ý",
     "no": "không đồng ý",
     "search": "tìm kiếm",
-    "dashboard": "Trang chủ"
+    "dashboard": "Trang chủ",
+    "add_thing" : "them ",
+    "modify_thing" : "sua ",
+    "delete_thing" : "xoa "
   },
   "validations": {
     "messages": {

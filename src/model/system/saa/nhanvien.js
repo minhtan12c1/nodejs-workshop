@@ -1,4 +1,4 @@
-import vpaApi from '@/api/system/saa/khachhang';
+import vpaApi from '@/api/system/saa/nhanvien';
 import taikhoanApi from '@/api/system/saa/taikhoan';
 import componentName from '@/components/component-name';
 import commonRule from '@/validation/rule-name/common';
@@ -9,7 +9,7 @@ const FIELD_NAMES = vpaApi.FIELD_NAMES;
 const dataModel = {
   getObjectModel() {
     return {
-      name: 'khach hang',
+      name: 'nhan vien',
       fields: [
         {
           ...FIELD_NAMES.TAIKHOAN_ID,
@@ -36,7 +36,7 @@ const dataModel = {
           validationRules: [commonRule.REQUIRED, commonRule.MIN_STRING_LENGTH],
         },
         {
-          ...FIELD_NAMES.DIACHI,
+          ...FIELD_NAMES.SODT,
         },
         {
           ...FIELD_NAMES.EMAIL,
@@ -45,6 +45,9 @@ const dataModel = {
           ...FIELD_NAMES.GIOITINH,
           component: componentName.MY_SELECT,
           readOnly: true,
+        },
+        {
+          ...FIELD_NAMES.CHINHANH_ID,
         },
       ],
     };
@@ -68,7 +71,7 @@ const dataModel = {
           ...FIELD_NAMES.DIACHI,
         },
         {
-          ...FIELD_NAMES.EMAIL,
+          ...FIELD_NAMES.SODT,
         },
         {
           ...FIELD_NAMES.GIOITINH,
@@ -87,7 +90,7 @@ const dataModel = {
   },
   getTableProfile() {
     return {
-      name: 'khach hang',
+      name: 'nhan vien',
       api: vpaApi,
       tableToolbar: {
         deleteSelected: {

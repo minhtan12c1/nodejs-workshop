@@ -127,6 +127,7 @@ const actions = {
       const parentId = menuItem.parentId;
       const id = menuItem.id;
       const label = menuItem.meta.title;
+      const i18n_label = menuItem.meta.i18n_title;
       const active = menuItem.active;
       const path = menuItem.path;
       if (id >= 0) {
@@ -135,6 +136,7 @@ const actions = {
             id,
             parentId,
             label,
+            i18n_label,
             path,
             active,
           };
@@ -144,7 +146,7 @@ const actions = {
           items[parentId].items.unshift(item);
           items[id] = item;
         } else {
-          items[id] = { id, parentId, label, path, active };
+          items[id] = { id, parentId, label,i18n_label, path, active };
           menu = items[id];
         }
       }
