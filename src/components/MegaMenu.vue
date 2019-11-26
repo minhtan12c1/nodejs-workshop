@@ -1,16 +1,16 @@
 <template lang="pug">
     v-flex(style="padding-top: 13px;")
-      v-menu(offset-y="" 
+      v-menu(offset-y=""
            :close-on-content-click="false"
             right
             :nudge-width="100"
             light
-            bottom 
+            bottom
             transition="slide-y-transition"
             v-for="(menuItem, index) in value" :key="index")
             template(v-slot:activator="{ on }")
               v-btn(color="#4f6faa" dark="" v-on="on")
-               | {{menuItem.label}}
+               | {{$t(menuItem.i18n_label)}}
             v-list(style="padding-left: 25px;")
               v-layout(row shrink)
                 v-flex(v-for="(item, index) in menuItem.items" :key="index" )
@@ -18,8 +18,8 @@
                   v-flex(row)
                     v-list-item(v-for="subMenu in item.items" :key="subMenu.id" @click="onMenuItemClick(subMenu)")
                       v-list-item-title {{ $t( subMenu.i18n_label)}}
-                   
-          
+
+
 </template>
 
 <script>

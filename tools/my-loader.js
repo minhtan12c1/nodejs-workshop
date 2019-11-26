@@ -5,7 +5,9 @@ var get = require('lodash/get');
 var set = require('lodash/set');
 
 function getValue(labelLine) {
-  const matches = labelLine.match(/'(.*?)',$/);
+
+  //const matches = labelLine.match(/'(.*?)',$/);
+    const matches = labelLine.split("'");
   if (matches && matches.length) {
     return matches[1];
   }
@@ -117,9 +119,9 @@ function makeI18nHintLine(lines, fpath) {
 }
 
 function extractKeyVal(line, fpath, sp) {
+
   let v = getValue(line);
   let k = makeI18nKeyWithPrefix(v, genTemplate(fpath, sp));
-
   return { key: k, value: v};
 }
 
@@ -130,8 +132,8 @@ function extractKeyValMulti(lines, fpath) {
 }
 
 function updateLocaleFiles(keyVal, langdir, outdir) {
-  // let langs = Object.keys(JSON.parse(fs.readFileSync(path.resolve(langdir, 'map.json'))).map);
-  let langs = ['en'];
+  let langs = Object.keys(JSON.parse(fs.readFileSync(path.resolve(langdir, 'map.json'))).map);
+  //let langs = ['en'];
 
   langs.forEach(function (lang) {
     let l = JSON.parse(fs.readFileSync(path.resolve(outdir, lang+'.json')));
@@ -189,6 +191,7 @@ function reduceMultiLines(matchRegex) {
 
 function processLine(srcByLines, fpath, options, filterFunc, lineFunc, extractFunc, title, sp) {
   let lines = [...srcByLines];
+
   let labelLines = lines
       .map(function (l,idx) { return { idx, l }; })
       .filter(filterFunc(lines));
@@ -204,7 +207,6 @@ function processLine(srcByLines, fpath, options, filterFunc, lineFunc, extractFu
       updateLocaleFiles(keyVal, options.langDir, options.outDir);
     }
   }
-
   return lines
 }
 

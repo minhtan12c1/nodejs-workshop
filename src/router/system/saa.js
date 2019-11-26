@@ -1,6 +1,5 @@
 import MainContent from '@/components/MainContent';
 import TableView from '@/components/TableView';
-import StaticView from '@/components/StaticView';
 
 export default {
   path: 'saa',
@@ -10,15 +9,6 @@ export default {
     title: 'SAA',
   },
   children: [
-    {
-      path: 'global',
-      name: 'System_Saa_Global',
-      component: StaticView,
-      meta: {
-        title: 'Global',
-        dataModelModuleName: 'system/saa/global',
-      },
-    },
     {
       path: 'account',
       name: 'System_Saa_account',

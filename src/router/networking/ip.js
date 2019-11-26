@@ -1,5 +1,6 @@
 import MainContent from '@/components/MainContent';
-import StaticView from '@/components/StaticView';
+import TableView from '@/components/TableView';
+
 export default {
   path: 'ip',
   name: 'IP',
@@ -8,33 +9,24 @@ export default {
     title: 'IP',
   },
   children: [
-    {
-      path: 'ipconfign',
-      name: 'IP_Configuration',
-      component: MainContent,
-      meta: {
-        title: 'Configuration',
-      },
-      children: [
-        {
-          path: 'global',
-          name: 'IP_Configuration_Global',
-          component: StaticView,
+      {
+          path: 'product',
+          name: 'IPv6_Global_product',
+          component: MainContent,
           meta: {
-            title: 'Global',
-            dataModelModuleName: 'networking/ip/ip/global-config',
+              title: 'product',
           },
-        },
-        {
-          path: 'global1',
-          name: 'IP_Configuration_Global1',
-          component: StaticView,
-          meta: {
-            title: 'Global1',
-            dataModelModuleName: 'networking/ip/ip/global-config1',
-          },
-        },
-      ],
+          children: [
+              {
+                  path: 'product-content',
+                  name: 'IPv6_Global_product_content',
+                  component: TableView,
+                  meta: {
+                      title: 'Content',
+                      dataModelModuleName: 'sytem/saa/product-content',
+                  },
+              },
+          ],
     },
   ],
 };

@@ -38,26 +38,21 @@ const rootRoute = {
             title: 'Dashboard',
           },
         },
-          physicalRoute,
-          systemRoute,
-          networkingRoute, 
-          {
-            path: '/\\S+/',
-            name: 'NotFound',
-            component: NotFound,
-            meta: {
-              title: 'Page Not Found',
-            },
+        physicalRoute,
+        systemRoute,
+        networkingRoute,
+        {
+          path: '/\\S+/',
+          name: 'NotFound',
+          component: NotFound,
+          meta: {
+            title: 'Page Not Found',
           },
-        ],
-      },
-  ]
-}
-
-// const router =new VueRouter({
-//   mode:'history'
-// });
-
+        },
+      ],
+    },
+  ],
+};
 export default new Router({
   routes: rootRoute.children,
 });

@@ -58,32 +58,9 @@ const actions = {
     }).catch(() => {});
   },
   setLang({ commit }, locale) {
-    // if (!state.loadedLangs.includes(locale)) {
-    //   jsonUtils.getJsonFromUrl(`lang/${locale}.json`).then((l) => {
-    //     if(locale === 'en') {
-    //       jsonUtils.getJsonFromUrl(`lang/gen/${locale}.json`).then((m) => {
-    //         const langs = merge({}, m, l);
-    //         app.$i18n.setLocaleMessage(locale, langs);
-    //         commit('SET_LANG', locale);
-    //       }).catch(() => {
-    //         const langs = l;
-    //         app.$i18n.setLocaleMessage(locale, langs);
-    //         commit('SET_LANG', locale);
-    //       });
-    //     } else {
-    //       document.title = app.$t(app.$route.meta.i18n_title, locale);
-    //       const langs = l;
-    //       app.$i18n.setLocaleMessage(locale, langs);
-    //       commit('SET_LANG', locale);
-    //     }
-    //   }).catch(() => {});
-    // } else {
-    //   document.title = app.$t(app.$route.meta.i18n_title, locale);
-    //   commit('SET_LANG', locale);
-    // }
     if (!state.loadedLangs.includes(locale)) {
       jsonUtils.getJsonFromUrl(`lang/${locale}.json`).then((l) => {
-        if(locale === 'en') {
+        // if(locale === 'en') {
           jsonUtils.getJsonFromUrl(`lang/gen/${locale}.json`).then((m) => {
             const langs = merge({}, m, l);
             app.$i18n.setLocaleMessage(locale, langs);
@@ -93,26 +70,16 @@ const actions = {
             app.$i18n.setLocaleMessage(locale, langs);
             commit('SET_LANG', locale);
           });
-        } 
-        // else
-        //  if(locale === 'vn') {
-        //   jsonUtils.getJsonFromUrl(`lang/gen/${locale}.json`).then((m) => {
-        //     const langs = merge({}, m, l);
-        //     app.$i18n.setLocaleMessage(locale, langs);
-        //     commit('SET_LANG', locale);
-        //   }).catch(() => {
-        //     const langs = l;
-        //     app.$i18n.setLocaleMessage(locale, langs);
-        //     commit('SET_LANG', locale);
-        //   });
+         // }
+            // else {
+        //   document.title = app.$t(app.$route.meta.i18n_title, locale);
+        //   const langs = l;
+        //   app.$i18n.setLocaleMessage(locale, langs);
+        //   commit('SET_LANG', locale);
         // }
-         else {
-          const langs = l;
-          app.$i18n.setLocaleMessage(locale, langs);
-          commit('SET_LANG', locale);
-        }
       }).catch(() => {});
     } else {
+      document.title = app.$t(app.$route.meta.i18n_title, locale);
       commit('SET_LANG', locale);
     }
   },
@@ -125,7 +92,7 @@ const mutations = {
         states.loadedLangs.push(locale);
         localStorage.setItem('locale', locale);
         app.$i18n.locale = locale;
-         document.title = app.$t(app.$route.meta.i18n_title);
+        document.title = app.$t(app.$route.meta.i18n_title);
       },
       SET_LANG_MAP(states, languages) {
         states.languages = Object.assign([], languages);

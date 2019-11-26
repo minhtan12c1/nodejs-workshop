@@ -92,7 +92,7 @@ export default {
                       style="margin-left: -20px"
                     )
                       v-icon  mdi-chevron-left
-                v-toolbar-title(:key="3" style="margin-left: 0 !important; text-transform: uppercase; width: 100%; font-size: 14px; font-weight: 500") {{ currentMenu.label || $t('common.home') }}
+                v-toolbar-title(:key="3" style="margin-left: 0 !important; text-transform: uppercase; width: 100%; font-size: 14px; font-weight: 500") {{ $t(currentMenu.i18n_label) || $t('common.home') }}
             v-list(v-if="currentMenu")
               template(v-for="menuItem in currentMenu.items")
                 v-scroll-x-transition(mode="out-in")
@@ -105,8 +105,8 @@ export default {
                   )
                     v-list-item-content
                       v-list-item-title()
-                        template  {{ menuItem.label }} 
+                        template  {{ $t(menuItem.i18n_label) }}
                     v-list-item-action(v-if="menuItem.items && menuItem.items.length>=0")
                       v-icon mdi-menu-right
-    
+
 </template>

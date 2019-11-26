@@ -18,15 +18,6 @@ export default {
       },
       children: [
         {
-          path: 'global',
-          name: 'Ethernet_Global',
-          component: TableView,
-          meta: {
-            title: 'Global',
-            dataModelModuleName: 'sytem/saa/global',
-          },
-        },
-        {
           path: 'product',
           name: 'Ethernet_Product',
           component: TableView,
@@ -51,25 +42,6 @@ export default {
           meta: {
             title: 'Price',
             dataModelModuleName: 'physical/ethernet/price',
-          },
-        },
-      ],
-    },
-    {
-      path: 'statistics',
-      name: 'Statistics',
-      component: MainContent,
-      meta: {
-        title: 'Statistics',
-      },
-      children: [
-        {
-          path: 'global',
-          name: 'Ethernet_Global',
-          component: TableView,
-          meta: {
-            title: 'Global',
-            dataModelModuleName: 'system/saa/global',
           },
         },
       ],

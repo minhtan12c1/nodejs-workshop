@@ -10,8 +10,8 @@
                                 v-icon(slot="divider") mdi-chevron-right
                                 template(slot="item" slot-scope="props" )
                                     v-breadcrumbs-item(ripple :to="props.item" exact )
-                                            v-icon(v-if="props.item.meta.icon" ) {{ props.item.meta.icon }}  
-                                            | {{ props.item.meta.title }}
+                                            v-icon(v-if="props.item.meta.icon" ) {{ props.item.meta.icon }}
+                                            | {{ $t(props.item.meta.i18n_title) }}
                 router-view(:key="$route.fullPath")
 </template>
 
@@ -21,7 +21,7 @@
 
     export default {
         methods: {
-        
+
         },
         components: {
             appSiderbar: Siderbar

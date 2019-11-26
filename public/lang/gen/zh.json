@@ -75,7 +75,7 @@
     "physical": {
       "index": {
         "child_lv_-1": {
-          "physical": "Physical"
+          "physical": "Physical zh"
         }
       },
       "ethernet": {
@@ -117,7 +117,7 @@
     "networking": {
       "index": {
         "child_lv_-1": {
-          "networking": "Networking vn"
+          "networking": "Networking zh"
         }
       },
       "ipv6": {
@@ -132,7 +132,7 @@
       },
       "ip": {
         "child_lv_-1": {
-          "ip": "IP",
+          "ip": "IP zh",
           "configuration": "Configuration",
           "global": "Global",
           "global1": "Global1",

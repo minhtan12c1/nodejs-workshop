@@ -74,5 +74,86 @@
         }
       }
     }
+  },
+  "title": {
+    "index": {
+      "child_lv_-1": {
+        "": ",",
+        "login": "Login title",
+        "home": "Home title",
+        "dashboard": "Dashboard title",
+        "page_not_found": "Page Not Found title"
+      }
+    },
+    "system": {
+      "index": {
+        "child_lv_-1": {
+          "": ",",
+          "system": "System title"
+        }
+      },
+      "saa": {
+        "child_lv_-1": {
+          "": ",",
+          "saa": "SAA tt",
+          "global": "Global tt",
+          "account": "Account11 ",
+          "customer": "Customer",
+          "employee": "Employee"
+        }
+      }
+    },
+    "networking": {
+      "index": {
+        "child_lv_-1": {
+          "": ",",
+          "networking": "Networking title"
+        }
+      },
+      "ipv6": {
+        "child_lv_-1": {
+          "": ",",
+          "ipv6": "IPv6",
+          "global": "Global tt",
+          "product": "Product tt",
+          "content": "Content",
+          "content1": "Content1 tt",
+          "producer": "producer"
+        }
+      },
+      "ip": {
+        "child_lv_-1": {
+          "": ",",
+          "ip": "IP",
+          "configuration": "Configuration",
+          "global": "Global",
+          "global1": "Global1",
+          "general": "General",
+          "extended": "Extended",
+          "product": "product",
+          "content": "Content"
+        }
+      }
+    },
+    "physical": {
+      "index": {
+        "child_lv_-1": {
+          "": ",",
+          "physical": "Physical title"
+        }
+      },
+      "ethernet": {
+        "child_lv_-1": {
+          "": ",",
+          "ethernet": "Ethernet",
+          "ptp": "PTP",
+          "global": "Global",
+          "product": "Product tt",
+          "type_product": "Type Product tt",
+          "price": "Price",
+          "statistics": "Statistics tt"
+        }
+      }
+    }
   }
 }

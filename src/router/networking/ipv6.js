@@ -9,43 +9,24 @@ export default {
     title: 'IPv6',
   },
   children: [
-    {
-      path: 'ipv6_global',
-      name: 'IPv6_Global',
-      component: MainContent,
-      meta: {
-        title: 'Global',
-      },
-      children: [
-        {
-          path: 'product',
-          name: 'IPv6_Global_product',
+      {
+          path: 'producer',
+          name: 'IPv6_Global_producer',
           component: MainContent,
           meta: {
-            title: 'Product',
+              title: 'producer',
           },
           children: [
-            {
-              path: 'product-content',
-              name: 'IPv6_Global_product_content',
-              component: TableView,
-              meta: {
-                title: 'Content',
-                dataModelModuleName: 'sytem/saa/product-content',
+              {
+                  path: 'producer-content',
+                  name: 'IPv6_Global_producer_content',
+                  component: TableView,
+                  meta: {
+                      title: 'Content',
+                      dataModelModuleName: 'sytem/saa/producer-content',
+                  },
               },
-            },
-            {
-              path: 'product-content1',
-              name: 'IPv6_Global_product_content1',
-              component: TableView,
-              meta: {
-                title: 'Content1',
-                dataModelModuleName: 'sytem/saa/product-content1',
-              },
-            },
           ],
-        },
-      ],
     },
   ],
 };
