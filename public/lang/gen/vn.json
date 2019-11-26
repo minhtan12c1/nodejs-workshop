@@ -3,13 +3,13 @@
     "system": {
       "saa": {
         "taikhoan": {
-          "tai_khoan": "titlevn Tai khoan"
+          "tai_khoan": "tài khoản"
         },
         "khachhang": {
-          "khach_hang": "titlevn khach hang"
+          "khach_hang": "khách hàng"
         },
         "nhanvien": {
-          "nhan_vien": "nhan vien"
+          "nhan_vien": "nhân viên"
         }
       }
     }
@@ -19,28 +19,28 @@
       "saa": {
         "taikhoan": {
           "id": "ID",
-          "taikhoan_id": "TAIvn KHOAN ID",
-          "id_d": "ID d",
-          "tai_khoan_id": "TAI KHOAN ID"
+          "taikhoan_id": "tài khoản id",
+          "id_d": "tài khoản",
+          "tai_khoan_id": "tài khoản id"
         },
         "khachhang": {
           "id": "ID",
-          "taikhoan_id": "TAI KHOAN ID",
-          "ho": "f name",
-          "ten": "name",
-          "diachi": "adress",
-          "email": "E-MAIL",
-          "gioitinh": "GIOIvn TINH"
+          "taikhoan_id": "tài khoản id",
+          "ho": "họ",
+          "ten": "tên",
+          "diachi": "địa chỉ",
+          "email": "e-mail",
+          "gioitinh": "giới tính"
         },
         "nhanvien": {
-          "id": "ID",
-          "taikhoan_id": "TAIKHOAN ID",
-          "ho": "HO",
-          "ten": "TEN",
-          "diachi": "DIACHI",
-          "sodt": "SODT",
-          "gioitinh": "GIOITINH",
-          "chinhan_id": "CHINHAN ID"
+          "id": "id",
+          "taikhoan_id": "tài khoản id",
+          "ho": "họ",
+          "ten": "tên",
+          "diachi": "địa chỉ",
+          "sodt": "số điện thoại",
+          "gioitinh": "giới tính",
+          "chinhan_id": "chi nhánh"
         }
       }
     }
@@ -75,71 +75,60 @@
     "physical": {
       "index": {
         "child_lv_-1": {
-          "physical": "Physical"
+          "physical": "vật lý"
         }
       },
       "ethernet": {
         "child_lv_-1": {
-          "ethernet": "Ethernet",
+          "ethernet": "vận chuyển",
           "ptp": "PTP",
-          "global": "Global",
-          "product": "Product",
-          "type_product": "Type Product",
-          "price": "Price",
-          "statistics": "Statistics"
+          "product": "sản phẩm",
+          "type_product": "loại sản phẩm",
+          "price": "giá"
         }
       }
     },
     "index": {
       "child_lv_-1": {
-        "login": "Login",
-        "home": "Home",
-        "dashboard": "Dashboard",
+        "login": "đăng nhập",
+        "home": "nhà",
+        "dashboard": "trang chủ",
         "page_not_found": "Page Not Found"
       }
     },
     "system": {
       "index": {
         "child_lv_-1": {
-          "system": "System"
+          "system": "hệ thống"
         }
       },
       "saa": {
         "child_lv_-1": {
           "saa": "SAA",
-          "global": "Global",
-          "account": "Account",
-          "customer": "Customer",
-          "employee": "Employee"
+          "account": "tài khoản",
+          "customer": "khách hàng",
+          "employee": "nhân viên"
         }
       }
     },
     "networking": {
       "index": {
         "child_lv_-1": {
-          "networking": "Networking vn"
+          "networking": "mạng"
         }
       },
       "ipv6": {
         "child_lv_-1": {
           "ipv6": "IPv6",
-          "global": "Global",
-          "product": "Product",
-          "content": "Content",
-          "content1": "Content1",
-          "producer": "producer"
+          "content": "nọi dung",
+          "producer": "nhà sản xuất"
         }
       },
       "ip": {
         "child_lv_-1": {
           "ip": "IP",
-          "configuration": "Configuration",
-          "global": "Global",
-          "global1": "Global1",
-          "general": "General",
-          "extended": "Extended",
-          "product": "product",
-          "content": "Content"
+          "product": "sản phẩm",
+          "content": "nọi dung"
         }
       }
     }

@@ -1,31 +1,34 @@
 {
   "common": {
-    "log_out": "đăng xuất",
-    "add": "Thên",
-    "modify": "Sửa",
-    "delete": "xóa",
-    "close": "Đống",
-    "save": "Lưu",
-    "refresh": "làm tươi",
-    "language": "Ngôn ngữ",
-    "log_in": "đăng nhập",
-    "username": "Tài khoản",
-    "password": "mật khẩu",
-    "cancel": "Thoát",
-    "submit": "Submit",
-    "previous": "Previous",
-    "next": "Next",
-    "back": "Trở về",
-    "yes": "đồng ý",
-    "no": "không đồng ý",
-    "search": "tìm kiếm",
-    "dashboard": "Trang chủ"
+    "log_out": "星期",
+    "add": "星期",
+    "modify": "星期",
+    "delete": "星期",
+    "close": "星期",
+    "save": "星期",
+    "refresh": "星期",
+    "language": "星期",
+    "log_in": "星期",
+    "username": "星期",
+    "password": "星期",
+    "cancel": "星期",
+    "submit": "Sub星期mit",
+    "previous": "星期",
+    "next": "星期",
+    "back": "星期",
+    "yes": "星期",
+    "no": "星期",
+    "search": "星期",
+    "dashboard": "星期",
+    "add_thing": "星期 ",
+    "modify_thing": "星期 ",
+    "delete_thing": "星期 "
   },
   "validations": {
     "messages": {
-      "_default": "The {0} field value is not valid.",
-      "min_string_length": "trường {0} phải lớn hơn {1} kí tự.",
-      "required": "trường {0} không được để trống."
+      "_default": "The {0} 星期 星期 星期 星期 星期.",
+      "min_string_length": "星期 {0} 星期 星期 星期 星期 星期 {1} 星期.",
+      "required": "星期 {0} 星期 星期 星期 星期."
     }
   },
   "manual_defined": {
@@ -39,88 +42,6 @@
     "layer2": {
       "saa": {
         "pvst_state_auto": "PVST+ Compatibility - Auto"
-      }
-    }
-  },
-  "layer2": {
-    "saa": {
-      "global": {
-        "status": "Status",
-        "interval": "Interval",
-        "file_name": "File Name",
-        "auto_create": "Auto Create",
-        "auto_start": "Auto Start",
-        "interval__min_": "Interval (min)",
-        "number_of_packets": "Number of Packets",
-        "inter-packet_delay__ms_": "Inter-packet Delay (ms)",
-        "payload_size": "Payload Size",
-        "drop_eligible": "Drop Eligible",
-        "jitter_threshold__ms_": "Jitter Threshold (ms)",
-        "rtt_threshold__ms_": "RTT Threshold (ms)",
-        "keep_sessions": "Keep Sessions",
-        "reset_config": "Reset Config",
-        "flush_sessions": "Flush Sessions",
-        "packet_data": "Packet Data"
-      },
-      "taikhoan": {
-        "id": "ID",
-        "taikhoan_id": "TAIKHOAN ID"
-      },
-      "configuration": {
-        "port": "Port",
-        "vlan": "VLAN",
-        "port_state": "Port State",
-        "type": "Type"
-      },
-      "khachhang": {
-        "id": "ID",
-        "taikhoan_id": "TAIKHOAN ID",
-        "ho": "HO",
-        "ten": "TEN",
-        "diachi": "DIACHI",
-        "email": "EMAIL",
-        "gioitinh": "GIOITINH"
-      }
-    }
-  },
-  "system": {
-    "saa": {
-      "configuration": {
-        "port": "Port",
-        "vlan": "VLAN",
-        "port_state": "Port State",
-        "type": "Type"
-      },
-      "global": {
-        "status": "Status",
-        "interval": "Interval",
-        "file_name": "File Name",
-        "auto_create": "Auto Create",
-        "auto_start": "Auto Start",
-        "interval__min_": "Interval (min)",
-        "number_of_packets": "Number of Packets",
-        "inter-packet_delay__ms_": "Inter-packet Delay (ms)",
-        "payload_size": "Payload Size",
-        "drop_eligible": "Drop Eligible",
-        "jitter_threshold__ms_": "Jitter Threshold (ms)",
-        "rtt_threshold__ms_": "RTT Threshold (ms)",
-        "keep_sessions": "Keep Sessions",
-        "reset_config": "Reset Config",
-        "flush_sessions": "Flush Sessions",
-        "packet_data": "Packet Data"
-      },
-      "taikhoan": {
-        "id": "ID",
-        "taikhoan_id": "TAIKHOAN ID"
-      },
-      "khachhang": {
-        "id": "ID",
-        "taikhoan_id": "TAIKHOAN ID",
-        "ho": "HO",
-        "ten": "TEN",
-        "diachi": "DIACHI",
-        "email": "EMAIL",
-        "gioitinh": "GIOITINH"
       }
     }
   }

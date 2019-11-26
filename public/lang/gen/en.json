@@ -3,17 +3,14 @@
     "system": {
       "saa": {
         "taikhoan": {
-          "tai_khoan": "title Tai khoan"
+          "tai_khoan": "account"
         },
         "khachhang": {
-          "khach_hang": "title khach hang"
-        },
-        "khachhang copy": {
-          "khach_hang": "khach hang"
+          "khach_hang": "customer"
         },
         "nhanvien": {
-          "khach_hang": "khach hang",
-          "nhan_vien": "nhan vien"
+          "khach_hang": "customer",
+          "nhan_vien": "employee"
         }
       }
     }
@@ -23,28 +20,28 @@
       "saa": {
         "taikhoan": {
           "id": "ID",
-          "taikhoan_id": "TAIvn KHOAN ID",
-          "id_d": "ID d",
-          "tai_khoan_id": "TAI KHOAN ID"
+          "taikhoan_id": "account ID",
+          "id_d": "account",
+          "tai_khoan_id": "account ID"
         },
         "khachhang": {
           "id": "ID",
-          "taikhoan_id": "TAI KHOAN ID",
-          "ho": "f name",
+          "taikhoan_id": "account ID",
+          "ho": "last name",
           "ten": "name",
-          "diachi": "adress",
-          "email": "E-MAIL",
-          "gioitinh": "GIOI TINH"
+          "diachi": "address",
+          "email": "e-mail",
+          "gioitinh": "gender"
         },
         "nhanvien": {
           "id": "ID",
-          "taikhoan_id": "TAIKHOAN ID",
-          "ho": "HO",
-          "ten": "TEN",
-          "diachi": "DIACHI",
-          "sodt": "SODT",
-          "gioitinh": "GIOITINH",
-          "chinhan_id": "CHINHAN ID"
+          "taikhoan_id": "account ID",
+          "ho": "last name",
+          "ten": "name",
+          "diachi": "address",
+          "sodt": "phone number",
+          "gioitinh": "gender",
+          "chinhan_id": "branch ID"
         }
       }
     }
@@ -53,7 +50,7 @@
     "system": {
       "saa": {
         "taikhoan": {
-          "loai_tai_khoan": "loai tai khoan"
+          "loai_tai_khoan": "type account"
         },
         "khachhang": {
           "tai_khoan_id": "hint tai khoan id",
@@ -79,25 +76,25 @@
     "index": {
       "child_lv_-1": {
         "": ",",
-        "login": "Login title",
-        "home": "Home title",
-        "dashboard": "Dashboard title",
-        "page_not_found": "Page Not Found title"
+        "login": "Login",
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "page_not_found": "Page Not Found"
       }
     },
     "system": {
       "index": {
         "child_lv_-1": {
           "": ",",
-          "system": "System title"
+          "system": "System"
         }
       },
       "saa": {
         "child_lv_-1": {
           "": ",",
-          "saa": "SAA tt",
-          "global": "Global tt",
-          "account": "Account11 ",
+          "saa": "SAA",
+          "global": "Global",
+          "account": "Account",
           "customer": "Customer",
           "employee": "Employee"
         }
@@ -107,17 +104,14 @@
       "index": {
         "child_lv_-1": {
           "": ",",
-          "networking": "Networking title"
+          "networking": "Networking"
         }
       },
       "ipv6": {
         "child_lv_-1": {
           "": ",",
           "ipv6": "IPv6",
-          "global": "Global tt",
-          "product": "Product tt",
           "content": "Content",
-          "content1": "Content1 tt",
           "producer": "producer"
         }
       },
@@ -125,11 +119,6 @@
         "child_lv_-1": {
           "": ",",
           "ip": "IP",
-          "configuration": "Configuration",
-          "global": "Global",
-          "global1": "Global1",
-          "general": "General",
-          "extended": "Extended",
           "product": "product",
           "content": "Content"
         }
@@ -139,7 +128,7 @@
       "index": {
         "child_lv_-1": {
           "": ",",
-          "physical": "Physical title"
+          "physical": "Physical"
         }
       },
       "ethernet": {
@@ -148,10 +137,9 @@
           "ethernet": "Ethernet",
           "ptp": "PTP",
           "global": "Global",
-          "product": "Product tt",
-          "type_product": "Type Product tt",
-          "price": "Price",
-          "statistics": "Statistics tt"
+          "product": "Product",
+          "type_product": "Type Product",
+          "price": "Price"
         }
       }
     }

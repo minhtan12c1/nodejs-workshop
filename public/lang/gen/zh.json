@@ -3,13 +3,13 @@
     "system": {
       "saa": {
         "taikhoan": {
-          "tai_khoan": "titlevn Tai khoan"
+          "tai_khoan": "星期星期"
         },
         "khachhang": {
-          "khach_hang": "titlevn khach hang"
+          "khach_hang": "星期星期"
         },
         "nhanvien": {
-          "nhan_vien": "nhan vien"
+          "nhan_vien": "星期星期"
         }
       }
     }
@@ -18,29 +18,29 @@
     "system": {
       "saa": {
         "taikhoan": {
-          "id": "ID",
-          "taikhoan_id": "TAIvn KHOAN ID",
-          "id_d": "ID d",
-          "tai_khoan_id": "TAI KHOAN ID"
+          "id": "星期",
+          "taikhoan_id": "星期 星期",
+          "id_d": "星期",
+          "tai_khoan_id": "星期 星期"
         },
         "khachhang": {
-          "id": "ID",
-          "taikhoan_id": "TAI KHOAN ID",
-          "ho": "f name",
-          "ten": "name",
-          "diachi": "adress",
-          "email": "E-MAIL",
-          "gioitinh": "GIOIvn TINH"
+          "id": "星期",
+          "taikhoan_id": "星期 星期",
+          "ho": "星期",
+          "ten": "星期",
+          "diachi": "星期",
+          "email": "E-星期",
+          "gioitinh": "星期 星期"
         },
         "nhanvien": {
-          "id": "ID",
-          "taikhoan_id": "TAIKHOAN ID",
-          "ho": "HO",
-          "ten": "TEN",
-          "diachi": "DIACHI",
-          "sodt": "SODT",
-          "gioitinh": "GIOITINH",
-          "chinhan_id": "CHINHAN ID"
+          "id": "星期",
+          "taikhoan_id": "星期",
+          "ho": "星期",
+          "ten": "星期",
+          "diachi": "星期",
+          "sodt": "星期",
+          "gioitinh": "星期",
+          "chinhan_id": "星期"
         }
       }
     }
@@ -49,24 +49,24 @@
     "system": {
       "saa": {
         "taikhoan": {
-          "loai_tai_khoan": "loai tai khoan"
+          "loai_tai_khoan": "星期 星期"
         },
         "khachhang": {
-          "tai_khoan_id": "hint tai khoan id",
-          "ho_va_ten": "hint ho va ten",
-          "ho_ten": "hint ho ten",
-          "dia_chi": "hint dia chi",
-          "hint_email": "hint email",
-          "gioi_tinh": "hint gioi tinh"
+          "tai_khoan_id": "星期星期 ",
+          "ho_va_ten": "星期 星期",
+          "ho_ten": "星期 星期",
+          "dia_chi": "星期 星期",
+          "hint_email": "星期 星期",
+          "gioi_tinh": "星期 星期"
         },
         "nhanvien": {
-          "tai_khoan_id": "tai khoan id",
-          "ho_va_ten": "ho va ten",
-          "ho_ten": "ho ten",
-          "dia_chi": "dia chi",
-          "so_dien_thoai": "so dien thoai",
-          "gioi_tinh": "gioi tinh",
-          "chinhanh": "chinhanh"
+          "tai_khoan_id": "星期 ",
+          "ho_va_ten": "星期 星期",
+          "ho_ten": "星期 星期",
+          "dia_chi": "星期",
+          "so_dien_thoai": "星期",
+          "gioi_tinh": "星期",
+          "chinhanh": "星期"
         }
       }
     }
@@ -75,71 +75,60 @@
     "physical": {
       "index": {
         "child_lv_-1": {
-          "physical": "Physical zh"
+          "physical": "星期"
         }
       },
       "ethernet": {
         "child_lv_-1": {
-          "ethernet": "Ethernet",
-          "ptp": "PTP",
-          "global": "Global",
-          "product": "Product",
-          "type_product": "Type Product",
-          "price": "Price",
-          "statistics": "Statistics"
+          "ethernet": "星期",
+          "ptp": "星期",
+          "product": "星期",
+          "type_product": "星期星期",
+          "price": "星期"
         }
       }
     },
     "index": {
       "child_lv_-1": {
-        "login": "Login",
-        "home": "Home",
-        "dashboard": "Dashboard",
-        "page_not_found": "Page Not Found"
+        "login": "星期",
+        "home": "星期",
+        "dashboard": "星期",
+        "page_not_found": "星期星期"
       }
     },
     "system": {
       "index": {
         "child_lv_-1": {
-          "system": "System"
+          "system": "星期"
         }
       },
       "saa": {
         "child_lv_-1": {
-          "saa": "SAA",
-          "global": "Global",
-          "account": "Account",
-          "customer": "Customer",
-          "employee": "Employee"
+          "saa": "星期",
+          "account": "星期",
+          "customer": "星期",
+          "employee": "星期"
         }
       }
     },
     "networking": {
       "index": {
         "child_lv_-1": {
-          "networking": "Networking zh"
+          "networking": "星期"
         }
       },
       "ipv6": {
         "child_lv_-1": {
-          "ipv6": "IPv6",
-          "global": "Global",
-          "product": "Product",
-          "content": "Content",
-          "content1": "Content1",
-          "producer": "producer"
+          "ipv6": "星期",
+          "producer": "星期",
+          "content": "星期"
         }
       },
       "ip": {
         "child_lv_-1": {
-          "ip": "IP zh",
-          "configuration": "Configuration",
-          "global": "Global",
-          "global1": "Global1",
-          "general": "General",
-          "extended": "Extended",
-          "product": "product",
-          "content": "Content"
+          "ip": "星期",
+          "product": "星期",
+          "content": "星期"
         }
       }
     }
