@@ -10,6 +10,7 @@ const FIELD_NAMES = {
   TAIKHOAN_ID: {
     name: 'TAIKHOAN_ID',
     label: 'TAIKHOAN ID',
+    sendOnModify: true,
     hint: 'tai khoan id',
   },
   HO: {
@@ -42,16 +43,18 @@ const FIELD_NAMES = {
     label: 'GIOITINH',
     adapterMap: vlanDataMap.GIOITINH,
     default: vlanDataMap.GIOITINH.NAM.text,
+    sendOnModify: true,
     hint: 'gioi tinh',
   } ,
   CHINHAN_ID: {
     name: 'CHINHAN_ID',
     label: 'CHINHAN ID',
+    sendOnModify: true,
     hint: 'chinhanh',
   } ,
 };
 
-const TABLE_INFO = {  urn: 'khachhang.php' };
+const TABLE_INFO = {  urn: 'nhanvien.php' };
 
 const MIB_INFO = Object.assign(TABLE_INFO, baseApi.buildMibInfoFromFieldNames(FIELD_NAMES));
 

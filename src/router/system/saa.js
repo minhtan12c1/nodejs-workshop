@@ -36,5 +36,14 @@ export default {
         dataModelModuleName: 'system/saa/nhanvien',
       },
     },
+    {
+      path: 'branch',
+      name: 'System_Saa_Branch',
+      component: TableView,
+      meta: {
+        title: 'Branch',
+        dataModelModuleName: 'system/saa/chinhanh',
+      },
+    },
   ],
 };

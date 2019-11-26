@@ -10,6 +10,7 @@ const FIELD_NAMES = {
   TAIKHOAN_ID: {
     name: 'TAIKHOAN_ID',
     label: 'TAIKHOAN ID',
+    sendOnModify: true,
     hint: 'tai khoan id',
   },
   HO: {
@@ -31,17 +32,24 @@ const FIELD_NAMES = {
     sendOnModify: true,
     hint: 'dia chi',
   },
+  SODT: {
+    name: 'SODT',
+    label: 'SO DT',
+    sendOnModify: true,
+    hint: 'so dien thoai',
+  },
   EMAIL: {
     name: 'EMAIL',
     label: 'EMAIL',
     default: 'abc@gmail',
     sendOnModify: true,
     hint: 'hint email',
-  } ,
+  },
   GIOITINH: {
     name: 'GIOITINH',
     label: 'GIOITINH',
     adapterMap: vlanDataMap.GIOITINH,
+    sendOnModify: true,
     default: vlanDataMap.GIOITINH.NAM.text,
     hint: 'gioi tinh',
   } ,

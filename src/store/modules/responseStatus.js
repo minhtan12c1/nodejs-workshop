@@ -6,13 +6,13 @@ const state = {
       },
       globalLoading: false,
   };
-  
+
   // getters
   const getters = {
     snackBar: states => states.snackBar,
     globalLoading: states => states.globalLoading,
   };
-  
+
   const actions = {
     parseResponseStatus(_, { response, action, objectName, handleSuccess, handleError }) {
         const actualObjectName = (objectName && objectName.trim().length > 0) ? ` ${objectName}` : '';
@@ -28,7 +28,7 @@ const state = {
           state.snackBar.display = true;
         } else if (response.status !== 200 && handleError !== false) {
           if (actuallMessage && actuallMessage.trim().length > 0) {
-            const msg = response.statusText
+            const msg = response.data;
             // Object.keys(response.statusText).length > 0 ? Object.keys(response.statusText).reduce((rs, itm) => {
             //   return `${rs} ${itm}: ${response.statusText[itm]};`;
             // }, '') : response.statusText;
@@ -93,14 +93,13 @@ const state = {
         state.globalLoading = false;
       },
   }
-  
+
   const mutations = {
   };
-  
+
   export default {
     state,
     getters,
     actions,
     mutations,
   };
-  

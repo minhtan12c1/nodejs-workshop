@@ -11,6 +11,10 @@
         "nhanvien": {
           "khach_hang": "customer",
           "nhan_vien": "employee"
+        },
+        "chinhanh": {
+          "chi_nhanh": "chi nhanh",
+          "tai_khoan": "Tai khoan"
         }
       }
     }
@@ -31,7 +35,8 @@
           "ten": "name",
           "diachi": "address",
           "email": "e-mail",
-          "gioitinh": "gender"
+          "gioitinh": "gender",
+          "so_dt": "SO DT"
         },
         "nhanvien": {
           "id": "ID",
@@ -42,6 +47,11 @@
           "sodt": "phone number",
           "gioitinh": "gender",
           "chinhan_id": "branch ID"
+        },
+        "chinhanh": {
+          "id_chi_nhanh": "ID chi nhanh",
+          "ten_chi_nhanh": "Ten chi nhanh",
+          "dia_chi_chi_nhanh": "dia chi chi nhanh"
         }
       }
     }
@@ -58,7 +68,8 @@
           "ho_ten": "hint ho ten",
           "dia_chi": "hint dia chi",
           "hint_email": "hint email",
-          "gioi_tinh": "hint gioi tinh"
+          "gioi_tinh": "hint gioi tinh",
+          "so_dien_thoai": "so dien thoai"
         },
         "nhanvien": {
           "tai_khoan_id": "tai khoan id",
@@ -68,6 +79,9 @@
           "so_dien_thoai": "so dien thoai",
           "gioi_tinh": "gioi tinh",
           "chinhanh": "chinhanh"
+        },
+        "chinhanh": {
+          "dia_chi_chi_nhanh": "dia chi chi nhanh"
         }
       }
     }
@@ -96,7 +110,8 @@
           "global": "Global",
           "account": "Account",
           "customer": "Customer",
-          "employee": "Employee"
+          "employee": "Employee",
+          "branch": "Branch"
         }
       }
     },

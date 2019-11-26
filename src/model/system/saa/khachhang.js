@@ -26,7 +26,6 @@ const dataModel = {
             }],
             dataModelModuleName: 'system/saa/taikhoan',
           },
-          readOnly: true,
         },
         {
           ...FIELD_NAMES.HO,
@@ -39,12 +38,14 @@ const dataModel = {
           ...FIELD_NAMES.DIACHI,
         },
         {
+          ...FIELD_NAMES.SODT,
+        },
+        {
           ...FIELD_NAMES.EMAIL,
         },
         {
           ...FIELD_NAMES.GIOITINH,
           component: componentName.MY_SELECT,
-          readOnly: true,
         },
       ],
     };
@@ -66,6 +67,9 @@ const dataModel = {
         },
         {
           ...FIELD_NAMES.DIACHI,
+        },
+        {
+          ...FIELD_NAMES.SODT,
         },
         {
           ...FIELD_NAMES.EMAIL,

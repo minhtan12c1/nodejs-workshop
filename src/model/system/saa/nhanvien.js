@@ -26,7 +26,6 @@ const dataModel = {
             }],
             dataModelModuleName: 'system/saa/taikhoan',
           },
-          readOnly: true,
         },
         {
           ...FIELD_NAMES.HO,
@@ -39,15 +38,12 @@ const dataModel = {
           ...FIELD_NAMES.SODT,
         },
         {
-          ...FIELD_NAMES.EMAIL,
-        },
-        {
           ...FIELD_NAMES.GIOITINH,
           component: componentName.MY_SELECT,
           readOnly: true,
         },
         {
-          ...FIELD_NAMES.CHINHANH_ID,
+          ...FIELD_NAMES.CHINHAN_ID,
         },
       ],
     };

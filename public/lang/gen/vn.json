@@ -10,6 +10,10 @@
         },
         "nhanvien": {
           "nhan_vien": "nhân viên"
+        },
+        "chinhanh": {
+          "chi_nhanh": "chi nhanh",
+          "tai_khoan": "Tai khoan"
         }
       }
     }
@@ -30,7 +34,8 @@
           "ten": "tên",
           "diachi": "địa chỉ",
           "email": "e-mail",
-          "gioitinh": "giới tính"
+          "gioitinh": "giới tính",
+          "so_dt": "SO DT"
         },
         "nhanvien": {
           "id": "id",
@@ -41,6 +46,11 @@
           "sodt": "số điện thoại",
           "gioitinh": "giới tính",
           "chinhan_id": "chi nhánh"
+        },
+        "chinhanh": {
+          "id_chi_nhanh": "ID chi nhanh",
+          "ten_chi_nhanh": "Ten chi nhanh",
+          "dia_chi_chi_nhanh": "dia chi chi nhanh"
         }
       }
     }
@@ -57,7 +67,8 @@
           "ho_ten": "hint ho ten",
           "dia_chi": "hint dia chi",
           "hint_email": "hint email",
-          "gioi_tinh": "hint gioi tinh"
+          "gioi_tinh": "hint gioi tinh",
+          "so_dien_thoai": "so dien thoai"
         },
         "nhanvien": {
           "tai_khoan_id": "tai khoan id",
@@ -67,6 +78,9 @@
           "so_dien_thoai": "so dien thoai",
           "gioi_tinh": "gioi tinh",
           "chinhanh": "chinhanh"
+        },
+        "chinhanh": {
+          "dia_chi_chi_nhanh": "dia chi chi nhanh"
         }
       }
     }
@@ -107,7 +121,8 @@
           "saa": "SAA",
           "account": "tài khoản",
           "customer": "khách hàng",
-          "employee": "nhân viên"
+          "employee": "nhân viên",
+          "branch": "Branch"
         }
       }
     },
