@@ -28,35 +28,41 @@ if (!$con) {
 // print_r($param["ten"]);die;
 switch ($method) {
     case 'GET':
-      $sql = "select * from khachhang";
+		$taikhoanid = isset($_GET["TAIKHOAN_ID"]) ? $_GET["TAIKHOAN_ID"].',' : '';
+        $ho = isset($_GET["HO"]) ?  $_GET["HO"].',' : '' ;
+        $ten = isset($_GET["TEN"]) ? $_GET["TEN"].',':'';
+        $diachi =isset($_GET["DIACHI"]) ?   $_GET["DIACHI"].',':'' ;
+		$sodt = isset($_GET["SODT"]) ?   $_GET["SODT"].',':'';
+		$email =isset($_GET["EMAIL"]) ? $_GET["EMAIL"].',':'' ; 
+		$gioitinh = isset($_GET["GIOITINH"]) ?   $_GET["GIOITINH"].',':'';
+      $sql = "select $taikhoanid $ho $ten  $diachi $sodt $email $gioitinh ID from khachhang";
       break;
     case 'POST':
-    case 'POST':
       if ($_POST["request"] == 1){
-	  	$taikhoanid = $_POST["TAIKHOAN_ID"];
-        $ho = $_POST["HO"];
-        $ten = $_POST["TEN"];
-        $diachi = $_POST["DIACHI"];
-		$sodt = $_POST["SODT"];
-		$email = $_POST["EMAIL"];
-		$gioitinh = $_POST["GIOITINH"];
+	  	$taikhoanid = isset($_POST["TAIKHOAN_ID"]) ? $_POST["TAIKHOAN_ID"] :'';
+        $ho = isset($_POST["HO"]) ?   $_POST["HO"] :'' ;
+        $ten = isset($_POST["TEN"]) ?  $_POST["TEN"] :'' ;
+        $diachi =isset($_POST["DIACHI"]) ?   $_POST["DIACHI"] :'' ;
+		$sodt = isset($_POST["SODT"]) ?  $_POST["SODT"] :'';
+		$email =isset($_POST["EMAIL"]) ?  $_POST["EMAIL"]:'' ; 
+		$gioitinh = isset($_POST["GIOITINH"]) ?  $_POST["GIOITINH"] :'';
         $sql = "insert into khachhang (taikhoan_id,ho,ten,diachi,sodt,email,gioitinh) values ('$taikhoanid', '$ho' , '$ten','$diachi','$sodt', '$email','$gioitinh')";
         break;
       }
       if ($_POST["request"] == 2){
-        $id = $_POST["ID"];
-       	$taikhoanid = $_POST["TAIKHOAN_ID"];
-        $ho = $_POST["HO"];
-        $ten = $_POST["TEN"];
-        $diachi = $_POST["DIACHI"];
-		$sodt = $_POST["SODT"];
-		$email = $_POST["EMAIL"];
-		$gioitinh = $_POST["GIOITINH"];
+        $id =  isset($_POST["ID"]) ?  $_POST["ID"]:'';
+       $taikhoanid = isset($_POST["TAIKHOAN_ID"]) ? $_POST["TAIKHOAN_ID"] :'';
+        $ho = isset($_POST["HO"]) ?   $_POST["HO"] :'' ;
+        $ten = isset($_POST["TEN"]) ?  $_POST["TEN"] :'' ;
+        $diachi =isset($_POST["DIACHI"]) ?   $_POST["DIACHI"] :'' ;
+		$sodt = isset($_POST["SODT"]) ?  $_POST["SODT"] :'';
+		$email =isset($_POST["EMAIL"]) ?  $_POST["EMAIL"]:'' ; 
+		$gioitinh = isset($_POST["GIOITINH"]) ?  $_POST["GIOITINH"] :'';
         $sql = "UPDATE khachhang SET taikhoan_id='$taikhoanid',ho='$ho',ten='$ten',diachi='$diachi',sodt='$sodt',email='$email',gioitinh='$gioitinh' WHERE id='$id'";
         break;
       }
 	  if ($_POST["request"] ==  3){
-        $id = $_POST["ID"];
+	  	 $id =  isset($_POST["ID"]) ?  $_POST["ID"]:'';
         $sql = "DELETE FROM khachhang WHERE id='$id'";
         break;
       }
@@ -64,6 +70,7 @@ switch ($method) {
 
 // run SQL statement
 $result = mysqli_query($con,$sql);
+
  header("Access-Control-Allow-Origin: *");
 // die if SQL statement failed
 if (!$result) {

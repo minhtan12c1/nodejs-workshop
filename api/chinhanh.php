@@ -11,20 +11,31 @@ $dbname = "gpp_project";
 $id = '';
 
 $con = mysqli_connect($host, $user, $password,$dbname);
-// print_r($param["ten"]);die;
+
 
 
 
 $method = $_SERVER['REQUEST_METHOD'];
+
+//$input = json_decode(file_get_contents('php://input'),true);
 $param = (array) json_decode(file_get_contents('php://input'));
+
+if (!$con) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+// $param = (array) json_decode(file_get_contents('php://input'));
+// print_r($param["ten"]);die;
 if (!$con) {
   die("Connection failed: " . mysqli_connect_error());
 }
 switch ($method) {
     case 'GET':
-      $sql = "select * from chinhanh";
+		$ten = is_null($_GET["TENCHINHANH"]) ? '' : $_GET["TENCHINHANH"];
+        $diachi = is_null($_GET["DIACHICHINHANH"]) ? '' :  $_GET["DIACHICHINHANH"] ;
+		$nhathuoc = is_null($_GET["NHATHUOC_ID"]) ? '' :  $_GET["NHATHUOC_ID"] ;
+      	$sql = "select ID, $ten,$diachi,$nhathuoc from chinhanh ";
       break;
-    case 'POST':
     case 'POST':
       if ($_POST["request"] == 1){
         $tent= $_POST["TENCHINHANH"];
@@ -45,10 +56,8 @@ switch ($method) {
         break;
       }
 }
-
-
-// run SQL statement
 $result = mysqli_query($con,$sql);
+
  header("Access-Control-Allow-Origin: *");
 // die if SQL statement failed
 if (!$result) {
@@ -60,7 +69,7 @@ if (!$result) {
 if ($method == 'GET') {
     if (!$id) echo '[';
     header("Access-Control-Allow-Origin: *");
-    for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {
+    for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {	
       echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));
     }
     if (!$id) echo ']';

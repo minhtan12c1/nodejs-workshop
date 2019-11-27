@@ -14,8 +14,10 @@ export default {
         }
         return promise;
     },
-    sendGet(queryObject, config, callback) {
-        const promise = axios.get(queryObject, config);
+    URL: '/?',
+    sendGet(queryObject, urn, callback) {
+        const query = qs.stringify(queryObject);
+        const promise = axios.get(urn + this.URL + query);
         if (callback) {
           promise.then((response) => {
             callback(response);
@@ -23,11 +25,28 @@ export default {
         }
         return promise;
       },
-    getAll(queryObject,callback) {
-        const promise = this.sendGet(queryObject.urn, null, callback);
-        return promise.then((response) => {
+    sendGetTable(queryObject, urn, callback) {
+
+        return this.sendGet(queryObject, urn, callback);
+    },
+    getAll(mibInfo,callback) {
+        let paramObj = {};
+        let urn = mibInfo.urn;
+        paramObj = this.prepareMibParamForGetFields(mibInfo);
+        return this.sendGetTable(paramObj, urn, callback).then(response => {
+            response.paramObj = paramObj;
             return Promise.resolve(response);
-          });
+        });
+    },
+    prepareMibParamForGetFields(mibInfo) {
+        let result = {};
+        mibInfo.allFields.forEach((field) => {
+            result[`${field}`] = field;
+        });
+        if (mibInfo.additionalGetQuery) {
+            result = Object.assign(result, mibInfo.additionalGetQuery);
+        }
+        return result;
     },
     create(object, supportRange, mibInfo, callback) {
         const indexs = [];
@@ -77,8 +96,8 @@ export default {
         const objectKeys = Object.keys(object);
         objectKeys.forEach((objectKey) => {
           const objectValue = (object[objectKey] !== null && object[objectKey] !== undefined) ? `${object[objectKey]}` : '';
-          if (mibInfo.indexs.includes(objectKey)) { 
-             mibObject[`${objectKey}`] = `${objectValue}`; 
+          if (mibInfo.indexs.includes(objectKey)) {
+             mibObject[`${objectKey}`] = `${objectValue}`;
           } else if (objectValue.length && objectValue.length > 0) {
             mibObject[`${objectKey}`] = `${objectValue}`;
           }
@@ -91,7 +110,7 @@ export default {
         const mibObject = {};
         mibInfo.indexs.forEach((index) => {
           if (object[index]) {
-            mibObject[`${index}`] = `${object[index]}`;  
+            mibObject[`${index}`] = `${object[index]}`;
           }
         });
         mibInfo.modifyFields.forEach((field) => {
@@ -107,9 +126,9 @@ export default {
         for (let i = 0; i < mibInfo.indexs.length; i++) {
             const index = mibInfo.indexs[i];
             for (let j = 0; j < objects.length; j++) {
-                objectValue[`${mibInfo.indexs[i]}`] = `${objects[j][index]}`;  
+                objectValue[`${mibInfo.indexs[i]}`] = `${objects[j][index]}`;
             }
- 
+
         }
         const AC_TION = {  request: '3' };
         return Object.assign(AC_TION, objectValue);
@@ -172,6 +191,6 @@ export default {
         });
         return mibInfo;
     },
-    
-    
+
+
 }

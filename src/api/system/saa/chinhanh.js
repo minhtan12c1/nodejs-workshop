@@ -16,6 +16,12 @@ const FIELD_NAMES = {
     hint: 'dia chi chi nhanh',
     sendOnModify: true,
   },
+  NHATHUOC_ID: {
+    name: 'NHATHUOC_ID',
+    label: 'Nha thuoc ID',
+    hint: 'dia chi chi nhanh',
+    sendOnModify: true,
+  },
 
 };
 

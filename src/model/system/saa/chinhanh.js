@@ -14,6 +14,9 @@ const dataModel = {
         {
           ...FIELD_NAMES.DIACHICHINHANH,
         },
+        {
+          ...FIELD_NAMES.NHATHUOC_ID,
+        },
       ],
     };
   },
@@ -25,6 +28,9 @@ const dataModel = {
           },
           {
               ...FIELD_NAMES.DIACHICHINHANH,
+          },
+          {
+              ...FIELD_NAMES.NHATHUOC_ID,
           },
       ],
       expandDataHeader: [],

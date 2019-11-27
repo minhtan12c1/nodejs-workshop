@@ -51,7 +51,8 @@
         "chinhanh": {
           "id_chi_nhanh": "ID chi nhanh",
           "ten_chi_nhanh": "Ten chi nhanh",
-          "dia_chi_chi_nhanh": "dia chi chi nhanh"
+          "dia_chi_chi_nhanh": "dia chi chi nhanh",
+          "nha_thuoc_id": "Nha thuoc ID"
         }
       }
     }
