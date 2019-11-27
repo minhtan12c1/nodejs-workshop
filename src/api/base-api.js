@@ -14,7 +14,7 @@ export default {
         }
         return promise;
     },
-    URL: '/?',
+    URL: '?',
     sendGet(queryObject, urn, callback) {
         const query = qs.stringify(queryObject);
         const promise = axios.get(urn + this.URL + query);
@@ -40,9 +40,12 @@ export default {
     },
     prepareMibParamForGetFields(mibInfo) {
         let result = {};
+        let count = 0;
         mibInfo.allFields.forEach((field) => {
-            result[`${field}`] = field;
+            result[`${count}`] = field;
+            count++ ;
         });
+
         if (mibInfo.additionalGetQuery) {
             result = Object.assign(result, mibInfo.additionalGetQuery);
         }

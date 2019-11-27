@@ -17,12 +17,17 @@ function getValue(labelLine) {
 
 function getFullValue(lines) {
   if (lines && lines.length > 1) {
-    const flmatch = lines[0].match(/'(.*?)'\s*\+$/);
+   // console.log(lines[0]);
+    const flmatch = lines[0].split("'");
+    //console.log(flmatch[1]);
+    //const flmatch = lines[0].match(/'(.*?)'\s*\+$/);
+
     const fl = [flmatch[1]];
-    lines.slice(1).forEach(l => {
-      const lmatch = l.match(/'(.*?)'\s*[\+\,]$/);
-      fl.push(lmatch[1])
-    })
+    // lines.slice(1).forEach(l => {
+    //   console.log(l);
+    //   const lmatch = l.match(/'(.*?)'\s*[\+\,]$/);
+    //   fl.push(lmatch[1])
+    // })
 
     return fl.join('');
   }

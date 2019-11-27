@@ -7,7 +7,7 @@
 $host = "localhost"; 
 $user = "root"; 
 $password = ""; 
-$dbname = "gpp_project"; 
+$dbname = "gp_project";
 $id = '';
 
 $con = mysqli_connect($host, $user, $password,$dbname);
