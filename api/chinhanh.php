@@ -31,10 +31,13 @@ if (!$con) {
 }
 switch ($method) {
     case 'GET':
-		$ten = is_null($_GET["TENCHINHANH"]) ? '' : $_GET["TENCHINHANH"];
-        $diachi = is_null($_GET["DIACHICHINHANH"]) ? '' :  $_GET["DIACHICHINHANH"] ;
-		$nhathuoc = is_null($_GET["NHATHUOC_ID"]) ? '' :  $_GET["NHATHUOC_ID"] ;
-      	$sql = "select ID, $ten,$diachi,$nhathuoc from chinhanh ";
+		$data='';
+      	$data .= isset($_GET["0"]) ?  $_GET["0"]:'';
+      for(  $i=1 ; $i<10 ; $i++ ) {
+        $data .= !isset($_GET[$i]) ? '':',';
+        $data .= isset($_GET[$i]) ?  $_GET[$i]:'';
+      }
+      	$sql = "select ID, $data from chinhanh ";
       break;
     case 'POST':
       if ($_POST["request"] == 1){

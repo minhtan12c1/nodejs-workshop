@@ -46,8 +46,8 @@ const FIELD_NAMES = {
     sendOnModify: true,
     hint: 'gioi tinh',
   } ,
-  CHINHAN_ID: {
-    name: 'CHINHAN_ID',
+  CHINHANH_ID: {
+    name: 'CHINHANH_ID',
     label: 'CHINHAN ID',
     sendOnModify: true,
     hint: 'chinhanh',

@@ -4,9 +4,9 @@
 
 
  <?php
-$host = "localhost"; 
-$user = "root"; 
-$password = ""; 
+$host = "localhost";
+$user = "root";
+$password = "";
 $dbname = "gpp_project";
 $id = '';
 
@@ -74,7 +74,7 @@ $result = mysqli_query($con,$sql);
 // die if SQL statement failed
 if (!$result) {
   http_response_code(201);
-  
+
   die(mysqli_error($con));
 }
 

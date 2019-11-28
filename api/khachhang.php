@@ -28,14 +28,13 @@ if (!$con) {
 // print_r($param["ten"]);die;
 switch ($method) {
     case 'GET':
-		$taikhoanid = isset($_GET["TAIKHOAN_ID"]) ? $_GET["TAIKHOAN_ID"].',' : '';
-        $ho = isset($_GET["HO"]) ?  $_GET["HO"].',' : '' ;
-        $ten = isset($_GET["TEN"]) ? $_GET["TEN"].',':'';
-        $diachi =isset($_GET["DIACHI"]) ?   $_GET["DIACHI"].',':'' ;
-		$sodt = isset($_GET["SODT"]) ?   $_GET["SODT"].',':'';
-		$email =isset($_GET["EMAIL"]) ? $_GET["EMAIL"].',':'' ; 
-		$gioitinh = isset($_GET["GIOITINH"]) ?   $_GET["GIOITINH"].',':'';
-      $sql = "select $taikhoanid $ho $ten  $diachi $sodt $email $gioitinh ID from khachhang";
+		$data='';
+      	$data .= isset($_GET["0"]) ?  $_GET["0"]:'';
+      	for(  $i=1 ; $i<10 ; $i++ ) {
+        $data .= !isset($_GET[$i]) ? '':',';
+        $data .= isset($_GET[$i]) ?  $_GET[$i]:'';
+      }
+      $sql = "select $data from khachhang";
       break;
     case 'POST':
       if ($_POST["request"] == 1){

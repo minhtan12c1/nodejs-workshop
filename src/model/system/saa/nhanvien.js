@@ -1,5 +1,6 @@
 import vpaApi from '@/api/system/saa/nhanvien';
 import taikhoanApi from '@/api/system/saa/taikhoan';
+import chinhanhApi from '@/api/system/saa/chinhanh';
 import componentName from '@/components/component-name';
 import commonRule from '@/validation/rule-name/common';
 
@@ -13,6 +14,7 @@ const dataModel = {
       fields: [
         {
           ...FIELD_NAMES.TAIKHOAN_ID,
+          validationRules: commonRule.REQUIRED,
           component: componentName.MY_DYNAMIC_SELECT,
           componentProps: {
             dataSource: {
@@ -32,18 +34,34 @@ const dataModel = {
         },
         {
           ...FIELD_NAMES.TEN,
-          validationRules: [commonRule.REQUIRED, commonRule.MIN_STRING_LENGTH],
         },
         {
           ...FIELD_NAMES.SODT,
+        validationRules: [commonRule.MIN_STRING_LENGTH, commonRule.ONLY_NUMBERS],
         },
         {
           ...FIELD_NAMES.GIOITINH,
           component: componentName.MY_SELECT,
-          readOnly: true,
         },
         {
-          ...FIELD_NAMES.CHINHAN_ID,
+          ...FIELD_NAMES.CHINHANH_ID,
+            validationRules: commonRule.REQUIRED,
+            component: componentName.MY_DYNAMIC_SELECT,
+            componentProps: {
+                dataSource: {
+                    api: chinhanhApi.getAll,
+                    index: 'ID',
+                    displayFormat: data => data.TENCHINHANH,
+                },
+                staticItems: [{
+                    text: 'NONE',
+                    value: 'NONE',
+                }],
+                dataModelModuleName: 'system/saa/chinhanh',
+            },
+        },
+        {
+           ...FIELD_NAMES.DIACHI,
         },
       ],
     };
@@ -64,13 +82,16 @@ const dataModel = {
           ...FIELD_NAMES.TEN,
         },
         {
-          ...FIELD_NAMES.DIACHI,
-        },
-        {
           ...FIELD_NAMES.SODT,
         },
         {
           ...FIELD_NAMES.GIOITINH,
+        },
+        {
+          ...FIELD_NAMES.CHINHANH_ID,
+        },
+        {
+          ...FIELD_NAMES.DIACHI,
         },
       ],
       expandDataHeader: [],

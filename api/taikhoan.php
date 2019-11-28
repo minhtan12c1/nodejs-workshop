@@ -22,7 +22,13 @@ if (!$con) {
 }
 switch ($method) {
     case 'GET':
-      $sql = "select * from taikhoan";
+		$data='';
+      	$data .= isset($_GET["0"]) ?  $_GET["0"]:'';
+      for(  $i=1 ; $i<10 ; $i++ ) {
+        $data .= !isset($_GET[$i]) ? '':',';
+        $data .= isset($_GET[$i]) ?  $_GET[$i]:'';
+      }
+      $sql = "select $data from taikhoan";
       break;
     case 'POST':
     case 'POST':

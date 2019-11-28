@@ -12,8 +12,8 @@
           "nhan_vien": "nhân viên"
         },
         "chinhanh": {
-          "chi_nhanh": "chi nhanh",
-          "tai_khoan": "Tai khoan"
+          "chi_nhanh": "chi nhánh",
+          "tai_khoan": "Tài khoản"
         }
       }
     }
@@ -48,10 +48,10 @@
           "chinhan_id": "chi nhánh"
         },
         "chinhanh": {
-          "id_chi_nhanh": "ID chi nhanh",
-          "ten_chi_nhanh": "Ten chi nhanh",
-          "dia_chi_chi_nhanh": "dia chi chi nhanh",
-          "nha_thuoc_id": "Nha thuoc ID"
+          "id_chi_nhanh": "ID chi nhánh",
+          "ten_chi_nhanh": "Ten chi nhánh",
+          "dia_chi_chi_nhanh": "địa chỉ chi nhánh",
+          "nha_thuoc_id": "Nhà thuốc ID"
         }
       }
     }
@@ -81,7 +81,9 @@
           "chinhanh": "chinhanh"
         },
         "chinhanh": {
-          "dia_chi_chi_nhanh": "dia chi chi nhanh"
+          "dia_chi_chi_nhanh": "dia chi chi nhanh",
+          "nhà_thuốc_id": "nhà thuốc id",
+          "ten_chi_nhanh": "Ten chi nhanh"
         }
       }
     }

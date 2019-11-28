@@ -12,8 +12,8 @@
           "nhan_vien": "星期星期"
         },
         "chinhanh": {
-          "chi_nhanh": "chi nhanh",
-          "tai_khoan": "Tai khoan"
+          "chi_nhanh": "星期 星期",
+          "tai_khoan": "星期 星期"
         }
       }
     }
@@ -35,7 +35,7 @@
           "diachi": "星期",
           "email": "E-星期",
           "gioitinh": "星期 星期",
-          "so_dt": "SO DT"
+          "so_dt": "星期 星期"
         },
         "nhanvien": {
           "id": "星期",
@@ -48,10 +48,10 @@
           "chinhan_id": "星期"
         },
         "chinhanh": {
-          "id_chi_nhanh": "ID chi nhanh",
-          "ten_chi_nhanh": "Ten chi nhanh",
-          "dia_chi_chi_nhanh": "dia chi chi nhanh",
-          "nha_thuoc_id": "Nha thuoc ID"
+          "id_chi_nhanh": "星期 星期 星期",
+          "ten_chi_nhanh": "星期 星期 星期",
+          "dia_chi_chi_nhanh": "星期 星期 星期 星期",
+          "nha_thuoc_id": "星期 星期 星期"
         }
       }
     }
@@ -69,7 +69,7 @@
           "dia_chi": "星期 星期",
           "hint_email": "星期 星期",
           "gioi_tinh": "星期 星期",
-          "so_dien_thoai": "so dien thoai"
+          "so_dien_thoai": "星期 星期 星期"
         },
         "nhanvien": {
           "tai_khoan_id": "星期 ",
@@ -81,7 +81,9 @@
           "chinhanh": "星期"
         },
         "chinhanh": {
-          "dia_chi_chi_nhanh": "dia chi chi nhanh"
+          "dia_chi_chi_nhanh": "星期 星期 星期 星期",
+          "nhà_thuốc_id": "星期 星期 星期",
+          "ten_chi_nhanh": "星期 星期 星期"
         }
       }
     }
@@ -123,7 +125,7 @@
           "account": "星期",
           "customer": "星期",
           "employee": "星期",
-          "branch": "Branch"
+          "branch": "星期"
         }
       }
     },

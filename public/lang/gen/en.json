@@ -13,8 +13,8 @@
           "nhan_vien": "employee"
         },
         "chinhanh": {
-          "chi_nhanh": "chi nhanh",
-          "tai_khoan": "Tai khoan"
+          "chi_nhanh": "branch",
+          "tai_khoan": "account"
         }
       }
     }
@@ -49,10 +49,10 @@
           "chinhan_id": "branch ID"
         },
         "chinhanh": {
-          "id_chi_nhanh": "ID chi nhanh",
-          "ten_chi_nhanh": "Ten chi nhanh",
-          "dia_chi_chi_nhanh": "dia chi chi nhanh",
-          "nha_thuoc_id": "Nha thuoc ID"
+          "id_chi_nhanh": "branch ID ",
+          "ten_chi_nhanh": "name branch",
+          "dia_chi_chi_nhanh": "branch address",
+          "nha_thuoc_id": "home id "
         }
       }
     }
@@ -82,7 +82,9 @@
           "chinhanh": "chinhanh"
         },
         "chinhanh": {
-          "dia_chi_chi_nhanh": "dia chi chi nhanh"
+          "dia_chi_chi_nhanh": "dia chi chi nhanh",
+          "nhà_thuốc_id": "nhà thuốc id",
+          "ten_chi_nhanh": "Ten chi nhanh"
         }
       }
     }

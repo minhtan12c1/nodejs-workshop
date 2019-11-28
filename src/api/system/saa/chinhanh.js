@@ -9,16 +9,19 @@ const FIELD_NAMES = {
   TENCHINHANH: {
     name: 'TENCHINHANH',
     label: 'Ten chi nhanh',
+    hint: 'Ten chi nhanh',
   },
   DIACHICHINHANH: {
     name: 'DIACHICHINHANH',
     label: 'dia chi chi nhanh',
     sendOnModify: true,
+    hint: 'dia chi chi nhanh',
   },
   NHATHUOC_ID: {
     name: 'NHATHUOC_ID',
     label: 'Nha thuoc ID',
     sendOnModify: true,
+    hint: 'nhà thuốc id',
   },
 
 };
