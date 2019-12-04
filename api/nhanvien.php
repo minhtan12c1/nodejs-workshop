@@ -33,7 +33,9 @@ switch ($method) {
            }
          }
       }
-      $sql = "select $data from nhanvien $query";
+      $start = isset($_GET["start"]) ? $_GET["start"] : '' ;
+      $limit  = isset($_GET["limit"]) ? $_GET["limit"] : '' ;
+      $sql = "select $data from nhanvien $query LIMIT $start,$limit";
       break;
     }
     case 'POST':

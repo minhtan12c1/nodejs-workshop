@@ -28,7 +28,9 @@ switch ($method) {
            }
          }
       }
-      $sql = "select ID, $data from chinhanh $query";
+      $start = isset($_GET["start"]) ? $_GET["start"] : '' ;
+      $limit  = isset($_GET["limit"]) ? $_GET["limit"] : '' ;
+      $sql = "select ID, $data from chinhanh $query LIMIT $start,$limit";
       break;
     }
     case 'POST':

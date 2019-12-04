@@ -6,7 +6,10 @@
 switch ($method) {
     case 'GET':
     if ($_GET["request"] == 2){
-          $sql = "SELECT COUNT(*) as COUNT  FROM khachhang";
+          $sql = "SELECT COUNT(*) as COUNT  FROM `sanpham` sp 
+              inner join sptheotk sptk on sp.ID=sptk.SANPHAM_ID  
+              inner join `loaisanpham` lsp on sp.LOAI_ID=lsp.ID 
+              inner join `nhasanxuat` nsx on sp.NSX_ID=nsx.ID ";
           break;
         }
     if ($_GET["request"] == 1){
@@ -34,7 +37,14 @@ switch ($method) {
       }
       $start = isset($_GET["start"]) ? $_GET["start"] : '' ;
       $limit  = isset($_GET["limit"]) ? $_GET["limit"] : '' ;
-      $sql = "select $data from khachhang $query LIMIT $start,$limit";
+      $sql = "SELECT sp.ID,sp.TENSANPHAM,lsp.TEN_LOAISP,nsx.TEN_NSX,sp.DONVITINH,tb1.GIASANPHAM as GIABAN,sp.IMAGE,sp.MOTA 
+      FROM `sanpham` sp 
+      inner join sptheotk sptk on sp.ID=sptk.SANPHAM_ID  
+      inner join `loaisanpham` lsp on sp.LOAI_ID=lsp.ID 
+      inner join `nhasanxuat` nsx on sp.NSX_ID=nsx.ID 
+      inner join (SELECT DISTINCT `NGAY_ID`,`SANPHAM_ID`,`GIASANPHAM` FROM `giatheongay` ORDER by `NGAY_ID` ASC  ) as tb1   on sp.ID=tb1.SANPHAM_ID 
+      GROUP by TENSANPHAM  LIMIT $start,$limit";
+      //$sql = "select $data from sanpham $query LIMIT $start,$limit";
       break;
     }
     case 'POST':
