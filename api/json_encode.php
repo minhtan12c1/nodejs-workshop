@@ -1,8 +1,4 @@
 
-
-
-
-
  <?php
 // run SQL statement
   mysqli_set_charset($con,"utf8");

@@ -5,14 +5,36 @@
 
 switch ($method) {
     case 'GET':
+    if ($_GET["request"] == 2){
+          $sql = "SELECT COUNT(*) as COUNT  FROM khachhang";
+          break;
+        }
+    if ($_GET["request"] == 1){
 		    $data='';
       	$data .= isset($_GET["0"]) ?  $_GET["0"]:'';
       for(  $i=1 ; $i<10 ; $i++ ) {
         $data .= !isset($_GET[$i]) ? '':',';
         $data .= isset($_GET[$i]) ?  $_GET[$i]:'';
+      };
+      $filterObject = isset($_GET["filterObject"]) ? $_GET["filterObject"] : '' ;
+      $filterOperation = isset($_GET["filterOperation"]) ? $_GET["filterOperation"] : '' ;
+      $filterValue = isset($_GET["filterValue"]) ? $_GET["filterValue"] : '' ;
+      $arrfilterObject  = preg_split("/[|]+/", $filterObject);
+      $arrfilterOperation  = preg_split("/[&]+/", $filterOperation);
+      $arrfilterValue  = preg_split("/[|]+/", $filterValue);
+      $query = '';
+      if($filterObject){
+        $query .= 'WHERE ';
+        for($j=0 ; $j < count($arrfilterObject) ; $j++ ){
+           $query .= $arrfilterObject[$j].$arrfilterOperation[$j]."'".$arrfilterValue[$j]."'";
+           if ( $j < (count($arrfilterObject)- 1)) {
+             $query .= ' and ';
+           }
+         }
       }
-        $sql = "select $data from khachhang";
+      $sql = "select $data from khachhang $query";
       break;
+    }
     case 'POST':
       if ($_POST["request"] == 1){
 	  	  $taikhoanid = isset($_POST["TAIKHOAN_ID"]) ? $_POST["TAIKHOAN_ID"] :'';
