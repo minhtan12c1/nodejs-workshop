@@ -78,10 +78,10 @@ export default {
   modify(value, callback) {
     return baseApi.modify(value, MIB_INFO, callback);
   },
-  getAll(callback) {
-    return baseApi.getAll(MIB_INFO,callback);
+  getAll(callback,start, limit) {
+    return baseApi.getAll(MIB_INFO,start, limit,callback);
   },
   getTotal(callback) {
-        return baseApi.getTotal(TABLE_INFO,callback);
+    return baseApi.getTotal(TABLE_INFO,callback);
   },
 };

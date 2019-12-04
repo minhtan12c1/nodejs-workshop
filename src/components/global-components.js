@@ -5,6 +5,7 @@ import MyStatusSwitch from '@/components/core/MyStatusSwitch';
 import MySelect from '@/components/core/MySelect';
 import MyDynamicSelect from '@/components/core/MyDynamicSelect';
 import TableViewContent from '@/components/TableViewContent';
+import CustomViewContent from '@/components/CustomViewContent';
 
 // This module register common components that are used in many views.
 // Global component registration will help to eliminate the effor to import that component
@@ -16,3 +17,4 @@ Vue.component(componentName.MY_STATUS_SWITCH, MyStatusSwitch);
 Vue.component(componentName.MY_SELECT, MySelect);
 Vue.component(componentName.MY_DYNAMIC_SELECT, MyDynamicSelect);
 Vue.component(componentName.TABLE_VIEW_CONTENT, TableViewContent);
+Vue.component(componentName.CUSTOM_VIEW_CONTENT, CustomViewContent);

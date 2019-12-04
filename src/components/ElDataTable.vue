@@ -70,7 +70,7 @@ export default {
       const l = this.limit;
       const offset = (ridx * l);
       this.current_page = pageIndex;
-      this.$emit('get-all-data', offset);
+      this.$emit('get-offset-data', offset);
     },
     tableRowClassName({ row }) {
       return this.selectedItems.includes(row) ? 'selected-row' : '';
@@ -104,9 +104,7 @@ export default {
       }
       return items;
     },
-
    },
-
   mounted() {
     this.headers.forEach((v) => {
       this.filterField.push(v.name);

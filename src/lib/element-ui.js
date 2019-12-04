@@ -11,6 +11,12 @@ import {
     DatePicker,
     TimePicker,
     Input,
+    Row,
+    Col,
+    Card,
+    Button,
+    Image,
+    Popover
 } from 'element-ui';
 import i18n from '@/lang';
 
@@ -26,6 +32,12 @@ Vue.use(DatePicker);
 Vue.use(TimePicker);
 Vue.use(Loading.directive);
 Vue.use(Input);
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Card);
+Vue.use(Button);
+Vue.use(Image);
+Vue.use(Popover);
 
 Vue.prototype.$loading = Loading.service;
 

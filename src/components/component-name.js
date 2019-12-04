@@ -8,6 +8,7 @@ const ComponentName = {
     MY_STATUS_SWITCH: 'v-status-switch',
     MY_DYNAMIC_SELECT: 'my-dynamic-select',
     TABLE_VIEW_CONTENT: 'table-view-content',
+    CUSTOM_VIEW_CONTENT: 'custom-view-content1',
   };
 
   const AosComponent = {};

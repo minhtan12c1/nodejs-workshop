@@ -18,6 +18,13 @@
         "nhanvien_taikhoan": {
           "nhan_vien": "nhan vien",
           "tai_khoan": "tai khoan"
+        },
+        "sanpham": {
+          "khach_hang": "khach hang",
+          "san_pham": "san pham"
+        },
+        "sanpham1": {
+          "san_pham": "san pham"
         }
       }
     }
@@ -56,6 +63,17 @@
           "ten_chi_nhanh": "Ten chi nhánh",
           "dia_chi_chi_nhanh": "địa chỉ chi nhánh",
           "nha_thuoc_id": "Nhà thuốc ID"
+        },
+        "sanpham": {
+          "id": "ID",
+          "ten_san_pham": "TEN SAN PHAM",
+          "loai": "Loai",
+          "nsx": "NSX",
+          "don_vi_tinh": "DON VI TINH",
+          "image": "IMAGE",
+          "mo_ta": "MO TA",
+          "gia_ban": "Gia Ban",
+          "nha_san_xuat": "Nha san xuat"
         }
       }
     }
@@ -88,6 +106,15 @@
           "dia_chi_chi_nhanh": "dia chi chi nhanh",
           "nhà_thuốc_id": "nhà thuốc id",
           "ten_chi_nhanh": "Ten chi nhanh"
+        },
+        "sanpham": {
+          "ten_san_pham": "ten san pham",
+          "ten_loai": "ten loai",
+          "nha_san_xuat": "nha san xuat",
+          "don_vi_tinh": "don vi tinh",
+          "image": "image",
+          "mo_ta": "mo ta",
+          "gia_ban": "Gia Ban"
         }
       }
     }
@@ -130,7 +157,10 @@
           "customer": "khách hàng",
           "employee": "nhân viên",
           "branch": "chi nhánh",
-          "employee_account": "Employee Account"
+          "employee_account": "Employee Account",
+          "san_pham": "San Pham",
+          "product": "product",
+          "product1": "product1"
         }
       }
     },

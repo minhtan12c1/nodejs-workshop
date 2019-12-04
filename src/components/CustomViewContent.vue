@@ -1,14 +1,14 @@
 
 
 <script>
-  import ElDataTable from './ElDataTable.vue';
+  import ElDataCard from './ElDataCard.vue';
   import ObjectProfileForm from './ObjectProfileForm.vue';
   import modelUtils from '@/model/model-utils';
   import { mapActions } from 'vuex';
 
 
 export default {
-    name: 'TableViewContent',
+    name: 'CustomViewContent',
     data() {
       return {
         dataTableModel: {},
@@ -45,7 +45,7 @@ export default {
       };
     },
     components: {
-            appElDataTable: ElDataTable,
+            appElDataCard: ElDataCard,
             appObjectProfileForm: ObjectProfileForm,
         },
     props: {
@@ -62,14 +62,6 @@ export default {
         if (this.initialized) {
           return;
         }
-        //------------------> view
-        // if (this.dataModel.view) {
-        //   this.selectView = this.selectView ? this.selectView : this.dataModel.default;
-        //   this.viewSelect = dataTypeUtils.getUiDataList(this.dataModel.view);
-        //   this.dataTableModel = this.dataModel.models[this.selectView].getDataTableModel();
-        //   this.tableProfile = this.dataModel.models[this.selectView].getTableProfile();
-        //   this.objectDefinition = this.dataModel.models[this.selectView].getObjectModel();
-        // } else {
           this.dataTableModel = this.dataModel.getDataTableModel();
           this.tableProfile = this.dataModel.getTableProfile();
           this.objectDefinition = this.dataModel.getObjectModel();
@@ -86,29 +78,6 @@ export default {
         if (this.allowDelete || this.allowModify) {
           this.checkColumn = true;
         }
-        /*
-        // ----------------->customTableAction
-        if (this.tableProfile.tableToolbar && this.tableProfile.tableToolbar.customTableAction) {
-          this.tableProfile.tableToolbar.customTableAction.forEach((action) => {
-            if (action.selectedRows) {
-              this.checkColumn = true;
-            }
-          });
-        }
-        // -------------------->customRowAction
-        if (this.tableProfile.tableToolbar && this.tableProfile.tableToolbar.customRowAction) {
-          this.checkColumn = true;
-          this.tableProfile.tableToolbar.customRowAction.forEach((action) => {
-            action.disable = false;
-          });
-        }
-        // ---------------------->fileAction
-        // We might need array of tree-columnable table profile
-        if (this.tableProfile.tableToolbar && this.tableProfile.tableToolbar.fileAction) {
-          this.treeColumn = 0; // name column
-          this.checkColumn = true;
-        }
-        */
       },
       retrieveData(stat,limit) {
         this.loading = true;
@@ -373,7 +342,7 @@ export default {
                     v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit" :disabled="!dirty") {{ $t('common.save') }}
                     v-btn(color='blue darken-1', text='', @click.native.prevent="objectDialogOpenned=false") {{ $t('common.close') }}
 
-        app-el-data-table(
+        app-el-data-card(
             :loading="loading"
             :headers="tableHeader"
             class="elevation-0 limited-height-table"

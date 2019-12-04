@@ -18,6 +18,13 @@
         "nhanvien_taikhoan": {
           "nhan_vien": "星期 星期",
           "tai_khoan": "星期 星期"
+        },
+        "sanpham": {
+          "khach_hang": "khach hang",
+          "san_pham": "san pham"
+        },
+        "sanpham1": {
+          "san_pham": "san pham"
         }
       }
     }
@@ -56,6 +63,17 @@
           "ten_chi_nhanh": "星期 星期 星期",
           "dia_chi_chi_nhanh": "星期 星期 星期 星期",
           "nha_thuoc_id": "星期 星期 星期"
+        },
+        "sanpham": {
+          "id": "ID",
+          "ten_san_pham": "TEN SAN PHAM",
+          "loai": "Loai",
+          "nsx": "NSX",
+          "don_vi_tinh": "DON VI TINH",
+          "image": "IMAGE",
+          "mo_ta": "MO TA",
+          "gia_ban": "Gia Ban",
+          "nha_san_xuat": "Nha san xuat"
         }
       }
     }
@@ -88,6 +106,15 @@
           "dia_chi_chi_nhanh": "星期 星期 星期 星期",
           "nhà_thuốc_id": "星期 星期 星期",
           "ten_chi_nhanh": "星期 星期 星期"
+        },
+        "sanpham": {
+          "ten_san_pham": "ten san pham",
+          "ten_loai": "ten loai",
+          "nha_san_xuat": "nha san xuat",
+          "don_vi_tinh": "don vi tinh",
+          "image": "image",
+          "mo_ta": "mo ta",
+          "gia_ban": "Gia Ban"
         }
       }
     }
@@ -130,7 +157,10 @@
           "customer": "星期",
           "employee": "星期",
           "branch": "星期",
-          "employee_account": "星期 星期"
+          "employee_account": "星期 星期",
+          "san_pham": "San Pham",
+          "product": "product",
+          "product1": "product1"
         }
       }
     },

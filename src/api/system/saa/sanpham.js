@@ -1,5 +1,4 @@
 import baseApi from '@/api/base-api';
-import vlanDataMap from '@/data-adapter/map/layer2/vpa';
 
 const FIELD_NAMES = {
   ID: {
@@ -7,54 +6,58 @@ const FIELD_NAMES = {
     label: 'ID',
     index: true,
   },
-  TAIKHOAN_ID: {
-    name: 'TAIKHOAN_ID',
-    label: 'TAIKHOAN ID',
+  TENSANPHAM: {
+    name: 'TENSANPHAM',
+    label: 'Ten san pham',
     sendOnModify: true,
-    hint: 'tai khoan id',
+    hint: 'ten san pham',
   },
-  HO: {
-    name: 'HO',
-    label: 'HO',
+  TEN_LOAISP: {
+    name: 'TEN_LOAISP',
+    label: 'Loai',
     sendOnModify: true,
-    hint: 'ho va ten',
+    hint: 'ten loai',
   },
-  TEN: {
-    name: 'TEN',
-    label: 'TEN',
+  TEN_NSX: {
+    name: 'TEN_NSX',
+    label: 'Nha san xuat',
     sendOnModify: true,
-    hint: ' ho ten',
+    hint: 'nha san xuat',
   },
-  DIACHI: {
-    name: 'DIACHI',
-    label: 'DIACHI',
-    default: 'city',
+  DONVITINH: {
+    name: 'DONVITINH',
+    label: 'Don vi tinh',
     sendOnModify: true,
-    hint: 'dia chi',
+    hint: 'don vi tinh',
   },
-  SODT: {
-    name: 'SODT',
-    label: 'SODT',
+  GIABAN: {
+    name: 'GIABAN',
+    label: 'Gia Ban',
     sendOnModify: true,
-    hint: 'so dien thoai',
-  } ,
-  GIOITINH: {
-    name: 'GIOITINH',
-    label: 'GIOITINH',
-    adapterMap: vlanDataMap.GIOITINH,
-    default: vlanDataMap.GIOITINH.NAM.text,
+    hint: 'Gia Ban',
+  },
+  IMAGE: {
+    name: 'IMAGE',
+    label: 'IMAGE',
     sendOnModify: true,
-    hint: 'gioi tinh',
-  } ,
-  CHINHANH_ID: {
-    name: 'CHINHANH_ID',
-    label: 'CHINHAN ID',
+    hint: 'image',
+  },
+  MOTA: {
+    name: 'MOTA',
+    label: 'MO TA',
     sendOnModify: true,
-    hint: 'chinhanh',
-  } ,
+    hint: 'mo ta',
+  },
 };
 
-const TABLE_INFO = {  urn: 'nhanvien.php' };
+const TABLE_INFO = {
+  urn: 'sanpham.php',
+  // additionalGetQuery: {
+  //   filterObject: `${FIELD_NAMES.GIOITINH.name}|${FIELD_NAMES.TAIKHOAN_ID.name}`,
+  //   filterOperation: '=&=',
+  //   filterValue: '1|user2',
+  // },
+};
 
 const MIB_INFO = Object.assign(TABLE_INFO, baseApi.buildMibInfoFromFieldNames(FIELD_NAMES));
 
@@ -75,5 +78,5 @@ export default {
   },
   getTotal(callback) {
     return baseApi.getTotal(TABLE_INFO,callback);
-   },
+  },
 };

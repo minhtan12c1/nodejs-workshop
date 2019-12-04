@@ -1,6 +1,7 @@
 import MainContent from '@/components/MainContent';
 import TableView from '@/components/TableView';
 import GridView from '@/components/GridView';
+import GetDataModel from '@/components/core/getDataModel';
 
 export default {
   path: 'saa',
@@ -44,6 +45,24 @@ export default {
       meta: {
         title: 'Branch',
         dataModelModuleName: 'system/saa/chinhanh',
+      },
+    },
+    {
+      path: 'product',
+      name: 'System_Saa_Product',
+      component: TableView,
+      meta: {
+        title: 'product',
+        dataModelModuleName: 'system/saa/sanpham',
+      },
+    },
+    {
+      path: 'product1',
+      name: 'System_Saa_Product1',
+      component: GetDataModel,
+      meta: {
+        title: 'product1',
+        dataModelModuleName: 'system/saa/sanpham1',
       },
     },
     {
