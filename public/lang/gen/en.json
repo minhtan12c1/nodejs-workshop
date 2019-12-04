@@ -15,6 +15,10 @@
         "chinhanh": {
           "chi_nhanh": "branch",
           "tai_khoan": "account"
+        },
+        "nhanvien_taikhoan": {
+          "nhan_vien": "employee",
+          "tai_khoan": "account"
         }
       }
     }
@@ -114,7 +118,8 @@
           "account": "Account",
           "customer": "Customer",
           "employee": "Employee",
-          "branch": "Branch"
+          "branch": "Branch",
+          "employee_account": "Employee Account"
         }
       }
     },

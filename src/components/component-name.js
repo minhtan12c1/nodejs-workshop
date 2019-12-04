@@ -7,15 +7,15 @@ const ComponentName = {
     AOS_SWITCH: 'v-switch',
     MY_STATUS_SWITCH: 'v-status-switch',
     MY_DYNAMIC_SELECT: 'my-dynamic-select',
+    TABLE_VIEW_CONTENT: 'table-view-content',
   };
-  
+
   const AosComponent = {};
   Object.keys(ComponentName).forEach((key) => {
     AosComponent[key] = {
       component: ComponentName[key],
     };
   });
-  
+
   export default ComponentName;
   export { AosComponent };
-  

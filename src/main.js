@@ -8,9 +8,10 @@ import routerUtils from '@/router/utils';
 import i18n from '@/lang';
 import '@/components/global-components';
 import '@/validation/rule';
+import '@/lib/element-ui';
 
   store.dispatch('getLangMap');
-  //store.dispatch('loadDefaultLocale');  
+  //store.dispatch('loadDefaultLocale');
 
   let apiUrl = null;
   try {
@@ -34,7 +35,7 @@ import '@/validation/rule';
 
   if ((localStorage.getItem('LOAI_TAIKHOAN') === '')) {
     routerUtils.routeToHome();
-  } 
+  }
   else {
     routerUtils.routeToDashboard();
   }
@@ -42,7 +43,7 @@ import '@/validation/rule';
     store.dispatch('navigatePath', { path: to.path, breadCumsRaw: to.matched });
     next();
   });
-  
+
 
   const app = new Vue({
     render: h => h(App),

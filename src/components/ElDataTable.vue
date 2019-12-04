@@ -1,31 +1,18 @@
 
 <script>
-import Vue from 'vue'
-import {Table, TableColumn, Pagination, Loading } from 'element-ui'
-
-
-Vue.use(Table)
-Vue.use(TableColumn)
-Vue.use(Pagination)
-Vue.use(Loading)
 
 export default {
   name: 'ElDataTable',
   data() {
     return {
       filterField: [],
-      rowsPerPage: [20, 50, 100, 200, 500, 1000],
+      rowsPerPage: [10, 20, 30, 40, 50, 100],
       nameOfProperties: this.headers.map(h => h.name),
       items: this.data,
       selectedItems: [],
-      pagination: {
-        pageIndex: 1,
-        pageSize: 20,
-        pageCount: 5,
-        small: false,
-        layout: 'total, sizes, prev, pager, next, jumper',
-      },
       currentSearch: '',
+      current_page: 1,
+      limit: 10,
     };
   },
   watch: {
@@ -39,21 +26,10 @@ export default {
   computed: {
     currentPage() {
       let items = this.applySearch(this.data);
-      const ridx = this.pagination.pageIndex - 1;
-      const l = this.pagination.pageSize;
-
-      const offset = (ridx * l);
-      const limit = items.length - offset > l ? l : items.length - offset;
-      const cp = items.slice(offset, offset + limit);
-      return cp;
+      return items;
     },
   },
-  components: {
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
-    [Pagination.name]: Pagination,
-    [Loading .name]: Loading 
-  },
+
   props: {
     data: {
       type: Array,
@@ -63,65 +39,38 @@ export default {
       type: Array,
       required: true,
     },
-    // actionColumn: {
-    //   type: Boolean,
-    //   default: false,
-    // },
     checkColumn: {
       type: Boolean,
       default: false,
     },
-    // treeColumn: {
-    //   type: Number,
-    //   default: -1,
-    // },
-    // writable: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // allowDelete: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // allowModify: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    totalItemPage: {
+      type: Number,
+      default: -1,
+    },
     loading: {
       type: Boolean,
       default: false,
     },
-    // expand: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // expandHeader: {
-    //   type: Array,
-    //   default: () => [],
-    // },
     search: {
       type: String,
       default: null,
     },
-    // height: {
-    //   type: [Number, String],
-    //   default: 'auto',
-    // },
-    // newToolbar: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // selected: {
-    //   type: Array,
-    //   default: () => [],
-    // },
+    isGetNext: {
+      type: Boolean,
+      default: true,
+    },
   },
    methods: {
-      handleSizeChange(size) {
-      this.pagination.pageSize = size;
+    handleSizeChange(size) {
+      this.limit = size;
+      this.$emit('get-size-data', size);
     },
     handleCurrentChange(pageIndex) {
-      this.pagination.pageIndex = pageIndex;
+      const ridx = pageIndex - 1;
+      const l = this.limit;
+      const offset = (ridx * l);
+      this.current_page = pageIndex;
+      this.$emit('get-all-data', offset);
     },
     tableRowClassName({ row }) {
       return this.selectedItems.includes(row) ? 'selected-row' : '';
@@ -155,17 +104,13 @@ export default {
       }
       return items;
     },
+
    },
-   
+
   mounted() {
     this.headers.forEach((v) => {
       this.filterField.push(v.name);
     });
-    
-    // this.expandHeader.forEach((v) => {
-    //   this.filterField.push(v.name);
-    // });
-    
   },
 };
 </script>
@@ -184,7 +129,6 @@ export default {
         element-loading-background="rgba(0, 0, 0, 0.8)"
         :data="currentPage"
         stripe
-        
         :row-class-name="tableRowClassName"
         @selection-change="handleSelectionChange"
         highlight-current-row
@@ -207,17 +151,13 @@ export default {
           )
       div(style="margin-top: 10px;text-align: right;")
         el-pagination(
-          layout="prev, pager, next"
+          layout="sizes, prev, pager, next, jumper"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page.sync="pagination.pageIndex"
-          :page-size="pagination.pageSize"
-          :pager-count="pagination.pageCount"
+          :current-page.sync="current_page"
           :page-sizes="rowsPerPage"
-          :total="(items && items.length) || 0"
-    )
-        
-          
-            
-
+          :page-size="limit"
+          :total="totalItemPage"
+          :small="true"
+            )
 </template>

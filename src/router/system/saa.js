@@ -1,5 +1,6 @@
 import MainContent from '@/components/MainContent';
 import TableView from '@/components/TableView';
+import GridView from '@/components/GridView';
 
 export default {
   path: 'saa',
@@ -43,6 +44,15 @@ export default {
       meta: {
         title: 'Branch',
         dataModelModuleName: 'system/saa/chinhanh',
+      },
+    },
+    {
+      path: 'employee-account',
+      name: 'System_Saa_Employee-Account',
+      component: GridView,
+      meta: {
+        title: 'Employee Account',
+        dataModelModuleName: 'system/saa/nhanvien_taikhoan',
       },
     },
   ],

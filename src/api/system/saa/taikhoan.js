@@ -15,10 +15,12 @@ const FIELD_NAMES = {
     adapterMap: vlanDataMap.LOAITAIKHOAN,
     default: vlanDataMap.LOAITAIKHOAN.USER.text,
   },
-  
+
 };
 
-const TABLE_INFO = {  urn: 'taikhoan.php' };
+const TABLE_INFO = {
+  urn: 'taikhoan.php',
+  };
 
 const MIB_INFO = Object.assign(TABLE_INFO, baseApi.buildMibInfoFromFieldNames(FIELD_NAMES));
 
@@ -34,7 +36,10 @@ export default {
   modify(value, callback) {
     return baseApi.modify(value, MIB_INFO, callback);
   },
-  getAll(callback) {
-    return baseApi.getAll(MIB_INFO,callback);
+  getAll(callback,start, limit) {
+    return baseApi.getAll(MIB_INFO,start, limit,callback);
+  },
+  getTotal(callback) {
+    return baseApi.getTotal(TABLE_INFO,callback);
   },
 };

@@ -14,6 +14,10 @@
         "chinhanh": {
           "chi_nhanh": "星期 星期",
           "tai_khoan": "星期 星期"
+        },
+        "nhanvien_taikhoan": {
+          "nhan_vien": "星期 星期",
+          "tai_khoan": "星期 星期"
         }
       }
     }
@@ -125,7 +129,8 @@
           "account": "星期",
           "customer": "星期",
           "employee": "星期",
-          "branch": "星期"
+          "branch": "星期",
+          "employee_account": "星期 星期"
         }
       }
     },

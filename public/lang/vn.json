@@ -1,4 +1,12 @@
 {
+  "el": {
+    "pagination": {
+      "goto": "đến",
+      "pagesize": "/trang",
+      "total": "tổng cộng {total}",
+      "pageClassifier": "Phân loại trang"
+    }
+  },
   "common": {
     "log_out": "đăng xuất",
     "add": "Thên",

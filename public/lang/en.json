@@ -1,4 +1,12 @@
 {
+  "el": {
+    "pagination": {
+      "goto": "Go to",
+      "pagesize": "/page",
+      "total": "Total {total}",
+      "pageClassifier": "Page Classifier"
+    }
+  },
   "common": {
     "log_out": "Log out",
     "add": "Add",

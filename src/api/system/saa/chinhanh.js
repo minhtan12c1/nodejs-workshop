@@ -45,4 +45,7 @@ export default {
   getAll(callback) {
     return baseApi.getAll(MIB_INFO,callback);
   },
+  getTotal(callback) {
+     return baseApi.getTotal(TABLE_INFO,callback);
+  },
 };

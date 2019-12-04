@@ -6,6 +6,7 @@
   import modelUtils from '@/model/model-utils';
   import { mapActions } from 'vuex';
 
+
 export default {
     name: 'TableViewContent',
     data() {
@@ -36,14 +37,16 @@ export default {
         enableSearch: false,
         searchItem: '',
         totalItems: 0,
+        totalItemPage: 0,
         search: '',
         dirty: false,
-
+        limit: 10,
+        current_page: 1,
       };
     },
     components: {
             appElDataTable: ElDataTable,
-            appObjectProfileForm: ObjectProfileForm
+            appObjectProfileForm: ObjectProfileForm,
         },
     props: {
       dataModel: {},
@@ -72,7 +75,12 @@ export default {
           this.objectDefinition = this.dataModel.getObjectModel();
         // }
         this.buildTableHeader();
-        this.retrieveData();
+        this.tableProfile.api.getTotal().then((response) => {
+          if (response.data) {
+             this.totalItemPage = parseInt(response.data["0"].COUNT, 10);
+          }
+          }).catch(() => {});
+        this.retrieveData(1,this.limit)
 
 
 
@@ -104,10 +112,12 @@ export default {
           this.checkColumn = true;
         }
         */
+
       },
-      retrieveData() {
+
+      retrieveData(stat,limit) {
         this.loading = true;
-        this.tableProfile.api.getAll(null).then((response) => {
+        this.tableProfile.api.getAll(null,stat,limit).then((response) => {
               if (response.data) {
                 this.items = [];
                 this.originalItems = [];
@@ -128,6 +138,14 @@ export default {
               }
             this.loading = false;
           }).catch(() => {});
+      },
+      getNextData(index) {
+          this.current_page = index;
+          this.retrieveData(index,this.limit)
+      },
+      getSizeData(index) {
+        this.limit = index;
+        this.retrieveData(1,this.limit)
       },
       openAddObjectDialog() {
         this.object = {};
@@ -183,7 +201,7 @@ export default {
         this.selected = [];
         this.customActionModel = {};
         this.currentDirectory = null;
-        this.retrieveData();
+        this.retrieveData(this.current_page,this.limit)
       },
       selectRows(rows) {
         this.selected = rows;
@@ -257,6 +275,7 @@ export default {
       modifyBtnEnabled() {
         return this.selected.length === 1;
       },
+
     },
     watch: {
       objectDialogOpenned(value) {
@@ -287,23 +306,34 @@ export default {
       this.initTableView();
     },
     mounted() {
+
       this.initTableView();
     },
 }
 </script>
 
 <style lang="stylus" scoped>
-.aos-group-expand-title-primary
-    background-color: #4f6faa
-    
+
+
 </style>
 
 <template lang="pug">
     v-card(class="data-content" style="border: #ffffff solid 4px;")
+        p
         v-dialog(v-model='objectDialogOpenned', persistent='', max-width='600px')
             template( v-slot:activator='{ on }' )
-                v-layout( row class="flex" justify-end xs12 wrap style="min-height: 40px !important; margin-top: 22px;")
-                    v-spacer
+                v-layout(   style="min-height: 40px !important; margin-top: 22px;")
+                    v-flex(style=" padding-left: 14px;")
+                        el-input(
+                        size="mini"
+                        prefix-icon="el-icon-search"
+                        :placeholder="$t('common.search')"
+                        ref="searchBox"
+                        @keydown.native.escape="toggleSearchBox"
+                        v-model="searchItem"
+                        clearable
+                        )
+                    div(style="min-width: 5px;")
                     v-tooltip(bottom)
                       template(template v-slot:activator="{ on }" )
                         v-btn( v-if="tableProfile.tableToolbar.add.enable" v-on="on" :disabled="loading" small color="primary" @click="openAddObjectDialog")
@@ -351,21 +381,7 @@ export default {
                     v-spacer
                     v-btn(color='blue darken-1', text='', @click.native.prevent="onObjectDialogSubmit" :disabled="!dirty") {{ $t('common.save') }}
                     v-btn(color='blue darken-1', text='', @click.native.prevent="objectDialogOpenned=false") {{ $t('common.close') }}
-        v-layout( row wrap)
-          v-flex(style=" padding-left: 14px; padding-right: 14px;" )
-            v-text-field(
-              prepend-icon="mdi-magnify"
-                    :placeholder="$t('common.search')"
-                    ref="searchBox"
-                    small
-                    class="small search-box"
-                    outline
-                    @keydown.native.escape="toggleSearchBox"
-                    v-model="searchItem"
-                    clearable
-                    single-line
-                    hide-details        
-              )    
+
         app-el-data-table(
             :loading="loading"
             :headers="tableHeader"
@@ -373,6 +389,10 @@ export default {
             @select="selectRows"
             :check-column="checkColumn"
             :data="items"
+            :total-item-page="totalItemPage"
             :search="search"
+            @get-all-data="getNextData($event)"
+            @get-size-data="getSizeData($event)"
+            ref="elAosTable"
         )
 </template>

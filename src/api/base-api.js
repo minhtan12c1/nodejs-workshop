@@ -29,17 +29,27 @@ export default {
 
         return this.sendGet(queryObject, urn, callback);
     },
-    getAll(mibInfo,callback) {
+    getAll(mibInfo, start, limit,callback) {
         let paramObj = {};
         let urn = mibInfo.urn;
-        paramObj = this.prepareMibParamForGetFields(mibInfo);
+        paramObj = this.prepareMibParamForGetFields(mibInfo, start, limit);
         return this.sendGetTable(paramObj, urn, callback).then(response => {
             response.paramObj = paramObj;
             return Promise.resolve(response);
         });
     },
-    prepareMibParamForGetFields(mibInfo) {
+    getTotal(TABLE_INFO, callback) {
+        let paramObj = {};
+        let urn = TABLE_INFO.urn;
+        const AC_TION = {  request: '2' };
+        return this.sendGet(AC_TION, urn, callback).then(response => {
+            response.paramObj = paramObj;
+            return Promise.resolve(response);
+        });
+    },
+    prepareMibParamForGetFields(mibInfo,start, limit) {
         let result = {};
+        result['request']= 1;
         let count = 0;
         mibInfo.allFields.forEach((field) => {
             result[`${count}`] = field;
@@ -49,6 +59,8 @@ export default {
         if (mibInfo.additionalGetQuery) {
             result = Object.assign(result, mibInfo.additionalGetQuery);
         }
+        result['start']= start;
+        result['limit']= limit;
         return result;
     },
     create(object, supportRange, mibInfo, callback) {

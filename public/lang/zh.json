@@ -1,4 +1,12 @@
 {
+  "el": {
+    "pagination": {
+      "goto": "星期 星期",
+      "pagesize": "/星期",
+      "total": "星期 {星期}",
+      "pageClassifier": "星期 星期"
+    }
+  },
   "common": {
     "log_out": "星期",
     "add": "星期",

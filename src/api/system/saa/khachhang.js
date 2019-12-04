@@ -55,7 +55,14 @@ const FIELD_NAMES = {
   } ,
 };
 
-const TABLE_INFO = {  urn: 'khachhang.php' };
+const TABLE_INFO = {
+  urn: 'khachhang.php',
+  additionalGetQuery: {
+    filterObject: `${FIELD_NAMES.GIOITINH.name}|${FIELD_NAMES.TAIKHOAN_ID.name}`,
+    filterOperation: '=&=',
+    filterValue: '1|user2',
+  },
+};
 
 const MIB_INFO = Object.assign(TABLE_INFO, baseApi.buildMibInfoFromFieldNames(FIELD_NAMES));
 
@@ -73,5 +80,8 @@ export default {
   },
   getAll(callback) {
     return baseApi.getAll(MIB_INFO,callback);
+  },
+  getTotal(callback) {
+        return baseApi.getTotal(TABLE_INFO,callback);
   },
 };
