@@ -4,6 +4,7 @@ import menu from './modules/menu';
 import lang from './modules/lang';
 import authen from './modules/authen';
 import init from './modules/initial';
+import cart from './modules/cart';
 import responseStatus from './modules/responseStatus';
 import dynamicModule from './modules/dynamic-module';
 
@@ -23,5 +24,6 @@ export default new vuex.Store({
       authen,
       init,
       responseStatus,
+      cart,
     },
   });

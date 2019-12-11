@@ -353,6 +353,6 @@ export default {
             :search="search"
             @get-offset-data="getOffset($event)"
             @get-size-data="getSizeData($event)"
-            ref="elAosTable"
+            ref="elAosCard"
         )
 </template>

@@ -127,7 +127,8 @@
         "login": "Login",
         "home": "Home",
         "dashboard": "Dashboard",
-        "page_not_found": "Page Not Found"
+        "page_not_found": "Page Not Found",
+        "cart_items": "Cart Items"
       }
     },
     "system": {

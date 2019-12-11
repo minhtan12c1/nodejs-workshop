@@ -141,7 +141,8 @@
         "login": "đăng nhập",
         "home": "nhà",
         "dashboard": "trang chủ",
-        "page_not_found": "Page Not Found"
+        "page_not_found": "Page Not Found",
+        "cart_items": "Cart Items"
       }
     },
     "system": {

@@ -141,7 +141,8 @@
         "login": "星期",
         "home": "星期",
         "dashboard": "星期",
-        "page_not_found": "星期星期"
+        "page_not_found": "星期星期",
+        "cart_items": "Cart Items"
       }
     },
     "system": {

@@ -7,6 +7,7 @@ import networkingRoute from '@/router/networking';
 import Home from '@/components/Home.vue';
 import NotFound from '@/components/NotFound';
 import Dashboard from '@/components/Dashboard';
+import CartItems from '@/components/CartItems';
 
 Vue.use(Router);
 
@@ -36,6 +37,14 @@ const rootRoute = {
           component: Dashboard,
           meta: {
             title: 'Dashboard',
+          },
+        },
+          {
+          path: 'cartItems',
+          name: 'CartItems',
+          component: CartItems,
+          meta: {
+            title: 'Cart Items',
           },
         },
         physicalRoute,

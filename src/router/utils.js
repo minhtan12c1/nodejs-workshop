@@ -10,6 +10,12 @@ export default {
   routeToHome() {
     this.changeRouteByName('Home');
   },
+  routeToCartItems() {
+    this.changeRouteByName('CartItems');
+  },
+  routeToProduct() {
+    this.changeRouteByName('System_Saa_Product1');
+  },
   routeToLogin() {
     this.changeRouteByName("Login");
   },

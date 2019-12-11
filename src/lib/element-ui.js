@@ -16,7 +16,10 @@ import {
     Card,
     Button,
     Image,
-    Popover
+    Popover,
+    Carousel,
+    CarouselItem,
+    Dialog
 } from 'element-ui';
 import i18n from '@/lang';
 
@@ -38,6 +41,9 @@ Vue.use(Card);
 Vue.use(Button);
 Vue.use(Image);
 Vue.use(Popover);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
+Vue.use(Dialog);
 
 Vue.prototype.$loading = Loading.service;
 
